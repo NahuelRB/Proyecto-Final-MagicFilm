@@ -1,9 +1,12 @@
 import React from 'react'
+import SearchMoviesContainer from '../../common/searchMovies/SearchMoviesContainer'
 
 
 const Home = () => {
   return (
-    <div></div>
+    <div>
+      <SearchMoviesContainer/>
+    </div>
   )
 }
 
