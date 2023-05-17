@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import logo from '../../../assets/logo.svg'
 import "./HeaderStyle.css"
 const HeaderLayout = () => {
 
@@ -6,11 +7,10 @@ const HeaderLayout = () => {
   return (
     <div  className='Navbar'>
 
-    <span className='nav-logo'>MAGIC</span>
+    <a href='/Home' className='nav-logo'><img src={logo} alt="logo" /></a>
     <div className={`nav-items ${isOpen && "open"}`}>
-     
-      <a href='#'><button>Iniciar sesión</button></a>
-      <a href='#'><button>Crear cuenta</button></a>
+      <a href='#'><button className="login-button">Iniciar sesión</button></a>
+      <a href='#'><button className="signup-button">Crear cuenta</button></a>
     </div>
     <div className={`nav-toggle ${isOpen && "open"}`}
      onClick={()=> setIsOpen(!isOpen)}>
