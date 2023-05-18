@@ -1,0 +1,40 @@
+.container-detail-movies {
+    
+    display: flex;
+    align-items: center;
+    border: 2px solid rgba(0, 0, 0, 0.041);
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    display: flex;
+    flex-direction:row;
+
+  
+
+    
+  }
+
+  .img-detail-movies {
+    width:50%;
+    height: 50%;
+    border-color: rgb(25, 0, 255);
+}
+
+.titleRecommendedMovies{
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+@media (max-width: 768px) {
+    .container-detail-movies {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .img-detail-movies {
+      width: 100%;
+      height: auto;
+      border-color: rgb(25, 0, 255);
+    }
+  }

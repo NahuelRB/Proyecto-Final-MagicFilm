@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from "react-router-dom"
 
 const recommendedMovies = (props) => {
     const
@@ -22,7 +22,9 @@ const recommendedMovies = (props) => {
                 <h4>
                   Género: <span>{movie.gender}</span>
                 </h4>
+                <Link to={`/details/${movie.id}`}>
                 <button className="button-search-detail">Ver más</button>
+                </Link>
               </div>
             )
         })}
