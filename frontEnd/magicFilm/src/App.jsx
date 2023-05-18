@@ -5,6 +5,7 @@ import Home from "./components/pages/home/Home";
 import MovieDetailContainer from "./components/pages/movieDetail/movieDetailContainer";
 import HeaderLayoutContainer from "./components/layout/header/HeaderLayoutContainer";
 import FooterLayoutContainer from "./components/layout/footer/FooterLayoutContainer";
+import AdministrativePanelContainer from "./components/pages/administrativePanel/administrativePanelContainer";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,6 +17,7 @@ function App() {
           <Route element={<FooterLayoutContainer />}>
             <Route path="/" element={<Home />} />
             <Route path="/details" element={<MovieDetailContainer />} />
+            <Route path="/admin" element={<AdministrativePanelContainer/>} />
           </Route>
         </Route>
       </Routes>
