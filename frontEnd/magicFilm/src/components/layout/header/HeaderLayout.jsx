@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import logo from '../../../assets/logo.svg'
 import "./HeaderStyle.css"
+import { Link } from 'react-router-dom'
+
 const HeaderLayout = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div  className='Navbar'>
-
-    <a href='/Home' className='nav-logo'><img src={logo} alt="logo" /></a>
+    <Link to={"/"}>
+   < img src={logo} alt="logo"  className='nav-logo'/>
+    </Link>
+    
     <div className={`nav-items ${isOpen && "open"}`}>
       <a href='#'><button className="login-button">Iniciar sesión</button></a>
       <a href='#'><button className="signup-button">Crear cuenta</button></a>
