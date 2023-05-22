@@ -1,10 +1,12 @@
-import React from 'react'
-import DeleteMovie from './DeleteMovie'
+import React from "react";
+import DeleteMovie from "./DeleteMovie";
 
 const DeleteMovieContainer = () => {
   return (
-    <div><DeleteMovie/></div>
-  )
-}
+    <div className="container-delete-movies">
+      <DeleteMovie />
+    </div>
+  );
+};
 
-export default DeleteMovieContainer
+export default DeleteMovieContainer;

@@ -2,14 +2,14 @@ import React from 'react'
 
 import './FooterLayout.css'
 
-import iconInstagram from '../../../assets/icon/instagram.svg'
-import iconFacebook from '../../../assets/icon/facebook.svg'
-import iconTwitter from '../../../assets/icon/twitter.svg'
-import iconWhatsapp from '../../../assets/icon/whatsapp.svg'
+import iconInstagram from '../../assets/icon/instagram.svg'
+import iconFacebook from '../../assets/icon/facebook.svg'
+import iconTwitter from '../../assets/icon/twitter.svg'
+import iconWhatsapp from '../../assets/icon/whatsapp.svg'
 
 const FooterLayout = () => {
   return (
-    <div className='container-footer'>
+    <footer className='container-footer'>
       <div className='boxSpanFooter' >
         <span className='copyright'>© 2023 Magic Film</span>
       </div>
@@ -20,7 +20,7 @@ const FooterLayout = () => {
         <a href="https://web.whatsapp.com/" target="_blank"><img className='icon' src={iconWhatsapp} alt="" /></a>
       </div>
 
-    </div>
+    </footer>
   )
 }
 

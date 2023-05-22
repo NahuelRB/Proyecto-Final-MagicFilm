@@ -1,16 +1,11 @@
-.container-detail-movies {
-    
+/* .container-detail-movies {  
     display: flex;
     align-items: center;
     border: 2px solid rgba(0, 0, 0, 0.041);
     background-color: rgb(255, 255, 255);
     padding: 20px;
     display: flex;
-    flex-direction:row;
-
-  
-
-    
+    flex-direction:row;   
   }
 
   .img-detail-movies {
@@ -37,4 +32,9 @@
       height: auto;
       border-color: rgb(25, 0, 255);
     }
-  }
+  } */
+
+.container-detail {
+  height: 100%;
+  width: 100%;
+}

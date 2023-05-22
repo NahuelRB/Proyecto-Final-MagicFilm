@@ -11,7 +11,7 @@ const SearchMovies = (props) => {
         <input
           type="text"
           className="input-search-movies"
-          placeholder="Nombre pelicula"
+          placeholder="Nombre película"
         />
         <button className="button-search-movies">Buscar</button>
       </form>
