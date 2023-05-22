@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./assets/fonts/fonts.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 

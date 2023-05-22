@@ -1,10 +1,15 @@
-import React from 'react'
-import AddMovie from './AddMovie'
+import React from "react";
+import AddMovieForm from "./AddMovieForm";
+import AddMoviePreview from "./AddMoviePreview";
+import "./addMovie.css";
 
 const AddMovieContainer = () => {
   return (
-    <div><AddMovie/></div>
-  )
-}
+    <div className="container-add-movie">
+      <AddMovieForm />
+      <AddMoviePreview />
+    </div>
+  );
+};
 
-export default AddMovieContainer
+export default AddMovieContainer;

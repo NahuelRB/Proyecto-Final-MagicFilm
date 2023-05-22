@@ -6,10 +6,8 @@ import RecommendedMoviesContainer from "../components/common/recommendedMovies/R
 const Home = () => {
   return (
     <Layout>
-      <>
-        <SearchMoviesContainer />
-        <RecommendedMoviesContainer />
-      </>
+      <SearchMoviesContainer />
+      <RecommendedMoviesContainer />
     </Layout>
   );
 };
