@@ -2,11 +2,6 @@ import React from "react";
 import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 const AddMovie = ({ state, setState }) => {
-  const handleAdjuntar = () => {
-    const fileInput = document.getElementById("file");
-    fileInput.click();
-  };
-
   const handleInputChange = (event) => {
     setState({
       ...state,
@@ -114,11 +109,7 @@ const AddMovie = ({ state, setState }) => {
             <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
           </p>
         )}
-        <label
-          htmlfor="file"
-          className="attach-button"
-          onClick={handleAdjuntar}
-        >
+        <label htmlFor="file" className="attach-button">
           <img className="icon" src={iconClip} alt="" />
           {state?.file ? "Cambiar" : "Adjuntar"}
         </label>
