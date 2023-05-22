@@ -1,6 +1,5 @@
 .admin-title {
   margin: 30px;
-  height: 700;
   color: black;
 }
 
@@ -13,9 +12,21 @@
   gap: 25px;
   flex: 1;
   margin-bottom: 5vh;
+  flex-wrap: wrap;
 }
 
 .admin-container {
   width: 70%;
   margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .admin-container {
+    margin: 0;
+    width: 100%;
+  }
+  .admin-title {
+    font-size: 1.5rem;
+    color: black;
+  }
 }
