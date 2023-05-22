@@ -1,6 +1,7 @@
 import React from "react";
 import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
+import { createMovie } from "../../../service/productServices";
 const AddMovie = ({ state, setState }) => {
   const handleInputChange = (event) => {
     setState({
@@ -30,7 +31,17 @@ const AddMovie = ({ state, setState }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    data_send = { ...state };
+    console.log(state);
+    const create = createMovie(state)
+    create.then((data) => console.log(data))
+    .catch((error) => console.log(error))
+
+
+   
+
+
+
+    /* data_send = { ...state };
     delete data_send.file;
     fetch("URL_DEL_ENDPOINT", {
       method: "POST",
@@ -45,7 +56,7 @@ const AddMovie = ({ state, setState }) => {
       })
       .catch((error) => {
         console.error(error);
-      });
+      }); */
   };
 
   return (
@@ -78,7 +89,7 @@ const AddMovie = ({ state, setState }) => {
         <input
           id="release"
           type="date"
-          name="release"
+          name="release_date"
           className="attach-button"
           value={state.release || ""}
           onChange={handleInputChange}
@@ -126,9 +137,17 @@ const AddMovie = ({ state, setState }) => {
 
       <input
         type="url"
-        name="link"
+        name="trailer"
         placeholder="Link al trailer"
-        value={state.link || ""}
+        value={state.trailer || ""}
+        onChange={handleInputChange}
+      />
+
+      <input
+        type="text"
+        name="summary"
+        placeholder="Resumen"
+        value={state.summary || ""}
         onChange={handleInputChange}
       />
 

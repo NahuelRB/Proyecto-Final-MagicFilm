@@ -1,7 +1,7 @@
 import React from "react";
 
 const CardMovie = ({ state }) => {
-  let { title, gender, release, image, link } = state;
+  let { title, gender, release_date, image, trailer } = state;
 
   return (
     <div className="card-preview">
@@ -23,14 +23,14 @@ const CardMovie = ({ state }) => {
 
         <p>
           <b className="card-movie-title">Fecha de estreno: </b>
-          {release}
+          {release_date}
         </p>
         <p>
           <b className="card-movie-title">Género: </b>
           {gender}
         </p>
         <b className="card-movie-title">Trailer: </b>
-        {link && <a href={link}>Ver Trailer</a>}
+        {trailer && <a href={trailer}>Ver Trailer</a>}
       </div>
     </div>
   );
