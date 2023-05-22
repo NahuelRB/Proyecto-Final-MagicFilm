@@ -1,5 +1,5 @@
 import React from 'react'
-import AdministrativePanel from './administrativePanel'
+import AdministrativePanel from './AdministrativePanel'
 
 const AdministrativePanelContainer = () => {
   return (

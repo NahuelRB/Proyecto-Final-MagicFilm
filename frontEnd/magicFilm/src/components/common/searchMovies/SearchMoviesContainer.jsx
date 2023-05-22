@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import SearchMovies from "./SearchMovies";
+// import SearchMovies from "./searchMovies";
+
+import { getMovie } from "../../../services/movieServices";
 
 const SearchMoviesContainer = () => {
-  const [inputValue, setInputValue] = useState();
+  const [dataSearch, setDataSearch] = useState("");
+
+  const handleSearch = (e) => {
+    console.log(e);
+    getMovie(e);
+  };
 
   return (
     <div>
-      <SearchMovies 
-      inputValue={inputValue} 
-      setInputValue={setInputValue} />
+      <SearchMovies
+        setDataSearch={setDataSearch}
+        dataSearch={dataSearch}
+        handleSearch={handleSearch}
+      />
     </div>
   );
 };
