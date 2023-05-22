@@ -3,11 +3,11 @@ import "./addMovie.css";
 
 const AddMovie = () => {
   return (
-    <div className="admin-panel__preview">
-      <p>Previsualización pelicula agregada</p>
+    <div className="container-preview">
+      <h2 className="title">Previsualización película agregada</h2>
       <div>
         <img src="" alt="" />
-        <div>detale de la pelicula</div>
+        <div>detale de la película</div>
       </div>
     </div>
   );

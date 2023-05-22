@@ -13,6 +13,7 @@
   outline: none;
   width: 25vw;
   box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
+  padding: 10px;
 }
 
 .button-search-movies {
@@ -22,6 +23,12 @@
   background-color: #00c9c8;
   border: 0;
   border-radius: 4px;
+}
+.button-search-detail {
+  background: #000000;
+  border: 1px solid #00c9c8;
+  border-radius: 6px;
+  padding: 10px;
 }
 
 @media only screen and (max-width: 992px) {

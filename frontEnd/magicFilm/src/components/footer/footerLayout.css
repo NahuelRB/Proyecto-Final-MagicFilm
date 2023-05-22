@@ -6,11 +6,13 @@
 
 .container-footer {
   width: 100%;
-  height: 50px;
+  height: 100px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background-color: #dcdcdc;
+  margin-top: auto;
 }
 
 .copyright {
@@ -21,31 +23,24 @@
   height: 30px;
 }
 
-
 @media only screen and (max-width: 992px) {
   .container-footer {
     flex-direction: column;
     height: 150px;
     justify-content: center;
-
   }
 
-  .container-icon{
+  .container-icon {
     /* margin-top: 30px; */
     order: 0;
   }
 
-  .boxSpanFooter{
-    margin-right: 25px ;
+  .boxSpanFooter {
+    margin-right: 25px;
     order: 1;
   }
 
   .icon {
     height: 25px;
   }
-
-
-
-
-
 }

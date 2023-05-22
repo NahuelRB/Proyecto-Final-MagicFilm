@@ -26,7 +26,7 @@ const MovieDetail = () => {
                 <section>
                   <img src={film.image} alt="" className="img-detail-movies" />
                   <section>
-                    <p>Detalle de la pelicula</p>
+                    <p>Detalle de la película</p>
                     <h1>{film.name}</h1>
                     <p>{film.release_date}</p>
                     <p>{film.gender}</p>

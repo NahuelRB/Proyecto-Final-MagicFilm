@@ -1,42 +1,21 @@
-.admin-panel__title {
-  margin-top: 30px;
-  color: red;
+.admin-title {
+  margin: 30px;
+  height: 700;
+  color: black;
 }
 
-.admin-panel__form {
-  width: 45%;
+.admin-panel {
   display: flex;
+  min-height: 100%;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 28px;
-  padding: 30px;
-}
-
-.admin-panel__form input {
-  width: 300px;
-  height: 45px;
-  background: #fffefe;
-  border-radius: 6px;
-  border: 3px solid #00c9c8;
-  padding: 10px;
-}
-
-.admin-panel__form button {
-  width: 160px;
-  height: 45px;
-  background: #fffefe;
-  border-radius: 6px;
-  border: 3px solid #00c9c8;
-  padding: 10px;
-}
-
-.admin-panel__delete {
-  width: 100%;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  border: 5px solid #dcdcdc;
-  border-radius: 40px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  gap: 25px;
+  flex: 1;
+  margin-bottom: 5vh;
+}
+
+.admin-container {
+  width: 70%;
+  margin: auto;
 }

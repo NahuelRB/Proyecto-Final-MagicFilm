@@ -4,23 +4,30 @@ import "./addMovie.css";
 const AddMovie = () => {
   return (
     <form action="" className="formulario-add-movie">
-      <p>Agregar pelicula</p>
-      <input type="text" name="name" placeholder="Tittulo de la pelicula" />
-      <input type="text" name="release-date" placeholder="fecha de estreno" />
-      <input type="text" name="gender" placeholder="genero" />
+      <h2 className="title">Agregar película</h2>
+      <input type="text" name="name" placeholder="Título de la película *" />
+      <input
+        type="text"
+        name="release-date"
+        placeholder="Fecha de estreno DD/MM/AA"
+      />
+      <input type="text" name="gender" placeholder="Género" />
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          gap: "2rem",
         }}
       >
-        <p>Cargar portada (JPEG, PNG)</p>
-        <button type="button">adjuntar</button>
+        <p>Cargar portada* (JPEG, PNG)</p>
+        <button type="button">Adjuntar</button>
       </div>
-      <input type="text" name="gender" placeholder="link trailer" />
+      <input type="text" name="gender" placeholder="Link al trailer" />
 
-      <button className="create" type="submit">Crear</button>
+      <button className="create" type="submit">
+        Crear
+      </button>
     </form>
   );
 };

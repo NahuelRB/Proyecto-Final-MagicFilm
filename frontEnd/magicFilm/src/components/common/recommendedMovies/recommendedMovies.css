@@ -1,9 +1,5 @@
 .container-home-card {
   --auto-grid-min-size: 14rem;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: rgb(255, 255, 255);
   margin: 5px auto;
   display: grid;
@@ -12,16 +8,17 @@
     minmax(var(--auto-grid-min-size), 1fr)
   );
   grid-gap: 1rem;
+  /* max-width: 100%; */
 }
 
 .card-container-search-movies {
   display: flex;
+  flex-direction: column;
   align-items: center;
   border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
   background-color: rgb(255, 255, 255);
   padding: 20px;
-  display: flex;
-  flex-direction: column;
 }
 
 .button-search-detail {
@@ -30,10 +27,24 @@
 }
 
 .img-search-movies {
-  width: 100%;
-  border-color: rgb(25, 0, 255);
+  max-width: 185px;
+  max-height: 280px;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
+.info-search-movie {
+  margin-top: auto;
+  text-align: center;
+}
+
+.info-search-movie p {
+  font-weight: 500;
+}
 .titleRecommendedMovies {
-  margin-left: 20px;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: center;
 }
