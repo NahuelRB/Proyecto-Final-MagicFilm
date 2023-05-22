@@ -1,6 +1,5 @@
 .container-home-card {
-    
---auto-grid-min-size: 14rem;
+  --auto-grid-min-size: 14rem;
   padding: 20px;
   display: flex;
   align-items: center;
@@ -8,12 +7,14 @@
   background-color: rgb(255, 255, 255);
   margin: 5px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--auto-grid-min-size), 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--auto-grid-min-size), 1fr)
+  );
   grid-gap: 1rem;
 }
 
 .card-container-search-movies {
-    
   display: flex;
   align-items: center;
   border: 2px solid rgb(0, 0, 0);
@@ -23,19 +24,16 @@
   flex-direction: column;
 }
 
-
-.button-search-detail{
-    background-color: black;
-    color: white;
+.button-search-detail {
+  background-color: black;
+  color: white;
 }
 
 .img-search-movies {
-    width: 100%;
-    border-color: rgb(25, 0, 255);
+  width: 100%;
+  border-color: rgb(25, 0, 255);
 }
 
-
-.titleRecommendedMovies{
-    margin-left: 20px;
-
+.titleRecommendedMovies {
+  margin-left: 20px;
 }
