@@ -1,6 +1,6 @@
 import React from "react";
 import "./addMovie.css";
-
+import iconClip from "../../../assets/icon/clip.svg";
 const AddMovie = ({ state, setState }) => {
   const handleAdjuntar = () => {
     const fileInput = document.getElementById("file");
@@ -27,7 +27,6 @@ const AddMovie = ({ state, setState }) => {
           ...state,
           [event.target.name]: base64String,
           file: file,
-          // base64: base64String,
         });
       };
 
@@ -35,8 +34,28 @@ const AddMovie = ({ state, setState }) => {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    data_send = { ...state };
+    delete data_send.file;
+    fetch("URL_DEL_ENDPOINT", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data_send),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
-    <form action="" className="formulario-add-movie">
+    <form onSubmit={handleSubmit} className="formulario-add-movie">
       <h2 className="title">Agregar película</h2>
       <input
         type="text"
@@ -105,6 +124,7 @@ const AddMovie = ({ state, setState }) => {
           style={{ display: "none" }}
         />
         <p className="attach-button" onClick={handleAdjuntar}>
+          <img className="icon" src={iconClip} alt="" />
           {state?.file ? "Cambiar" : "Adjuntar"}
         </p>
       </div>
