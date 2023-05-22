@@ -1,6 +1,6 @@
 import React from "react";
 
-const cardMovie = ({ state }) => {
+const CardMovie = ({ state }) => {
   let { title, gender, release, image, link } = state;
 
   return (
@@ -36,4 +36,4 @@ const cardMovie = ({ state }) => {
   );
 };
 
-export default cardMovie;
+export default CardMovie;

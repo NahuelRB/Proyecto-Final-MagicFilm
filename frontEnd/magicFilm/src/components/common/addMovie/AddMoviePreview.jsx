@@ -11,7 +11,7 @@ const AddMovie = ({ state, setState, initialState }) => {
       <h2 className="title">Previsualización película agregada</h2>
       <CardMovie state={state} />
       {(title || gender || release || image || link) && (
-        <button className="create" onClick={handleReset}>
+        <button className="solid" onClick={handleReset}>
           Cancelar
         </button>
       )}

@@ -132,7 +132,7 @@ const AddMovie = ({ state, setState }) => {
         onChange={handleInputChange}
       />
 
-      <button className="create" type="submit">
+      <button className="solid" type="submit">
         Crear
       </button>
     </form>

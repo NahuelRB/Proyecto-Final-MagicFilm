@@ -9,23 +9,6 @@
   font-size: 1rem;
 }
 
-button.create {
-  width: 160px;
-  height: 45px;
-  background-color: #00c9c8;
-  box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #000;
-  border-radius: 6px;
-  padding: 10px;
-  text-align: center;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: none;
-}
-
 .formulario-add-movie .attach-button {
   width: 100%;
   height: 45px;
@@ -40,12 +23,12 @@ button.create {
   align-items: center;
 }
 
-.formulario-add-movie .attach-button:active,
-button.create:active {
+.formulario-add-movie .attach-button:active {
   background-color: #008a89;
   border: 3px solid #008a89;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
+
 .formulario-add-movie {
   display: flex;
   flex-direction: column;
@@ -75,15 +58,6 @@ button.create:active {
   gap: 28px;
   padding: 30px;
   flex: 1;
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-  font-weight: 700;
-  font-size: 1.4rem;
 }
 
 .file-label {
