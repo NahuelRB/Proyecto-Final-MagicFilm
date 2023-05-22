@@ -7,7 +7,6 @@ const AddMovie = ({ state, setState }) => {
     fileInput.click();
   };
 
-  console.log(state);
   const handleInputChange = (event) => {
     setState({
       ...state,
@@ -108,25 +107,30 @@ const AddMovie = ({ state, setState }) => {
         }}
       >
         {state?.file ? (
-          <p style={{ fontSize: "1rem" }}>{state.file.name}</p>
+          <p style={{ fontSize: "0.9rem" }}>{state.file.name}</p>
         ) : (
-          <p style={{ fontSize: "1rem" }}>
+          <p style={{ fontSize: "0.9rem" }}>
             Cargar portada*{" "}
-            <span style={{ fontSize: "0.8rem" }}>(JPEG, PNG)</span>
+            <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
           </p>
         )}
+        <label
+          htmlfor="file"
+          className="attach-button"
+          onClick={handleAdjuntar}
+        >
+          <img className="icon" src={iconClip} alt="" />
+          {state?.file ? "Cambiar" : "Adjuntar"}
+        </label>
         <input
+          id="file"
           type="file"
           accept=".jpg, .jpeg, .png"
-          id="file"
           name="image"
+          placeholder="Cargar portada"
           onChange={handleFileChange}
           style={{ display: "none" }}
         />
-        <p className="attach-button" onClick={handleAdjuntar}>
-          <img className="icon" src={iconClip} alt="" />
-          {state?.file ? "Cambiar" : "Adjuntar"}
-        </p>
       </div>
 
       <input

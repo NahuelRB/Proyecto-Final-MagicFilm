@@ -6,7 +6,7 @@
   width: 100%;
   box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 button.create {
@@ -15,7 +15,7 @@ button.create {
   background-color: #00c9c8;
   box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #000;
   border-radius: 6px;
   padding: 10px;
@@ -33,7 +33,7 @@ button.create {
   border-radius: 6px;
   border: 3px solid #00c9c8;
   padding: 5px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all 0.2s;
   justify-content: center;
   display: flex;
@@ -83,7 +83,7 @@ button.create:active {
   justify-content: center;
   height: 40px;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .file-label {

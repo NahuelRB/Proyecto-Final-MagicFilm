@@ -5,8 +5,6 @@ const AddMovie = ({ state, setState, initialState }) => {
   let { title, gender, release, image, link } = state;
   const handleReset = () => {
     setState(initialState);
-    console.log(state);
-    console.log(initialState);
   };
   return (
     <div className="container-preview">
