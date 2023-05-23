@@ -10,9 +10,8 @@
 .nav-logo {
   font-weight: 700;
   font-size: 21px;
-  margin: 15px;
   color: #ffffff;
-  padding: 10px 50px;
+  padding: 10px 20px;
 }
 
 .logo {
@@ -30,7 +29,6 @@
   margin: 15px;
   position: relative;
   opacity: 0.9;
-  
 }
 
 .Navbar > .nav-items > a:hover {

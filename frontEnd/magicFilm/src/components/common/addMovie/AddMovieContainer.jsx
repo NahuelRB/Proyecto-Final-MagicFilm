@@ -4,14 +4,13 @@ import AddMoviePreview from "./AddMoviePreview";
 import "./addMovie.css";
 
 const AddMovieContainer = () => {
-  
   const initialState = {
     title: "",
     release_date: "",
     gender: "",
-    summary:"",
+    summary: "",
     image: "",
-    trailer: ""
+    trailer: "",
     /* file: "", */
   };
   const [state, setState] = useState(initialState);
@@ -23,7 +22,6 @@ const AddMovieContainer = () => {
         state={state}
         setState={setState}
         initialState={initialState}
-        
       />
     </div>
   );
