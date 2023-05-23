@@ -1,17 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RecommendedMovies from "./recommendedMovies";
-import film from "../../../../films";
 import "./recommendedMovies.css";
+import { getMovies } from "../../../service/productServices";
 
 const RecommendedMoviesContainer = () => {
-  const [dataMovies, setDataMovies] = useState(film);
+  const [dataMovies, setDataMovies] = useState([]);
 
-  console.log(dataMovies);
+ useEffect(() => {
+  const movies = getMovies();
+    movies
+      .then((res) => setDataMovies(res.data))
+      .catch((error) => console.log(error));
+
+ },[])
+
+ console.log(dataMovies);
+
+ //Cambio aleatorio del elementos del array
+ 
+ dataMovies.sort(function() { return Math.random() - 0.5 });
+
+
 
   return (
     <div>
       <h2 className="titleRecommendedMovies">Películas Recomendadas</h2>
-      <RecommendedMovies dataMovies={dataMovies} />
+      <RecommendedMovies 
+      dataMovies={dataMovies}
+       />
     </div>
   );
 };
