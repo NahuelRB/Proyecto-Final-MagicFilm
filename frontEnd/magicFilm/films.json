@@ -88,50 +88,6 @@
         "summary": "El empresario alemán Oskar Schindler, miembro del Partido Nazi, pone en marcha un elaborado, costoso y arriesgado plan para salvar a más de mil judíos del Holocausto.",
         "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204734/MV5BNDE4OTMxMTctNmRhYy00NWE2LTg3YzItYTk3M2UwOTU5Njg4XkEyXkFqcGdeQXVyNjU0OTQ0OTY_._V1__ykfqp7.jpg",
         "trailer":"https://www.youtube.com/watch?v=is2GqNMyPHs&ab_channel=UniversalMoviesDutch"
-    },
-    { 
-        "id": 11, 
-        "name": "The Silence of the Lambs", 
-        "release_date": "20-05-2022",
-        "gender": "Fantasía", 
-        "summary": "Tras una serie de crímenes donde a las víctimas les faltaba parte de la piel, una agente del FBI inicia su carrera particular para dar con el asesino. Para resolver el caso la agente encargada deberá envtrevistarse con el doctor Hannibal Lecter.",
-        "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204789/51SHYSFNP2L._AC_UF894_1000_QL80__f60ncl.jpg",
-        "trailer":"https://www.youtube.com/watch?v=RuX2MQeb8UM&ab_channel=Mark%27sMovieTrailers"
-    },
-    { 
-        "id": 12, 
-        "name": "The Lord of the Rings: The Fellowship of the Ring", 
-        "release_date": "20-05-2022",
-        "gender": "Fantasía", 
-        "summary": "En la Tierra Media, el Señor Oscuro Sauron forjó los Grandes Anillos del Poder y creó uno con el poder de esclavizar a toda la Tierra Media. Frodo Bolsón es un hobbit al que su tío Bilbo hace portador del poderoso Anillo Único con la misión de destruirlo. Acompañado de sus amigos, Frodo emprende un viaje hacia Mordor, el único lugar donde el anillo puede ser destruido. Sin embargo, Sauron ordena la persecución del grupo para recuperar el anillo y acabar con la Tierra Media.",
-        "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204817/ff22cad6-2218-414d-b853-3f95d76905c7_fvux4y.jpg",
-        "trailer":"https://www.youtube.com/watch?v=V75dMMIW2B4&ab_channel=Movieclips"
-    },
-    { 
-        "id": 13, 
-        "name": "Flash", 
-        "release_date": "20-05-2022",
-        "gender": "Fantasía", 
-        "summary": "Flash viaja a través del tiempo para evitar el asesinato de su madre, pero sin saberlo provoca cambios que resultan en la creación de un multiverso.",
-        "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204892/MV5BZjlkM2RjODgtNjRlYS00MDNjLTkxMzYtOWM4NjAwZTY2MjZiXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_FMjpg_UX1000__jhyzoq.jpg",
-        "trailer":"https://www.youtube.com/watch?v=vq-8aIZZZUQ&ab_channel=WarnerBros.PicturesLatinoam%C3%A9rica"
-    },
-    { 
-        "id": 14, 
-        "name": "The Lion King", 
-        "release_date": "20-05-2022",
-        "gender": "Animación", 
-        "summary": "Tras la muerte de su padre, Simba deberá enfrentarse a su tío para recuperar el trono de Rey de la Selva. Timón y Pumba le acompañarán en su misión.",
-        "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204930/Films/p_thelionking_19752_1_0b9de87b_npby7a.jpg",
-        "trailer":"https://www.youtube.com/watch?v=7TavVZMewpY&ab_channel=WaltDisneyStudios"
-    },
-    { 
-        "id": 15, 
-        "name": "Titanic", 
-        "release_date": "20-05-2022",
-        "gender": "Drama romántico", 
-        "summary": "Jack es un joven artista que gana un pasaje para viajar a América en el Titanic, el transatlántico más grande y seguro jamás construido. A bordo del buque conoce a Rose, una chica de clase alta que viaja con su madre y su prometido Cal, un millonario engreído a quien solo interesa el prestigio de la familia de su prometida. Jack y Rose se enamoran a pesar de las trabas que ponen la madre de ella y Cal en su relación. Mientras, el lujoso transatlántico se acerca a un inmenso iceberg.",
-        "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204998/INU4UK6P2VFWHFVHCXZLDNW3L4_cnbwg4.jpg",
-        "trailer":"https://www.youtube.com/watch?v=tA_qMdzvCvk&ab_channel=20thCenturyStudiosLA"
     }
+    
 ]

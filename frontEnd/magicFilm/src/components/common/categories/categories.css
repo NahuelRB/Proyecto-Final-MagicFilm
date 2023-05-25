@@ -15,12 +15,13 @@
 }
 
 .zoom {
-    transition: transform .2s;
-    object-fit: contain
+  max-width: 30vw;
+  transition: transform 0.2s;
+  object-fit: contain;
 }
 
 .zoom:hover {
-    transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 a {
@@ -29,14 +30,13 @@ a {
 }
 
 .nav-menu {
-    display: none;
+  display: none;
 }
 
-
 @media (max-width: 600px) {
-    a {
+  a {
     max-width: 50%;
-    }
+  }
 
     .container-images {
         display: none;
@@ -49,4 +49,11 @@ a {
         text-align: center;
     }
 
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    align-items: center;
+    justify-content: center;
+  }
 }
