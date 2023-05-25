@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 /* import MovieDetail from './movieDetail' */
 import { useParams } from "react-router-dom";
 import film from "../../../../films.json";
-import "./movieDetail.css";
+//import "./movieDetail.css";
 
 const MovieDetailContainer = () => {
   const [dataMovies, setDataMovies] = useState(film);
