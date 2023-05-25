@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/movieDetail";
 import AdminPanel from "./pages/adminPanel";
-
+import AddUserContainer from "./components/common/addUser/AddUserContainer";
 function App() {
   const [count, setCount] = useState(0);
 
@@ -20,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/details/:id" element={<MovieDetail />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/register" element={<AddUserContainer />} />
         {/* <Route element={<HeaderLayoutContainer />}>
           <Route element={<FooterLayoutContainer />}>
             <Route path="/details" element={<MovieDetailContainer />} />
