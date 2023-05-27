@@ -2,6 +2,7 @@ import React from "react";
 import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
+
 const AddMovie = ({ state, setState }) => {
   const handleInputChange = (event) => {
     setState({
@@ -56,6 +57,7 @@ const AddMovie = ({ state, setState }) => {
       }); */
   };
 
+  console.log(state);
   return (
     <form onSubmit={handleSubmit} className="formulario-add-movie">
       <h2 className="title">Agregar película</h2>

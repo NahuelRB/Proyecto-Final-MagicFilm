@@ -14,7 +14,6 @@ const RecommendedMoviesContainer = () => {
 
  },[])
 
- console.log(dataMovies);
 
  //Cambio aleatorio del elementos del array
  

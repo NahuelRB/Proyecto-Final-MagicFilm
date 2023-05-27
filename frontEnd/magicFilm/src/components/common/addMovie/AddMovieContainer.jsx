@@ -16,6 +16,8 @@ const AddMovieContainer = () => {
   };
   const [state, setState] = useState(initialState);
 
+  console.log(state);
+
   return (
     <div className="container-add-movie">
       <AddMovieForm state={state} setState={setState} />

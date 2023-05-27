@@ -5,6 +5,10 @@ export const getMovies = () => {
   return movies;
 };
 
+export const getMovieById = (id) => {
+  return movieInstance.get(`/${id}`);
+};
+
 export const getMovie = (name) => {
   let movies = movieInstance.get("", { params: { name: name } });
   return movies;

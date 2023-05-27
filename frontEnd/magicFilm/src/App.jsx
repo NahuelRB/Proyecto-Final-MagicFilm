@@ -2,31 +2,28 @@ import { useState } from "react";
 import "./assets/fonts/fonts.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HeaderLayoutContainer from "./components/layout/header/HeaderLayoutContainer";
+import FooterLayoutContainer from "./components/layout/footer/FooterLayoutContainer";
+import MovieDetailContainer from "./components/pages/movieDetail/MovieDetailContainer";
+import Home from "./components/pages/home/Home";
+import AdminPanelContainer from "./components/pages/adminPanel/AdminPanelContainer";
 
-// import HeaderLayoutContainer from "./components/layout/header/HeaderLayoutContainer";
-// import FooterLayoutContainer from "./components/layout/footer/FooterLayoutContainer";
-// import AdministrativePanelContainer from "./components/pages/administrativePanel/administrativePanelContainer";
-// import MovieDetailContainer from "./components/pages/movieDetail/MovieDetailContainer";
-import Home from "./pages/Home";
-import MovieDetail from "./pages/movieDetail";
-import AdminPanel from "./pages/adminPanel";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/details/:id" element={<MovieDetail />} />
-        <Route path="/admin" element={<AdminPanel />} />
-        {/* <Route element={<HeaderLayoutContainer />}>
-          <Route element={<FooterLayoutContainer />}>
-            <Route path="/details" element={<MovieDetailContainer />} />
             
-            <Route path="/details/:filmid" element={<MovieDetailContainer />} />
+        <Route element={<HeaderLayoutContainer />}>
+          <Route element={<FooterLayoutContainer />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/details" element={<MovieDetailContainer />} />
+            <Route path="/details/:id" element={<MovieDetailContainer />} />
+             <Route path="/admin" element={<AdminPanelContainer/>} />
+             <Route path="/details/:id" element={<MovieDetailContainer />} />
           </Route>
-        </Route> */}
+        </Route>
       </Routes>
     </BrowserRouter>
   );
