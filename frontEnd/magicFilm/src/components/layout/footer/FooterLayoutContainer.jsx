@@ -1,11 +1,11 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
 import FooterLayout from "./FooterLayout";
+import { Outlet } from "react-router-dom";
 
 const FooterLayoutContainer = () => {
   return (
     <div>
-      <Outlet/>
+      <Outlet />
       <FooterLayout />
     </div>
   );

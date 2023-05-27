@@ -1,21 +1,27 @@
 import { useState } from "react";
+import "./assets/fonts/fonts.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/pages/home/Home";
-import MovieDetailContainer from "./components/pages/movieDetail/movieDetailContainer";
 import HeaderLayoutContainer from "./components/layout/header/HeaderLayoutContainer";
 import FooterLayoutContainer from "./components/layout/footer/FooterLayoutContainer";
+import MovieDetailContainer from "./components/pages/movieDetail/MovieDetailContainer";
+import Home from "./components/pages/home/Home";
+import AdminPanelContainer from "./components/pages/adminPanel/AdminPanelContainer";
+
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <BrowserRouter>
       <Routes>
+            
         <Route element={<HeaderLayoutContainer />}>
           <Route element={<FooterLayoutContainer />}>
             <Route path="/" element={<Home />} />
             <Route path="/details" element={<MovieDetailContainer />} />
+            <Route path="/details/:id" element={<MovieDetailContainer />} />
+             <Route path="/admin" element={<AdminPanelContainer/>} />
+             <Route path="/details/:id" element={<MovieDetailContainer />} />
           </Route>
         </Route>
       </Routes>
