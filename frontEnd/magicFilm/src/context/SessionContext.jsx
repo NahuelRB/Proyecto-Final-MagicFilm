@@ -4,14 +4,14 @@ export const SessionContext = createContext();
 
 export const SessionProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     // Comprobar si existe una sesión en el localStorage al cargar el componente
     const session = localStorage.getItem("session");
     const sessionData = session ? JSON.parse(session) : null;
     if (sessionData) {
-      setIsLoggedIn(true);
+      setIsLogged(true);
       setUserData(sessionData);
     }
   }, []);
@@ -20,10 +20,10 @@ export const SessionProvider = ({ children }) => {
     // Lógica para realizar el inicio de sesión
 
     // Guardar la sesión en el localStorage
-    userData = { name: "prueba", email: "email@email.com", rol: "1" }; // Esto debe venir de algun servicio
-    localStorage.setItem("session", userData);
-    setUserData(userData);
-    setIsLoggedIn(true);
+    let user = { id: 1, name: "prueba", email: "email@email.com", rol: "1" }; // Esto debe venir de algun servicio
+    localStorage.setItem("session", JSON.stringify(user));
+    setUserData(user);
+    setIsLogged(true);
   };
 
   const handleLogout = () => {
@@ -33,11 +33,11 @@ export const SessionProvider = ({ children }) => {
     // Eliminar la sesión del localStorage
     localStorage.removeItem("session");
     setUserData({});
-    setIsLoggedIn(false);
+    setIsLogged(false);
   };
 
   const sessionContextValues = {
-    isLoggedIn,
+    isLogged,
     userData,
     handleLogin,
     handleLogout,

@@ -73,6 +73,13 @@
   /* Estilos al pasar el cursor por encima del botón */
   background: #008c8b;
 }
+.Navbar > .nav-items {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
 
 @media (max-width: 700px) {
   .Navbar > .nav-items {
@@ -82,10 +89,19 @@
     flex-direction: column;
     background: #ffffff;
     left: 0;
+    gap: 0;
     width: 100%;
     height: 100%;
     transform: translateX(-100%);
     transition: all 0.45s;
+  }
+
+  .Navbar > .nav-items > p {
+    color: white;
+  }
+
+  .Navbar > .nav-items.open > p {
+    color: black;
   }
 
   .Navbar > .nav-items > a::before {
