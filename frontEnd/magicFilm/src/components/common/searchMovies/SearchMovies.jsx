@@ -6,7 +6,7 @@ const SearchMovies = (props) => {
   const { inputValue, setInputValue } = props;
 
   return (
-    <div>
+    <>
       <form action="" className="form-search-movies">
         <input
           type="text"
@@ -15,7 +15,7 @@ const SearchMovies = (props) => {
         />
         <button className="button-search-movies">Buscar</button>
       </form>
-    </div>
+    </>
   );
 };
 
