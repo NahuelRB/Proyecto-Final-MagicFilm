@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import logo from "../../../assets/logo.svg";
 import "./HeaderStyle.css";
 import { Link } from "react-router-dom";
+import people from "../../../assets/person.svg";
 
 const HeaderLayout = ({ isLogged, handleLogout, userData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,31 +24,44 @@ const HeaderLayout = ({ isLogged, handleLogout, userData }) => {
         <b>El mejor Cinema</b>
       </Link>
 
-      <div className={`nav-items ${isOpen && "open"}`}>
+      <div className={`nav-items ${isOpen ? "open" : ""}`}>
         {isLogged ? (
           <>
-            <p style={{ color: "white" }}>Hola {userData.name}</p>
-            <img src={userData.image} alt="user-avatar" />
-            <button className="logout-button" onClick={handleLogout} />
+            <p className="user-data">Hola {userData.name}</p>
+            <img
+              src={userData.image ? userData.image : people}
+              alt="user-avatar"
+              className="user-avatar"
+            />
+            <button className="logout-button" onClick={handleLogout}>
+              Cerrar Sesion
+            </button>
           </>
         ) : (
           <>
-            <a href="/login">
-              <button className="login-button">Iniciar sesión</button>
-            </a>
-            <a href="#">
-              <button className="signup-button">Crear cuenta</button>
-            </a>
+            <Link to="/login" className="login-button">
+              Iniciar sesión
+            </Link>
+            <Link to="/register" className="signup-button">
+              Crear cuenta
+            </Link>
           </>
         )}
-        <a href="/admin">
-          <button className="signup-button">Admin</button>
-        </a>
+        <Link to="/admin" className="signup-button">
+          Admin
+        </Link>
       </div>
       <div
         className={`nav-toggle ${isOpen && "open"}`}
         onClick={() => setIsOpen(!isOpen)}
       >
+        {isLogged && (
+          <img
+            src={userData.image ? userData.image : people}
+            alt="user-avatar"
+            className="user-avatar"
+          />
+        )}
         <div className="bar"></div>
       </div>
     </header>
