@@ -1,7 +1,7 @@
 import React from "react";
 import "./login.css";
 
-const Login = ({ handleLogin }) => {
+const LoginPage = ({ handleLogin }) => {
   return (
     <div className="login-container">
       <form onSubmit={handleLogin} className="login-form">
@@ -13,7 +13,9 @@ const Login = ({ handleLogin }) => {
         <a href="/forgot-password" className="link">
           ¿Olvidaste tu contraseña?
         </a>
-        <button className="login-button">Iniciar sesión</button>
+        <button type="submit" className="login-button">
+          Iniciar sesión
+        </button>
         <p className="register-link">
           ¿No tienes cuenta?
           <br />
@@ -26,4 +28,4 @@ const Login = ({ handleLogin }) => {
   );
 };
 
-export default Login;
+export default LoginPage;
