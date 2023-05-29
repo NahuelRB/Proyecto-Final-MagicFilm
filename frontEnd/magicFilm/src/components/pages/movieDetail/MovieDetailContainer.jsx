@@ -33,12 +33,7 @@ const MovieDetailContainer = () => {
       .catch((error) => console.log(error));
   }, [id]);
 
-  return (
-    <div>
-      <h2 className="titleRecommendedMovies">Detalle Pelicula</h2>
-      <MovieDetail dataMovie={dataMovie} />
-    </div>
-  );
+  return <MovieDetail dataMovie={dataMovie} />;
 };
 
 export default MovieDetailContainer;

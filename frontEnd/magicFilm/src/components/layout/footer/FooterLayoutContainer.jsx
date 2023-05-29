@@ -4,10 +4,10 @@ import { Outlet } from "react-router-dom";
 
 const FooterLayoutContainer = () => {
   return (
-    <div>
+    <>
       <Outlet />
       <FooterLayout />
-    </div>
+    </>
   );
 };
 
