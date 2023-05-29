@@ -26,7 +26,7 @@ const DeleteMovie = () => {
           handleSearch={handleSearch}
         />
 
-        <DeleteMoviePreview state={data?.data ? data.data[0] : {}} />
+        <DeleteMoviePreview state={data?.data.length > 0 ? data.data[0] : {}} />
 
         <button
           onClick={(e) => {
