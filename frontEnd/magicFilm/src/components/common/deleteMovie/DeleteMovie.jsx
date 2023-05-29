@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import MovieDetailContainer from "../../pages/movieDetail/MovieDetailContainer";
-import SearchMovieContainer from "../searchMovie/SearchMovieContainer";
+import SearchMovieContainer from "./searchMovie/SearchMovieContainer";
 import { getMovie, deleteMovie } from "../../../service/productServices";
 import "./deleteMovie.css";
 // import CardMovie from "../cardMovie/cardMovie";
