@@ -16,7 +16,7 @@ const AddMovieContainer = () => {
   };
   const [state, setState] = useState(initialState);
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <div className="container-add-movie">

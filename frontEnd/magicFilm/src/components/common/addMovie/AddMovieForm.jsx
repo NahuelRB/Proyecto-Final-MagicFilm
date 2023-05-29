@@ -32,12 +32,11 @@ const AddMovie = ({ state, setState }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
+    // console.log(state);
     const create = createMovie(state);
     create
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
-
 
     /* data_send = { ...state };
     delete data_send.file;

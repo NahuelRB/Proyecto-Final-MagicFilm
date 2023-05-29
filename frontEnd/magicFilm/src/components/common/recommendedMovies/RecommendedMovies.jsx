@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const recommendedMovies = (props) => {
   const { dataMovies } = props;
-  console.log(dataMovies);
+  // console.log(dataMovies);
   return (
     <div className="container-home-card">
       {dataMovies.map((movie, index) => {

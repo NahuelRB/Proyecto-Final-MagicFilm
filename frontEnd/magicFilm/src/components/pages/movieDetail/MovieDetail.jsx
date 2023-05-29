@@ -2,7 +2,7 @@ import React from "react";
 
 const MovieDetail = (props) => {
   const { dataMovie } = props;
-  console.log(dataMovie);
+  // console.log(dataMovie);
   return (
     
     <div className="container">
