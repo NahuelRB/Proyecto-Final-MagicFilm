@@ -1,7 +1,7 @@
 import React from "react";
 
-import "./adminPanel.css";
-import AdminPanel from "./adminPanel";
+import "./AdminPanel.css";
+import AdminPanel from "./AdminPanel";
 
 
 const AdminPanelContainer = () => {

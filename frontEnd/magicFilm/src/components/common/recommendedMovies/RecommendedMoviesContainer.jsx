@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import RecommendedMovies from "./recommendedMovies";
-import "./recommendedMovies.css";
+import RecommendedMovies from "./RecommendedMovies";
+import "./RecommendedMovies.css";
 import { getMovies } from "../../../service/productServices";
 
 const RecommendedMoviesContainer = () => {

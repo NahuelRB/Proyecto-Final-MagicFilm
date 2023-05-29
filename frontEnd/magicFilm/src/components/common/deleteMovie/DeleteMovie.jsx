@@ -1,75 +1,62 @@
 import React, { useState } from "react";
+// import MovieDetailContainer from "../../pages/movieDetail/MovieDetailContainer";
+import SearchMovieContainer from "../searchMovie/SearchMovieContainer";
+import { getMovie, deleteMovie } from "../../../service/productServices";
 import "./deleteMovie.css";
-import CardMovie from "../cardMovie/cardMovie";
-
+// import CardMovie from "../cardMovie/cardMovie";
+import DeleteMoviePreview from "./DeleteMoviePreview";
+import "../../pages/adminPanel/AdminPanel.css";
+import Swal from "sweetalert2";
 const DeleteMovie = () => {
-  let initialState = null;
-  const [movie, setMovie] = useState(initialState);
+  const [dataSearch, setDataSearch] = useState("");
+  const [data, setData] = useState(null);
 
-  const handleDelete = (event) => {
-    event.preventDefault();
-    fetch("URL_DEL_ENDPOINT", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(movie),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setMovie(initialState);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handleSearch = async (e) => {
+    setData(await getMovie(e));
   };
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    console.log(event.target.search.value);
-    fetch("URL_DEL_ENDPOINT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data_send),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setMovie(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
   return (
-    <>
-      <form onSubmit={handleSearch} className="formulario-delete-movie">
-        <div className="title">Eliminar película</div>
-        <input
-          name="search"
-          type="text"
-          className="input-delete-movies"
-          placeholder="Nombre de la película *"
+    <div>
+      <form action="submit" className="formulario-delete-movie">
+        <div className="titulo-delete-movie">Eliminar película</div>
+
+        <SearchMovieContainer
+          setDataSearch={setDataSearch}
+          dataSearch={dataSearch}
+          handleSearch={handleSearch}
         />
 
-        <button type="submit" className="solid">
-          {" "}
-          Buscar película
+        <DeleteMoviePreview state={data?.data ? data.data[0] : {}} />
+
+        <button
+          onClick={(e) => {
+            deleteMovie(data?.data[0].id);
+            e.preventDefault();
+
+            Swal.fire({
+              title: "¿Está seguro que quiere eliminar esta película?",
+              // text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#00c9c8",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Si, eliminar!",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire(
+                  "Eliminada!",
+                  "La película se ha eliminado correctamente.",
+                  "success"
+                );
+              }
+            });
+          }}
+          className="button-delete-movie"
+        >
+          Eliminar película
         </button>
       </form>
-      {movie && (
-        <div className="container-preview-delete">
-          <h2 className="title">Previsualización película agregada</h2>
-          <CardMovie state={movie} />
-          <button onClick={handleDelete} className="solid delete">
-            Confirmar Eliminacion
-          </button>
-        </div>
-      )}
-    </>
+    </div>
   );
 };
 
