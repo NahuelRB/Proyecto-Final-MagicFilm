@@ -3,6 +3,8 @@ import Layout from "../components/layout/Layout";
 import "./movieDetail.css";
 import { useParams } from "react-router-dom";
 import films from "../../films.json";
+import BackButton from "../components/common/backButton/BackButton";
+
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -64,7 +66,7 @@ const MovieDetail = () => {
                     height="315"
                     src={url}
                     title="YouTube video player"
-                    frameborder="0"
+                    frameBorder="0"
                     allow=" autoplay; fullscreen; picture-in-picture"
                     allowFullScreen="allowFullScreen"
                   ></iframe>
@@ -80,6 +82,7 @@ const MovieDetail = () => {
           </>
         )}
       </div>
+      <BackButton />
     </Layout>
   );
 };

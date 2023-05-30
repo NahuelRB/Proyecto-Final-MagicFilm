@@ -1,0 +1,35 @@
+.administrative-panel{
+    
+
+    justify-content:center;
+    gap: 100px;
+    
+}
+
+.titulo-administrative-panel{
+    margin-left: 50px;
+    margin-top: 20px;
+
+}
+
+@media only screen and (max-width: 992px) {
+    
+    .administrative-panel{
+          flex-direction: column;
+          gap: 10px;
+    }
+
+    .titulo-administrative-panel{
+        text-align:left;
+        margin-left: 35px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+  
+   
+  
+  
+  
+  
+  
+}

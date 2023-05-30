@@ -1,19 +1,23 @@
-import React from "react";
+import "./searchMovies.css";
 
-import "./SearchMovies.css";
+const SearchMovies = ({ handleSearch, dataSearch, setDataSearch }) => {
 
-const SearchMovies = (props) => {
-  const { inputValue, setInputValue } = props;
-
+  
   return (
     <div>
-      <form action="" className="form-search-movies">
+      <form action="/admin?#" className="form-search-movies">
         <input
           type="text"
           className="input-search-movies"
-          placeholder="Nombre película"
+          placeholder="Ingrese el nombre pelicula"
+          onChange={(e) => setDataSearch(e.target.value)}
         />
-        <button className="button-search-movies">Buscar</button>
+        <button
+          onClick={(e) => { handleSearch(dataSearch);  e.preventDefault(); }}
+          className="button-search-movies"
+        >
+          Buscar
+        </button>
       </form>
     </div>
   );

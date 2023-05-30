@@ -3,7 +3,7 @@ import DeleteMovie from "./DeleteMovie";
 
 const DeleteMovieContainer = () => {
   return (
-    <div className="container-delete-movies">
+    <div>
       <DeleteMovie />
     </div>
   );
