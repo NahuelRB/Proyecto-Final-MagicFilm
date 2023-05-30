@@ -9,6 +9,10 @@ export const getMovieById = (id) => {
   return movieInstance.get(`/${id}`);
 };
 
+export const getMovieByCategoryId = (category_id) => {
+  return movieInstance.get(`/${category_id}`);
+};
+
 export const getMovie = (name) => {
   let movies = movieInstance.get("", { params: { name: name } });
   return movies;
