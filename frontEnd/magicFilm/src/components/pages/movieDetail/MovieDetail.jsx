@@ -67,8 +67,8 @@ const MovieDetail = (props) => {
         <h2 style={{ display: "flex", fontSize: "25px", alignItems: "center" }}>
           Disfrutarás esta película en el mejor cinema
         </h2>
-        <Grid container spacing={12} style={{ margin: "10px" }}>
-          <Grid item xs={4}>
+        <Grid container spacing={10} style={{ margin: "10px" }}>
+          <Grid item xs={3}>
             <img src={visual} alt="" className="visual" />{" "}
             <h3 style={{ textAlign: "center", margin: "-40px" }}>Sala 3D</h3>
           </Grid>
@@ -78,13 +78,13 @@ const MovieDetail = (props) => {
               Parqueadero gratuito
             </h3>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <img src={snak} alt="" className="snak" />{" "}
-            <h3 style={{ textAlign: "center", margin: "-60px" }}>
+            <h3 style={{ textAlign: "right", margin: "-50px" }}>
               Llevamos a tu asiento
             </h3>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <img src={chair} alt="" className="chair" />{" "}
             <h3 style={{ margin: "-50px", textAlign: "center" }}>
               Sillas reclinables
@@ -98,7 +98,7 @@ const MovieDetail = (props) => {
           </Grid>
           <Grid item xs={4}>
             <img src={iceCream} alt="" className="iceCream" />{" "}
-            <h3 style={{ marginTop: "-50px", textAlign: "center" }}>
+            <h3 style={{ marginTop: "-50px", textAlign: "right" }}>
               Heladería y zona de comidas
             </h3>
           </Grid>

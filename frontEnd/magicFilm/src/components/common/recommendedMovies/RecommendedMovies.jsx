@@ -27,8 +27,7 @@ const recommendedMovies = (props) => {
               </div>
             </div>
           );
-          
-        } 
+        }
       })}
     </div>
   );
