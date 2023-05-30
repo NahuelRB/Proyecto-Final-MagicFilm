@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import useAuth from "../../../context/SessionContext";
+import React, { useContext } from "react";
+import { SessionContext } from "../../../context/SessionContext";
 import LoginPage from "./login";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const LoginContainer = () => {
   const navigate = useNavigate();
-  const { handleLogin } = useAuth();
-  // const [setAuthUser] = useState({});
+  const { handleLogin } = useContext(SessionContext);
   const loginSubmit = async (e) => {
     e.preventDefault();
     const data = {

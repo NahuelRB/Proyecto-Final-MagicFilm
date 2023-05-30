@@ -1,20 +1,12 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect, useMemo } from "react";
 
-const SessionContext = createContext(
-  {
-    isAuthenticated : false,
-    authUser :null,
-    handleLogin:()=>{},
-    logout:()=>{},
-  }
-);
+export const SessionContext = createContext();
 
 export const SessionProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    // Obtener los datos del usuario desde el almacenamiento (por ejemplo, localStorage o sessionStorage)
+  const updateUser = () => {
     const storedUser = localStorage.getItem("session");
 
     if (storedUser) {
@@ -25,6 +17,9 @@ export const SessionProvider = ({ children }) => {
         JSON.parse(storedUser)
       );
     }
+  };
+  useEffect(() => {
+    updateUser();
   }, []);
 
   const handleLogin = async ({ username, password }) => {
@@ -34,7 +29,12 @@ export const SessionProvider = ({ children }) => {
     if (password === "1234") {
       throw new Error("Contraseña incorrecta");
     }
-    let user = { id: 1, name: "prueba", email: "email@email.com", rol: "1" }; // Esto debe venir de algun servicio
+    let user = {
+      id: 1,
+      name: "prueba",
+      email: "email@email.com",
+      rol: "admin",
+    }; // Esto debe venir de algun servicio
     localStorage.setItem("session", JSON.stringify(user));
     setAuthUser(user);
     setIsAuthenticated(true);
@@ -50,12 +50,14 @@ export const SessionProvider = ({ children }) => {
     setIsAuthenticated(false);
   };
 
-  const sessionContextValues = {
-    isAuthenticated,
-    authUser,
-    handleLogin,
-    logout,
-  };
+  const sessionContextValues = useMemo(() => {
+    return {
+      isAuthenticated,
+      authUser,
+      handleLogin,
+      logout,
+    };
+  }, [authUser]);
 
   return (
     <SessionContext.Provider value={sessionContextValues}>
@@ -63,7 +65,3 @@ export const SessionProvider = ({ children }) => {
     </SessionContext.Provider>
   );
 };
-
-export default function useAuth() {
-  return useContext(SessionContext);
-}
