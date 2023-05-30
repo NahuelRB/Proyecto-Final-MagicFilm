@@ -20,14 +20,25 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movie_id;
 
-        private String name;
+        private String title;
         private LocalDate release_date;
         private String summary;
-        private String image;
         private String trailer;
         private LocalDate finish_date;
-
-
-    //Ver relacion con la otra tabla mappedBy
-
+    
+        @ManyToOne
+        @JoinColumn(name="category_id")
+        private Category category;
+        
+        @ManyToOne
+        @JoinColumn(name="gender_id")
+        private Gender gender;
+        
+        @ManyToOne
+        @JoinColumn(name="image_id")
+        private Image image;
+        
+        @ManyToOne
+        @JoinColumn(name="score_id")
+        private Score score;
 }
