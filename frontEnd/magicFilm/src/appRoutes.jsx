@@ -21,9 +21,9 @@ const AppRoutes = () => {
           <Route
             path="/admin"
             element={
-              <RequireAuth redirectTo={"/"} isAdmin={true}>
-                <AdminPanelContainer />
-              </RequireAuth>
+              // <RequireAuth redirectTo={"/"} isAdmin={true}>
+              <AdminPanelContainer />
+              // </RequireAuth>
             }
           />
         </Route>
