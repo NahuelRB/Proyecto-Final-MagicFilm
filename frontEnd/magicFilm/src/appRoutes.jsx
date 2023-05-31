@@ -7,7 +7,7 @@ import LoginContainer from "./components/pages/login/LoginContainer";
 
 import AdminPanelContainer from "./components/pages/adminPanel/AdminPanelContainer";
 
-import RequireAuth from "./privateRoute";
+import PrivateRoute from "./privateRoute";
 
 const AppRoutes = () => {
   return (
@@ -18,14 +18,9 @@ const AppRoutes = () => {
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/details" element={<MovieDetailContainer />} />
           <Route path="/details/:id" element={<MovieDetailContainer />} />
-          <Route
-            path="/admin"
-            element={
-              // <RequireAuth redirectTo={"/"} isAdmin={true}>
-              <AdminPanelContainer />
-              // </RequireAuth>
-            }
-          />
+          <Route element={<PrivateRoute />}>
+            <Route path="/admin" element={<AdminPanelContainer />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

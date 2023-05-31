@@ -1,25 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { SessionContext } from "./context/SessionContext";
+import { useContext } from "react";
+import { Outlet, Navigate } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
 
-function RequireAuth({ children, redirectTo, isAdmin }) {
-  const { isAuthenticated, authUser } = useContext(SessionContext);
-  // const [user, setUser] = useState(null);
-  console.log(
-    "🚀 ~ file: privateRoute.jsx:7 ~ RequireAuth ~ authUser:",
-    authUser
-  );
-  return
-  
-  isAuthenticated ? (
-    isAdmin && user?.rol == "admin" ? (
-      children
-    ) : (
-      <Navigate to={redirectTo} />
-    )
-  ) : (
-    <Navigate to="/login" />
-  );
-}
+const PrivateRoutes = () => {
+  const { user } = useContext(AuthContext);
 
-export default RequireAuth;
+  if( user.rol !== "admin" ){
+    return <Navigate to="/" />
+  }
+
+  return <Outlet />
+};
+
+export default PrivateRoutes;

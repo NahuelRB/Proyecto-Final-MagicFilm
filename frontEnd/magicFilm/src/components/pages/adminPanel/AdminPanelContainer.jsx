@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import { SessionContext } from "../../../context/SessionContext";
+import { AuthContext } from "../../../context/AuthContext";
 import "./AdminPanel.css";
 import AdminPanel from "./AdminPanel";
 import { Navigate } from "react-router-dom";
 
 const AdminPanelContainer = () => {
-  const { isAuthenticated, authUser } = useContext(SessionContext);
+  const { user } = useContext(AuthContext);
 
-  return isAuthenticated && authUser.rol == "admin" ? (
+  return user?.name && user.rol == "admin" ? (
     <AdminPanel />
   ) : (
     <Navigate to="/login" replace />

@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import HeaderLayout from "./HeaderLayout";
-import { SessionContext } from "../../../context/SessionContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 const HeaderLayoutContainer = () => {
-  const { isAuthenticated, logout, authUser } = useContext(SessionContext);
+  const { dispatch, actions, user } = useContext(AuthContext);
+  const handleLogout = () => {
+    dispatch({ type: actions.logout });
+    navigate("/");
+  };
   return (
     <>
-      <HeaderLayout
-        isAuthenticated={isAuthenticated}
-        logout={logout}
-        authUser={authUser}
-      />
+      <HeaderLayout logout={handleLogout} user={user} />
       <Outlet />
     </>
   );

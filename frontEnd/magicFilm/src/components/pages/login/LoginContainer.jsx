@@ -1,20 +1,24 @@
 import React, { useContext } from "react";
-import { SessionContext } from "../../../context/SessionContext";
+import { AuthContext } from "../../../context/AuthContext";
 import LoginPage from "./login";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const LoginContainer = () => {
   const navigate = useNavigate();
-  const { handleLogin } = useContext(SessionContext);
+  const { dispatch } = useContext(AuthContext);
+  
   const loginSubmit = async (e) => {
     e.preventDefault();
-    const data = {
+    const loginData = {
       username: e.target.username.value,
       password: e.target.password.value,
     };
-    handleLogin(data)
-      .then(() => navigate("/", { replace: true }))
+    handleLogin(loginData)
+      .then((data) => {
+        dispatch({ type: actions.login, payload: data });
+        navigate("/", { replace: true });
+      })
       .catch((err) => {
         Swal.fire({
           title: "Error",

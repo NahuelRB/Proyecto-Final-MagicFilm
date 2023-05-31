@@ -4,7 +4,7 @@ import "./HeaderStyle.css";
 import { Link } from "react-router-dom";
 import people from "../../../assets/person.svg";
 
-const HeaderLayout = ({ isAuthenticated, logout, authUser }) => {
+const HeaderLayout = ({ logout, user }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <header className="Navbar">
@@ -25,11 +25,11 @@ const HeaderLayout = ({ isAuthenticated, logout, authUser }) => {
       </Link>
 
       <div className={`nav-items ${isOpen ? "open" : ""}`}>
-        {isAuthenticated ? (
+        {user?.name ? (
           <>
-            <p className="user-data">Hola {authUser.name}</p>
+            <p className="user-data">Hola {user.name}</p>
             <img
-              src={authUser.image ? authUser.image : people}
+              src={user.image ? user.image : people}
               alt="user-avatar"
               className="user-avatar"
             />
@@ -55,9 +55,9 @@ const HeaderLayout = ({ isAuthenticated, logout, authUser }) => {
         className={`nav-toggle ${isOpen && "open"}`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isAuthenticated && (
+        {user?.name && (
           <img
-            src={authUser.image ? authUser.image : people}
+            src={user.image ? user.image : people}
             alt="user-avatar"
             className="user-avatar"
           />
