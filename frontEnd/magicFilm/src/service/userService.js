@@ -16,7 +16,7 @@ export const deleteUser=(id)=>{
 
 
 export const updateUser=(id, data)=>{
-    return axiosInstance.patch(`/${id}`, data);
+    return axiosInstance.patch(`/users/${id}`, data);
 }
 
 export const createUser =(data)=>{
