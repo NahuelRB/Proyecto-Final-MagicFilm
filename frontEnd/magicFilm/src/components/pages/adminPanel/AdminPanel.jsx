@@ -4,9 +4,14 @@ import DeleteMovieContainer from "../../common/deleteMovie/DeleteMovieContainer"
 
 const AdminPanel = () => {
   return (
-    <div>
-      <AddMovieContainer/>
-      <DeleteMovieContainer/>
+    <div className="admin-container">
+      <h1 className="admin-title">
+        Hola, bienvenidos al panel de administración
+      </h1>
+      <div className="admin-panel">
+        <AddMovieContainer />
+        <DeleteMovieContainer />
+      </div>
     </div>
   );
 };

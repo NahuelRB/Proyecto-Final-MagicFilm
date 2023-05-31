@@ -1,27 +1,29 @@
-import { movieInstance } from "./movieInstance";
+import { axiosInstance } from "./axiosInstance";
+
 
 export const getMovies = () => {
-  let movies = movieInstance.get();
+  let movies = axiosInstance.get("/movies");
   return movies;
 };
 
 export const getMovieById = (id) => {
-  return movieInstance.get(`/${id}`);
+  return axiosInstance.get(`/movies/${id}`);
 };
 
-export const getMovie = (name) => {
-  let movies = movieInstance.get("", { params: { name: name } });
+export const getMovie = (title) => {
+  let movies = axiosInstance.get("/movies", { params: { title: title } });
   return movies;
 };
 
 export const deleteMovie = (id) => {
-  return movieInstance.delete(`/${id}`);
+  return axiosInstance.delete(`/movies/${id}`);
 };
 
 export const updateMovie = (id, data) => {
-  return movieInstance.patch(`/${id}`, data);
+  return axiosInstance.patch(`/movies/${id}`, data);
 };
 
 export const createMovie = (data) => {
-  return movieInstance.post("/", data);
+  return axiosInstance.post(`/movies/`, data);
 };
+
