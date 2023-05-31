@@ -7,7 +7,7 @@ import "./FooterLayout.css";
 
 const FooterLayout = () => {
   return (
-    <div>
+    <>
       <footer className="container-footer">
         <div className="boxSpanFooter">
           <span className="copyright">© 2023 Magic Film</span>
@@ -28,7 +28,7 @@ const FooterLayout = () => {
           </a>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 

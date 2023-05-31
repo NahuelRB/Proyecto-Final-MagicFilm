@@ -4,7 +4,9 @@ const MovieDetail = (props) => {
   const { dataMovie } = props;
   console.log(dataMovie);
   return (
+    
     <div className="container">
+      <h2 className="titleRecommendedMovies">Detalle Pelicula</h2>
       <div className="container-details">
         <img src={dataMovie.image} alt="" className="img-detail-movies" />
         <div className="movie-details">

@@ -7,11 +7,11 @@ import CategoriesContainer from '../../common/categories/CategoriesContainer'
 
 const Home = () => {
   return (
-    <div>
+    <>
       <SearchMoviesContainer/>
       <CategoriesContainer/>
       <RecommendedMoviesContainer/>
-    </div>
+    </>
   )
 }
 
