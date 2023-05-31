@@ -1,0 +1,112 @@
+.formulario-add-user input {
+    border: 3px solid #00c9c8;
+    height: 40px;
+    border-radius: 7px;
+    outline: none;
+    width:50%;
+    box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
+    text-align: center;
+    font-size: 1rem;
+  }
+  
+  .formulario-add-user .attach-button {
+    width: 100%;
+    height: 45px;
+    background: #fffefe;
+    border-radius: 6px;
+    border: 3px solid #00c9c8;
+    padding: 5px;
+    font-size: 1rem;
+    transition: all 0.2s;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+  
+  .formulario-add-user .attach-button:active {
+    background-color: #008a89;
+    border: 3px solid #008a89;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  }
+  
+  .formulario-add-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+    gap: 28px;
+    padding: 30px;
+    flex: 1;
+
+  }
+  
+  .container-add-user {
+    width: 50%;
+    display: flex;
+    align-items:center;
+    border: 5px solid #dcdcdc;
+    border-radius: 30px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    flex-wrap: wrap;
+    margin-top: 70px;
+    margin-left: 25%;
+    margin-bottom: 70px;
+  }
+  .container-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 28px;
+    padding: 30px;
+    flex: 1;
+  }
+  
+  .file-label {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .file-label input[type="file"] {
+    opacity: 0;
+    display: none;
+    cursor: pointer;
+  }
+  .card-preview {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5px;
+    justify-content: space-around;
+    padding: 20px;
+    border: #dcdcdc 3px solid;
+    flex-wrap: wrap;
+  }
+  .card-user-img {
+    max-width: 25vw;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  @media only screen and (max-width: 992px) {
+    .titulo-add-user {
+      width: 80vw;
+    }
+  
+    .input-add-user {
+      width: 80vw;
+    }
+  
+    .button-add-user {
+      width: 40vw;
+    }
+    .container-preview,
+    .formulario-add-user {
+      padding: 0px 15px;
+    }
+    .container-add-user,
+    .container-preview {
+      padding-top: 10px;
+    }
+  }
+  

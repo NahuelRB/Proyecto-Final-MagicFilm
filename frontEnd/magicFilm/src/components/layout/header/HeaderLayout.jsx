@@ -27,7 +27,7 @@ const HeaderLayout = () => {
         <a href="#">
           <button className="login-button">Iniciar sesión</button>
         </a>
-        <a href="#">
+        <a href="/register">
           <button className="signup-button">Crear cuenta</button>
         </a>
         <a href="/admin">
