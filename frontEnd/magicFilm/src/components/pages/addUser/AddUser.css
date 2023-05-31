@@ -1,0 +1,52 @@
+.formulario-add-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 30px;
+    flex: 1;
+   
+    
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  label {
+    margin-right: 10px;
+    width: 100px;
+  }
+  
+  input {
+    border: 3px solid #00c9c8;
+    height: 40px;
+    border-radius: 7px;
+    outline: none;
+    width: 100%;
+    box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .container-add-user {
+    width: 50%;
+    display: flex;
+    align-items:center;
+    border: 5px solid #dcdcdc;
+    border-radius: 30px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    flex-wrap: wrap;
+    margin-top: 70px;
+    margin-left: 25%;
+    margin-bottom: 70px;
+  }
+
+  .formulario-add-user .form-group.error input {
+    border-color: red;
+  }
+  
+  .formulario-add-user .form-group.error .error-message {
+    color: red;
+  }

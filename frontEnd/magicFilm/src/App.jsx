@@ -7,6 +7,7 @@ import FooterLayoutContainer from "./components/layout/footer/FooterLayoutContai
 import MovieDetailContainer from "./components/pages/movieDetail/MovieDetailContainer";
 import Home from "./components/pages/home/Home";
 import AdminPanelContainer from "./components/pages/adminPanel/AdminPanelContainer";
+import AddUserContainer from "./components/pages/addUser/AddUserContainer";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/details/:id" element={<MovieDetailContainer />} />
              <Route path="/admin" element={<AdminPanelContainer/>} />
              <Route path="/details/:id" element={<MovieDetailContainer />} />
+             <Route path="/register" element={<AddUserContainer />} />
           </Route>
         </Route>
       </Routes>
