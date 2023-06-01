@@ -4,8 +4,8 @@ const SearchMovies = ({ handleSearch, dataSearch, setDataSearch }) => {
 
   
   return (
-    <div>
-      <form action="/admin?#" className="form-search-movies">
+    <>
+      <form action="" className="form-search-movies">
         <input
           type="text"
           className="input-search-movies"
@@ -19,7 +19,7 @@ const SearchMovies = ({ handleSearch, dataSearch, setDataSearch }) => {
           Buscar
         </button>
       </form>
-    </div>
+    </>
   );
 };
 

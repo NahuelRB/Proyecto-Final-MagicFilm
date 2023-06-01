@@ -14,13 +14,11 @@ const SearchMoviesContainer = ({ dataSearch, setDataSearch, handleSearch }) => {
   // };
 
   return (
-    <div>
-      <SearchMovies
-        setDataSearch={setDataSearch}
-        dataSearch={dataSearch}
-        handleSearch={handleSearch}
-      />
-    </div>
+    <>
+      <SearchMovies 
+      inputValue={inputValue} 
+      setInputValue={setInputValue} />
+    </>
   );
 };
 

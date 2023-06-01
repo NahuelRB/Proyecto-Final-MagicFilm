@@ -2,7 +2,8 @@ import React from "react";
 import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
-const AddMovie = ({ state, setState }) => {
+
+const AddMovie = ({ state, setState, categories }) => {
   const handleInputChange = (event) => {
     setState({
       ...state,
@@ -31,12 +32,10 @@ const AddMovie = ({ state, setState }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
     const create = createMovie(state);
     create
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
-
 
     /* data_send = { ...state };
     delete data_send.file;
@@ -88,7 +87,7 @@ const AddMovie = ({ state, setState }) => {
           type="date"
           name="release_date"
           className="attach-button"
-          value={state.release || ""}
+          value={state.release_date || ""}
           onChange={handleInputChange}
         />
       </div>
@@ -126,10 +125,39 @@ const AddMovie = ({ state, setState }) => {
           type="file"
           accept=".jpg, .jpeg, .png"
           name="image"
-          placeholder="Cargar portada"
+          placeholder="Cargar portada*"
           onChange={handleFileChange}
           style={{ display: "none" }}
         />
+      </div>
+
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          gap: "5px",
+          width: "100%",
+        }}
+      >
+        <select
+          name="category_id"
+          id="category"
+          className="attach-button"
+          onChange={handleInputChange}
+          defaultValue={0}
+        >
+          <option value="0" disabled>
+            Categoria
+          </option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.title}
+            </option>
+          ))}
+        </select>
+        <a href="/add-category" className="add-category">
+          Nueva categoria
+        </a>
       </div>
 
       <input
@@ -140,10 +168,18 @@ const AddMovie = ({ state, setState }) => {
         onChange={handleInputChange}
       />
 
-      <input
+      {/* <input
         type="text"
         name="summary"
         placeholder="Resumen"
+        value={state.summary || ""}
+        onChange={handleInputChange}
+      /> */}
+
+      <label htmlFor="summary">Resumen</label>
+      <textarea
+        id="summary"
+        name="summary"
         value={state.summary || ""}
         onChange={handleInputChange}
       />

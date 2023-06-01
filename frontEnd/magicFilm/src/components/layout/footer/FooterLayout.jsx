@@ -3,13 +3,11 @@ import iconInstagram from "../../../assets/icon/instagram.svg";
 import iconFacebook from "../../../assets/icon/facebook.svg";
 import iconTwitter from "../../../assets/icon/twitter.svg";
 import iconWhatsapp from "../../../assets/icon/whatsapp.svg";
-import { Outlet } from "react-router-dom";
 import "./FooterLayout.css";
 
 const FooterLayout = () => {
   return (
-    <div>
-      <Outlet />
+    <>
       <footer className="container-footer">
         <div className="boxSpanFooter">
           <span className="copyright">© 2023 Magic Film</span>
@@ -30,7 +28,7 @@ const FooterLayout = () => {
           </a>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
