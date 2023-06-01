@@ -28,6 +28,7 @@ const LoginContainer = () => {
           accessToken: "token",
           user: {
             name: "name",
+            last_name: "last_name",
             email: "email",
             rol: "admin",
             id: "1",
