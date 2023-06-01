@@ -13,7 +13,6 @@ const MovieDetail = (props) => {
   const { dataMovie } = props;
   // console.log(dataMovie);
   return (
-    
     <div className="container">
       <h2 className="titleRecommendedMovies">Detalle Pelicula</h2>
       <div className="container-details">
@@ -30,7 +29,7 @@ const MovieDetail = (props) => {
           </p>
           <p>
             <b>Género: </b>
-            {dataMovie.gender}
+            {dataMovie.gender?.name}
           </p>
         </div>
         <div>
@@ -49,7 +48,7 @@ const MovieDetail = (props) => {
       </div>
       <div className="detail-summary">
         <p>
-          <b>Resumen:</b>
+          <b>Resumen: </b>
           {dataMovie.summary}
         </p>
       </div>
