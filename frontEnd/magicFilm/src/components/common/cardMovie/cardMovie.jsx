@@ -1,8 +1,10 @@
 import React from "react";
 
 const CardMovie = ({ state, categories }) => {
-  let { title, gender, release_date, category, image, trailer } = state;
-  let categorySelected = categories?.find((cat) => cat.id == category)?.cat;
+  let { title, gender, release_date, category_id, image, trailer } = state;
+  let categorySelected = categories?.find(
+    (cat) => cat.id == category_id
+  )?.title;
 
   return (
     <div className="card-preview">

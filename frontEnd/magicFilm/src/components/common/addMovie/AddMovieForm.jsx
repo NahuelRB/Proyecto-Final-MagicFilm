@@ -140,7 +140,7 @@ const AddMovie = ({ state, setState, categories }) => {
         }}
       >
         <select
-          name="category"
+          name="category_id"
           id="category"
           className="attach-button"
           onChange={handleInputChange}
@@ -151,7 +151,7 @@ const AddMovie = ({ state, setState, categories }) => {
           </option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
-              {category.cat}
+              {category.title}
             </option>
           ))}
         </select>

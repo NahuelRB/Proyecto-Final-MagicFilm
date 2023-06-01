@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddMovieForm from "./AddMovieForm";
 import AddMoviePreview from "./AddMoviePreview";
 import "./addMovie.css";
+import { getCategories } from "../../../service/productServices";
 
 const AddMovieContainer = () => {
-  const categories = [
-    { id: 1, cat: "Acción" },
-    { id: 2, cat: "Aventura" },
-    { id: 3, cat: "Comedia" },
-    { id: 4, cat: "Drama" },
-    { id: 5, cat: "Terror" },
-    { id: 6, cat: "Suspenso" },
-    { id: 7, cat: "Ciencia Ficción" },
-  ];
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    getCategories().then((res) => {
+      setCategories(res.data.filter((category) => category.id !== "0"));
+    });
+  }, []);
   const initialState = {
     title: "",
     release_date: "",
@@ -20,7 +18,7 @@ const AddMovieContainer = () => {
     summary: "",
     image: "",
     trailer: "",
-    category: "",
+    category_id: "",
     /* file: "", */
   };
   const [state, setState] = useState(initialState);

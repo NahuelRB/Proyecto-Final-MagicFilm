@@ -12,7 +12,7 @@ const MoviesByCategories = ({ dataMovies }) => {
               Estreno: <p>{movies.release_date}</p>
             </h4>
             <h4>
-              Género: <p>{movies.gender.name}</p>
+              Género: <p>{movies.gender}</p>
             </h4>
             <br />
             <Link to={`/details/${movies.id}`}>

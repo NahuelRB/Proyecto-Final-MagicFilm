@@ -29,7 +29,7 @@ const MovieDetail = (props) => {
           </p>
           <p>
             <b>Género: </b>
-            {dataMovie.gender?.name}
+            {dataMovie.gender?.name ? dataMovie.gender?.name : dataMovie.gender}
           </p>
         </div>
         <div>

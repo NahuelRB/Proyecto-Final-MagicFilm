@@ -17,7 +17,7 @@ export const getMovieByCategoryId = (category_id) => {
 
   return axiosInstance.get(`/movies`).then((res) => { //Filtra el resto de categorias
     const filteredMovies = res.data.filter(
-      (movie) => movie.category.category_id === parseInt(category_id)
+      (movie) => parseInt(movie.category_id) === parseInt(category_id)
     );
     return { data: filteredMovies };
   });
@@ -37,6 +37,7 @@ export const updateMovie = (id, data) => {
 };
 
 export const createMovie = (data) => {
+
   return axiosInstance.post(`/movies/`, data);
 };
 
