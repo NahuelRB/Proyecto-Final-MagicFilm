@@ -10,7 +10,7 @@
 }
 
 .formulario-add-movie .attach-button {
-  width: 100%;
+  width: 50%;
   height: 45px;
   background: #fffefe;
   border-radius: 6px;
@@ -53,6 +53,7 @@
   justify-content: center;
   display: flex;
   align-items: center;
+  max-width: 50%;
 }
 .container-add-movie {
   width: 100%;
@@ -136,4 +137,6 @@ textarea {
   .container-preview {
     padding-top: 10px;
   }
+  .formulario-add-movie .attach-button {
+    width: 100%;
 }
