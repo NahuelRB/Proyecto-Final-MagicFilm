@@ -1,28 +1,25 @@
-import { useState } from "react";
 import SearchCategories from "../../common/searchCategories/searchCategories";
 import MoviesByCategories from "../../common/moviesByCategories/MoviesByCategories";
 
-const CategoriesSection = ({ dataMovie }) => {
+const CategoriesSection = ({
+  category,
+  dataMovies,
+  activeButtonCategory,
+  categories,
+}) => {
   console.log(
-    "🚀 ~ file: CategoriesSection.jsx:6 ~ CategoriesSection ~ dataMovie:",
-    dataMovie
+    "🚀 ~ file: CategoriesSection.jsx ~ line 126 ~ CategoriesSection ~ dataMovies",
+    dataMovies
   );
-  const [filteredCategory, setFilteredCategory] = useState("");
-  console.log(
-    "🚀 ~ file: CategoriesSection.jsx:7 ~ CategoriesSection ~ filteredCategory:",
-    filteredCategory
-  );
-
-  const handleCategoryFilter = (category) => {
-    setFilteredCategory(category);
-  };
-
   return (
     <div>
-      <h2>Filtra por categoría</h2>
-      <SearchCategories handleCategoryFilter={handleCategoryFilter} />
-      {dataMovie ? (
-        <MoviesByCategories dataMovie={dataMovie} />
+      <SearchCategories
+        category={category}
+        categories={categories}
+        activeButtonCategory={activeButtonCategory}
+      />
+      {dataMovies ? (
+        <MoviesByCategories dataMovies={dataMovies} />
       ) : (
         <div>loading...</div>
       )}

@@ -1,23 +1,31 @@
 import CategoriesSection from "./CategoriesSection";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getMovieByCategoryId } from "../../../service/productServices";
+import {
+  getMovieByCategoryId,
+  getCategories,
+} from "../../../service/productServices";
 
 const CategoriesSectionContainer = () => {
   const { category_id } = useParams();
-  const [dataMovie, setDataMovie] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [dataMovies, setDataMovies] = useState([]);
+  const [activeButtonCategory, setActiveButtonCategory] = useState("");
 
   useEffect(() => {
-    const movieById = getMovieByCategoryId(category_id);
-    movieById
-
+    getCategories().then((res) => {
+      setCategories(res.data);
+      setActiveButtonCategory(
+        res.data.filter((cat) => cat.id === category_id)[0].title
+      );
+    });
+    getMovieByCategoryId(category_id)
       .then((res) => {
         console.log(
-          "🚀 ~ file: CategoriesSectionContainer.jsx:15 ~ .then ~ res:",
+          "🚀 ~ file: CategoriesSectionContainer.jsx:24 ~ .then ~ res:",
           res
         );
-
-        setDataMovie(res.data);
+        setDataMovies(res.data);
       })
       .catch((error) => console.log(error));
   }, [category_id]);
@@ -25,7 +33,12 @@ const CategoriesSectionContainer = () => {
   return (
     <div>
       <h2 className="titleRecommendedMovies"> Películas por categoría</h2>
-      <CategoriesSection dataMovie={dataMovie} />
+      <CategoriesSection
+        categories={categories}
+        dataMovies={dataMovies}
+        category={category_id}
+        activeButtonCategory={activeButtonCategory}
+      />
     </div>
   );
 };
