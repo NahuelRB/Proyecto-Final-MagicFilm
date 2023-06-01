@@ -10,16 +10,17 @@ export const getMovieById = (id) => {
   return axiosInstance.get(`/movies/${id}`);
 };
 
-export const getMovieByCategoryId = async (category_id) => {
-  // return axiosInstance.get(`/movies/category/${category_id}`);
-  const movies = await axiosInstance.get(`/movies`);
-  if (category_id === "0") return movies;
-  const filtered = movies.data.filter(
+export const getMovieByCategoryId = (category_id) => {
+  if (category_id === "0") { // En caso que sean todas
+    return axiosInstance.get(`/movies`);
+  }
+
+  return axiosInstance.get(`/movies`).then((res) => { //Filtra el resto de categorias
+    const filteredMovies = res.data.filter(
       (movie) => movie.category.category_id === parseInt(category_id)
-    )
-
-  return { data: filtered }
-
+    );
+    return { data: filteredMovies };
+  });
 };
 
 export const getMovie = (title) => {
