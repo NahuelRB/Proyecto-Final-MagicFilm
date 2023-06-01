@@ -46,16 +46,10 @@ const LoginContainer = () => {
           text: "Los datos de inicio de sesión son incorrectos. Por favor, inténtalo nuevamente.",
           icon: "error",
           confirmButtonColor: "#d33",
-        }).then((result) => {
-          console.log(
-            "🚀 ~ file: loginContainer.jsx:22 ~ loginSubmit ~ result:",
-            result
-          );
+        }).then(() => {
           e.target.reset();
         });
       });
-
-    console.log("🚀 ~ file: loginContainer.jsx:9 ~ login ~ data:", loginData);
   };
   return <LoginPage handleLogin={loginSubmit} />;
 };

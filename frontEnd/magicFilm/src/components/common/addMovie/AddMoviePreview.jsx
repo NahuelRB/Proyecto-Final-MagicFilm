@@ -2,10 +2,6 @@ import React from "react";
 import "./addMovie.css";
 import CardMovie from "../cardMovie/cardMovie";
 const AddMoviePreview = ({ state, setState, initialState, categories }) => {
-  console.log(
-    "🚀 ~ file: AddMoviePreview.jsx:5 ~ AddMoviePreview ~ categories:",
-    state
-  );
   let { title, gender, release_date, image, trailer } = state;
   const handleReset = () => {
     setState(initialState);

@@ -32,7 +32,6 @@ const AddMovie = ({ state, setState, categories }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(state);
     const create = createMovie(state);
     create
       .then((data) => console.log(data))
@@ -56,7 +55,6 @@ const AddMovie = ({ state, setState, categories }) => {
       }); */
   };
 
-  console.log(state);
   return (
     <form onSubmit={handleSubmit} className="formulario-add-movie">
       <h2 className="title">Agregar película</h2>
