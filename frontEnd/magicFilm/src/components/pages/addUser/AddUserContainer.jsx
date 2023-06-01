@@ -5,10 +5,10 @@ import AddUser from './AddUser'
 const AddUserContainer = () => {
  const initialState={
     name:"",
-    lastname:"",
+    surname:"",
     email:"",
     password:"",
-    repassword:""
+    role_id:""
  }
 
 

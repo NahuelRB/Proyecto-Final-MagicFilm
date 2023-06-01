@@ -50,3 +50,15 @@
   .formulario-add-user .form-group.error .error-message {
     color: red;
   }
+
+  .button-container {
+    display: flex;
+    justify-content:space-around;
+    margin-right: 10px
+
+  }
+
+  .button-space {
+    width: 10px;
+    height: 1px;
+  }

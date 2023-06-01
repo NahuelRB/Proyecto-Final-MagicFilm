@@ -16,10 +16,12 @@ const AddUser = ({ state, setState }) => {
   };
   
   const validationSchema = object().shape({
+   
+   
     name: string()
       .required('El nombre es requerido'),
      
-    lastname: string()
+    surname: string()
       .required('El apellido es requerido'),
      
     email: string()
@@ -53,6 +55,19 @@ const AddUser = ({ state, setState }) => {
       console.log(error);
     }
   };
+
+
+  const handleReset = () => {
+    setState({
+      name: '',
+      surname: '',
+      email: '',
+      password: '',
+      repassword: '',
+    });
+    setErrors({});
+  };
+
   return (
     <form onSubmit={handleSubmit} className="formulario-add-user">
       <h2 className="title">Crear Cuenta</h2>
@@ -70,17 +85,17 @@ const AddUser = ({ state, setState }) => {
          {errors.name && <span className="error-message">{errors.name}</span>}
       </div>
 
-      <div className={`form-group ${errors.lastname? 'error' : ''}`}>
-        <label htmlFor="lastname">Apellido</label>
+      <div className={`form-group ${errors.surname? 'error' : ''}`}>
+        <label htmlFor="surname">Apellido</label>
         <input
           type="text"
-          id="lastname"
-          name="lastname"
+          id="surname"
+          name="surname"
           placeholder=""
-          value={state.lastname || ''}
+          value={state.surname || ''}
           onChange={handleInputChange}
         />
-        {errors.lastname && <span className="error-message">{errors.lastname}</span>}
+        {errors.surname && <span className="error-message">{errors.surname}</span>}
       </div>
 
       <div className={`form-group ${errors.email ? 'error' : ''}`}>
@@ -121,10 +136,18 @@ const AddUser = ({ state, setState }) => {
         />
         {errors.repassword && <span className="error-message">{errors.repassword}</span>}
       </div>
-
-      <button className="solid" type="submit" >
+     <div className="button-container">
+      <div>
+      <button className=" solid" type="submit" >
         Crear
       </button>
+      </div>
+       <div>
+      <button className="solid" type="reset"  onClick={handleReset}>
+       Cancelar
+      </button>
+      </div>
+      </div>
     </form>
   );
 };

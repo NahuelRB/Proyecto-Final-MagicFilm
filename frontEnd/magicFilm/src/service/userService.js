@@ -11,7 +11,7 @@ export const  getUser=(name)=>{
 };
 
 export const deleteUser=(id)=>{
-    return axiosInstance.delete(`/users`);
+    return axiosInstance.delete(`/users/${id}`);
 }
 
 
