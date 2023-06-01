@@ -178,7 +178,7 @@ const AddMovie = ({ state, setState, categories }) => {
         onChange={handleInputChange}
       /> */}
 
-      <label for="summary">Resumen</label>
+      <label htmlFor="summary">Resumen</label>
       <textarea
         id="summary"
         name="summary"
