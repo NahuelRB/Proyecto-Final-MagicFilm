@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import RecommendedMovies from "./RecommendedMovies";
 import "./RecommendedMovies.css";
 import { getMovies } from "../../../service/productServices";
+import { Pagination } from "@mui/material";
+
+
 
 const RecommendedMoviesContainer = () => {
   const [dataMovies, setDataMovies] = useState([]);
@@ -27,7 +30,12 @@ const RecommendedMoviesContainer = () => {
       <RecommendedMovies 
       dataMovies={dataMovies}
        />
+
+       <div style={{display:"flex",justifyContent:"center"}}>
+        <Pagination count={2} variant="outlined" color="primary"/>
+        </div>
     </div>
+    
   );
 };
 
