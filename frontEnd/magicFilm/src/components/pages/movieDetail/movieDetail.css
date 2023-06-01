@@ -52,16 +52,18 @@
     height: auto;
     border-color: rgb(25, 0, 255);
   }
-.Box {
-margin:100%;
- padding: 10px;
- display:flex;
- position:absolute;
- border-radius: 41px;
- border-color: aqua;
+
+@media (max-width:768px) {
+  .container-box {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+  }
 }
-.h3{
-  display: flex;
+ 
+.p{
+  display:inline-flex ;
   flex-direction: row;
   align-items: center;
   width: 100%;
