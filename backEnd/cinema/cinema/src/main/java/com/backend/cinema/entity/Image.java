@@ -17,7 +17,11 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long image_id;
 
-        private String image;
+        private String image1;
+        private String image2;
+        private String image3;
+        private String image4;
+        private String image5;
     
 
 }
