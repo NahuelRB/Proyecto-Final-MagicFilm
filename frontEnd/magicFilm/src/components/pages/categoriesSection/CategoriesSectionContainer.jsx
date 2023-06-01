@@ -1,21 +1,20 @@
 import CategoriesSection from "./CategoriesSection";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getMovieByCategoryId } from "../../../service/productServices";
+import { getMovieByCategoryId, getMovies } from "../../../service/productServices";
 
 const CategoriesSectionContainer = () => {
     const { category_id } = useParams();
 
-    const [dataMovie, setDataMovie] = useState({});
-    console.log(category_id)
+    const [dataMovie, setDataMovies] = useState({});
 
     useEffect(() => {
-        const movieById = getMovieByCategoryId(category_id);
-        movieById
-            .then((res) => setDataMovie(res.data))
+        const movies = getMovies();
+          movies
+            .then((res) => setDataMovies(res.data))
             .catch((error) => console.log(error));
-
-    }, [category_id]);
+      
+       },[])
 
     return (
         <div>
