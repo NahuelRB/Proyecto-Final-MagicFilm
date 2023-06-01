@@ -5,11 +5,11 @@ import { AuthContext } from "./context/AuthContext";
 const PrivateRoutes = () => {
   const { user } = useContext(AuthContext);
 
-  if( user.rol !== "admin" ){
-    return <Navigate to="/" />
+  if (user.rol !== "admin") {
+    return <Navigate to="/" />;
   }
 
-  return <Outlet />
+  return <Outlet />;
 };
 
 export default PrivateRoutes;

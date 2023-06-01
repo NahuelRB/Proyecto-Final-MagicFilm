@@ -4,9 +4,9 @@ import HeaderLayout from "./HeaderLayout";
 import { AuthContext } from "../../../context/AuthContext";
 
 const HeaderLayoutContainer = () => {
-  const { dispatch, actions, user } = useContext(AuthContext);
+  const { dispatch, dispatchActions, user } = useContext(AuthContext);
   const handleLogout = () => {
-    dispatch({ type: actions.logout });
+    dispatch({ type: dispatchActions.logout });
     navigate("/");
   };
   return (

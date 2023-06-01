@@ -1,7 +1,7 @@
 import "./assets/fonts/fonts.css";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
-import AppRoutes from "./appRoutes.jsx";
+import AppRoutes from "./AppRoutes.jsx";
 import AuthContextProvider from "./context/AuthContext.jsx";
 
 function App() {

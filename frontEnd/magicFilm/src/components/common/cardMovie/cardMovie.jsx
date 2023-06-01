@@ -1,7 +1,8 @@
 import React from "react";
 
-const CardMovie = ({ state }) => {
-  let { title, gender, release_date, image, trailer } = state;
+const CardMovie = ({ state, categories }) => {
+  let { title, gender, release_date, category, image, trailer } = state;
+  let categorySelected = categories?.find((cat) => cat.id == category)?.cat;
 
   return (
     <div className="card-preview">
@@ -28,6 +29,10 @@ const CardMovie = ({ state }) => {
         <p>
           <b className="card-movie-title">Género: </b>
           {gender}
+        </p>
+        <p>
+          <b className="card-movie-title">Categoria: </b>
+          {categorySelected}
         </p>
         <b className="card-movie-title">Trailer: </b>
         {trailer && <a href={trailer}>Ver Trailer</a>}

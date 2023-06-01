@@ -36,6 +36,9 @@ const HeaderLayout = ({ logout, user }) => {
             <button className="logout-button" onClick={logout}>
               Cerrar Sesion
             </button>
+            <Link to="/admin" className="signup-button">
+              Admin
+            </Link>
           </>
         ) : (
           <>
@@ -47,9 +50,6 @@ const HeaderLayout = ({ logout, user }) => {
             </Link>
           </>
         )}
-        <Link to="/admin" className="signup-button">
-          Admin
-        </Link>
       </div>
       <div
         className={`nav-toggle ${isOpen && "open"}`}

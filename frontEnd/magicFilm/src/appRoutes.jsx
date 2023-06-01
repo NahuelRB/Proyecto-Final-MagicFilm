@@ -7,7 +7,7 @@ import LoginContainer from "./components/pages/login/LoginContainer";
 
 import AdminPanelContainer from "./components/pages/adminPanel/AdminPanelContainer";
 
-import PrivateRoute from "./privateRoute";
+import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
   return (
