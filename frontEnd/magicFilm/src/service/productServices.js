@@ -11,7 +11,9 @@ export const getMovieById = (id) => {
 };
 
 export const getMovieByCategoryId = (category_id) => {
-  return axiosInstance.get(`/movies/${category_id}`);
+  // return axiosInstance.get(`/movies/category/${category_id}`);
+  return axiosInstance.get(`/movies`);
+
 };
 
 export const getMovie = (title) => {
