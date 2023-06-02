@@ -1,5 +1,7 @@
-import "./categories.css"
-
+import "./categories.css";
+import { Link } from "react-router-dom";
+import { getCategories } from "../../../service/productServices";
+import { useEffect, useState } from "react";
 const Categories = () => {
     return (
         <>

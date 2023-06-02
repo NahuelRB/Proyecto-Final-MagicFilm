@@ -15,7 +15,7 @@
 }
 
 .zoom {
-  max-width: 30vw;
+  width: 100%;
   transition: transform 0.2s;
   object-fit: contain;
 }
@@ -50,10 +50,9 @@ a {
     }
 
   .nav-menu {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    display: inline-block;
     background-color: #000000;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
   }
 }
