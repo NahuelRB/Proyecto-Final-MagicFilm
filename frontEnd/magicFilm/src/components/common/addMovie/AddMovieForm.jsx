@@ -2,8 +2,9 @@ import React from "react";
 import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
+import AddCategoryContainer from "../addCategory/AddCategoryContainer";
 
-const AddMovie = ({ state, setState, categories }) => {
+const AddMovie = ({ state, setState, setCategories, categories }) => {
   const handleInputChange = (event) => {
     setState({
       ...state,
@@ -155,9 +156,10 @@ const AddMovie = ({ state, setState, categories }) => {
             </option>
           ))}
         </select>
-        <a href="/add-category" className="add-category">
+        {/* <a href="/add-category" className="add-category">
           Nueva categoria
-        </a>
+        </a> */}
+        <AddCategoryContainer setCategories={setCategories} />
       </div>
 
       <input

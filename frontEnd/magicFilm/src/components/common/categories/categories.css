@@ -12,16 +12,17 @@
   align-content: center;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .zoom {
-max-width: 30vw;
-transition: transform 0.2s;
-object-fit: contain;
+  width: 100%;
+  transition: transform 0.2s;
+  object-fit: contain;
 }
 
 .zoom:hover {
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 a {
@@ -30,23 +31,22 @@ a {
 }
 
 .nav-menu {
-display: none;
+  display: none;
 }
 
 @media (max-width: 600px) {
-a {
-  max-width: 50%;
-}
+  a {
+    max-width: 50%;
+  }
 
   .container-images {
-      display: none;
+    display: none;
   }
 
   .nav-menu {
-      width: 100%;
-      display: inline-block;
-      background-color: #000000;
-      text-align: center;
+    width: 100%;
+    display: inline-block;
+    background-color: #000000;
+    text-align: center;
   }
-
 }
