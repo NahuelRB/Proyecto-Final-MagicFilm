@@ -51,7 +51,7 @@ const DeleteMovie = () => {
               }
             });
           }}
-          className="button-delete-movie"
+          className="solid"
         >
           Eliminar película
         </button>

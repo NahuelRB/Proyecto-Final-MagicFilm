@@ -8,13 +8,13 @@ import SearchMovie from "./SearchMovie";
 const SearchMovieContainer = ({ dataSearch, setDataSearch, handleSearch }) => {
   //const [dataSearch, setDataSearch] = useState("");
 
- /*  //const handleSearch = (e) => {
+  /*  //const handleSearch = (e) => {
     //console.log(e);
     //getMovie(e);
   };
  */
   return (
-    <div>
+    <div >
       <SearchMovie
         setDataSearch={setDataSearch}
         dataSearch={dataSearch}
