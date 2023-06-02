@@ -7,7 +7,7 @@ import LoginContainer from "./components/pages/login/LoginContainer";
 import CategoriesSectionContainer from "./components/pages/categoriesSection/CategoriesSectionContainer";
 import AdminPanelContainer from "./components/pages/adminPanel/AdminPanelContainer";
 import PrivateRoute from "./PrivateRoute";
-
+import AddUserContainer from "./components/pages/addUser/AddUserContainer"
 const AppRoutes = () => {
   return (
     <Routes>
@@ -17,6 +17,7 @@ const AppRoutes = () => {
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/details" element={<MovieDetailContainer />} />
           <Route path="/details/:id" element={<MovieDetailContainer />} />
+          <Route path="/register" element={<AddUserContainer/>} />
           <Route
             path="/category/:category_id"
             element={<CategoriesSectionContainer />}

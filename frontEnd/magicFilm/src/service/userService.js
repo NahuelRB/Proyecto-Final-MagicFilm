@@ -1,24 +1,24 @@
-import {axiosInstance } from "./axiosInstance"
+import {userInstance } from "./axiosInstance"
 
 export const getUsers =()=>{
-    let users= axiosInstance.get();
+    let users= userInstance.get();
     return users;
 };
 
 export const  getUser=(name)=>{
-    let users = axiosInstance.get("", {params:{name:name}})
+    let users = userInstance.get("", {params:{name:name}})
     return users;
 };
 
 export const deleteUser=(id)=>{
-    return axiosInstance.delete(`/users/${id}`);
+    return userInstance.delete(`/user/${id}`);
 }
 
 
 export const updateUser=(id, data)=>{
-    return axiosInstance.patch(`/users/${id}`, data);
+    return userInstance.patch(`/user/${id}`, data);
 }
 
 export const createUser =(data)=>{
-    return axiosInstance.post("/users", data);
+    return userInstance.post("/user/", data);
 }

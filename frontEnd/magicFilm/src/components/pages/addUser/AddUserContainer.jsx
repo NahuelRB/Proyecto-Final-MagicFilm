@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import AddUser from './AddUser'
+import BackButton from '../../common/backButton/backButton'
+
+
 
 
 const AddUserContainer = () => {
@@ -8,7 +11,7 @@ const AddUserContainer = () => {
     surname:"",
     email:"",
     password:"",
-    role_id:""
+    role_id:1
  }
 
 
@@ -18,7 +21,7 @@ const AddUserContainer = () => {
  
     <div className="container-add-user">
     <AddUser state={state}  setState={setState}/>
-
+    <BackButton/>
     </div>
   
   )

@@ -2,35 +2,42 @@ import React, { useState } from 'react';
 import './addUser.css';
 import { createUser } from '../../../service/userService';
 import { object, string, ref } from 'yup';
+import{Link}  from "react-router-dom"
+import imgMail from "../../../assets/icon/email.svg"
+
 
 const AddUser = ({ state, setState }) => {
-    const [errors, setErrors] = useState({});
-
-
-
-  const handleInputChange = (event) => {
+    
+const handleInputChange = (event) => {
     setState({
       ...state,
       [event.target.name]: event.target.value,
     });
   };
-  
+  const [errors, setErrors] = useState({});
+  const [showPopup, setShowPopup] = useState(false);
   const validationSchema = object().shape({
    
-   
-    name: string()
-      .required('El nombre es requerido'),
-     
-    surname: string()
-      .required('El apellido es requerido'),
-     
-    email: string()
-      .email('El email no es válido')
+      name: string().required('El nombre es requerido')
+      .test('no-numerico','El nombre no puede contener números', (value) => {
+        if (value) {
+          const regex = /^[A-Za-z]+$/;
+          return regex.test(value);
+        }
+        return true;
+      }),
+      surname: string().required('El apellido es requerido')
+      .test('no-numerico', 'El apellido no puede contener números', (value) => {
+        if (value) {
+          const regex = /^[A-Za-z]+$/;
+          return regex.test(value);
+        }
+        return true;
+      }),
+      email: string().email('El email no es válido')
       .required('El email es requerido'),
-    password: string()
-      .required('La contraseña es requerida'),
-    repassword: string()
-      .oneOf([ref('password'), null], 'Las contraseñas no coinciden')
+      password: string().required('La contraseña es requerida'),
+      repassword: string().oneOf([ref('password'), null], 'Las contraseñas no coinciden')
       .required('La confirmación de contraseña es requerida'),
   });
 
@@ -38,25 +45,23 @@ const AddUser = ({ state, setState }) => {
     event.preventDefault();
   
     try {
-     validationSchema.validateSync(state, { abortEarly: false });
-  
-     
-      const create = createUser(state);
+      await validationSchema.validate(state, { abortEarly: false });
+        const create = createUser(state);
+      
       create
         .then((data) => console.log(data))
+        setShowPopup(true) // Mostrar ventana emergente
         .catch((error) => console.log(error));
     } catch (error) {
   
       const validationErrors = {};
-      error.inner.forEach((err) => {
+       error.inner.forEach((err) => {
         validationErrors[err.path] = err.message;
       });
       setErrors(validationErrors);
       console.log(error);
     }
   };
-
-
   const handleReset = () => {
     setState({
       name: '',
@@ -104,7 +109,7 @@ const AddUser = ({ state, setState }) => {
           type="text"
           id="email"
           name="email"
-          placeholder="Email@"
+          placeholder=""
           value={state.email || ''}
           onChange={handleInputChange}
         />
@@ -136,19 +141,33 @@ const AddUser = ({ state, setState }) => {
         />
         {errors.repassword && <span className="error-message">{errors.repassword}</span>}
       </div>
-     <div className="button-container">
-      <div>
-      <button className=" solid" type="submit" >
+     
+
+     <button className=" solid" type="submit" >
         Crear
       </button>
-      </div>
-       <div>
-      <button className="solid" type="reset"  onClick={handleReset}>
-       Cancelar
+     
+     <div>
+     {showPopup && (
+  <div className="popup">
+    <img src={imgMail} alt="" className="img-user-mail" />{" "}
+    <h4>Te enviamos un email. 
+      Dale clic al enlace para confirmar la creación de tu cuenta.</h4>
+    <Link to="/">
+    <button className=" solid"  onClick={() => setShowPopup(false) }>
+           Cerrar
+        
       </button>
-      </div>
-      </div>
+      </Link>
+  
+  </div>
+          )}
+     </div>
+    
     </form>
+
+
+
   );
 };
 
