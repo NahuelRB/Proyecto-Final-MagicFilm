@@ -58,9 +58,9 @@ const MovieDetail = (props) => {
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gridTemplateRows: "repeat(2, 1fr)",
-          gap: "20px",
+          gap: "10px",
           border: "3px solid #00c9c8",
-          borderRadius: "41px",
+          borderRadius: "81px",
           width: "100%",
           margin: "0",
         }}
@@ -70,13 +70,13 @@ const MovieDetail = (props) => {
           <p style={{ marginLeft: "10px" }}>Sala 3D</p>
         </div>
 
-        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
+        <div style={{ margin: "30px", display: "flex", alignItems: "center" }}>
           <img src={parking} alt="" className="parking" />{" "}
           <p>Parqueadero gratuito</p>
         </div>
-        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
+        <div style={{ margin: "30px", display: "flex", alignItems: "center" }}>
           <img src={snak} alt="" className="snak" />{" "}
-          <p>Llevamos a tu asiento</p>
+          <p>Llevanos a tu asiento</p>
         </div>
         <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
           <img src={chair} alt="" className="chair" /> <p>Sillas reclinables</p>
