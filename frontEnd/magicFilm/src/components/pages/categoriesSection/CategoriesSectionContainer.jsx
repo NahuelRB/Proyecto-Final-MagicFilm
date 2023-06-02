@@ -1,4 +1,5 @@
 import CategoriesSection from "./CategoriesSection";
+import "./categoriesSection.css"
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -32,7 +33,7 @@ const CategoriesSectionContainer = () => {
 
   return (
     <div>
-      <h2 className="titleRecommendedMovies"> Películas por categoría</h2>
+      <h2 className="titleCategoryMovies"> Busca películas por categoría</h2>
       <CategoriesSection
         categories={categories}
         dataMovies={dataMovies}
