@@ -27,8 +27,8 @@
 }
 
 a {
-  height: auto;
-  max-width: 40%;
+    height: auto;
+    max-width: 40%;
 }
 
 .nav-menu {
@@ -40,9 +40,16 @@ a {
     max-width: 50%;
   }
 
-  .container-images {
-    display: none;
-  }
+    .container-images {
+        display: none;
+    }
+
+    .nav-menu {
+        width: 100%;
+        display: inline-block;
+        background-color: #000000;
+        text-align: center;
+    }
 
   .nav-menu {
     width: 100%;

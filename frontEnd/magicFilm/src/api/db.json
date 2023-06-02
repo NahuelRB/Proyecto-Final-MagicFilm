@@ -11,9 +11,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "2",
-
       "gender": "Acción",
       "summary": "Los Vengadores restantes deben encontrar una manera de recuperar a sus aliados para un enfrentamiento épico con Thanos, el malvado que diezmó el planeta y el universo.",
       "trailer_images": [
@@ -51,9 +49,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "2",
-
       "gender": "Drama",
       "summary": "Andy Dufresne es un banquero condenado a cadena perpetua por el asesinato de su mujer y el amante de ésta. Poco a poco se gana el respeto de los demás reclusos y la amistad de Red, que dirige el mercado negro de la prisión.",
       "trailer_images": [
@@ -91,9 +87,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "3",
-
       "gender": "Acción",
       "summary": "Un fiscal del distrito de Gotham City aclamado como el «caballero blanco» de la ciudad, cuya batalla con el mundo criminal le deja trastornos mentales, convirtiéndolo en un asesino desfigurado con una doble personalidad sediento de venganza.​​",
       "trailer_images": [
@@ -131,9 +125,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "4",
-
       "gender": "Ciencia ficción",
       "summary": "Dom Cobb (Leonardo DiCaprio) y su compañero Arthur (Joseph Gordon-Levitt) son dos ladrones especializados en la “extracción” de información a través del subconsciente. Es decir, se introducen en los sueños de las personas para obtener sus secretos.",
       "trailer_images": [
@@ -171,9 +163,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "2",
-
       "gender": "Fantasía",
       "summary": "La película narra las aventuras de Sulley y Mike, dos simpáticos monstruos que trabajan para Monsters, Inc., la mayor industria de procesamiento de gritos humanos de Monstrópolis. Su trabajo consiste en esconderse en los armarios y esperar la noche para salir y asustar a los niños.",
       "trailer_images": [
@@ -211,9 +201,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "3",
-
       "gender": "Comedia dramática",
       "summary": "Forrest Gump es un chico que, con sus limitaciones, contempla la vida con una mirada tierna y cándida. Su persistencia y bondad, valores que le ha inculcado su protectora madre, le llevan a vivir insospechadas peripecias que son un testimonio de la historia de Estados Unidos entre 1950 y 1980. Con la interpretación de este personaje singular, Tom Hanks consiguió su segundo Oscar al mejor actor, a la vez que hacía popular una de las frases más conmovedoras de la película: La vida es como una caja de bombones, nunca sabes lo que te va a tocar. Además de este galardón, la película consiguió otras cinco estatuillas: mejor director (Robert Zemeckis), película, efectos visuales, montaje y guion, convirtiéndose en la cinta más exitosa de 1994. Además de reventar las taquillas españolas con cuatro millones de espectadores, el filme pasará a la historia por sus innovadores efectos digitales que situaron al personaje al lado de personajes históricos reales como Richard Nixon o Elvis Presley.",
       "trailer_images": [
@@ -251,9 +239,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "3",
-
       "gender": "Fantasía",
       "summary": "Don Vito Corleone es el respetado y temido jefe de una de las cinco familias de la mafia de Nueva York en los años 40. El hombre tiene cuatro hijos: Connie, Sonny, Fredo y Michael, que no quiere saber nada de los negocios sucios de su padre. Cuando otro capo, Sollozzo, intenta asesinar a Corleone, empieza una cruenta lucha entre los distintos clanes.",
       "trailer_images": [
@@ -295,9 +281,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "3",
-
       "gender": "Ciencia ficción",
       "summary": "El programador informático Thomas Anderson, más conocido en el mundo de los hacker como Neo, está en el punto de mira del temible agente Smith. Otros dos piratas informáticos, Trinity y Morfeo, se ponen en contacto con Neo para ayudarlo a escapar. Matrix te posee. Sigue al conejo blanco.",
       "trailer_images": [
@@ -335,9 +319,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "4",
-
       "gender": "Drama",
       "summary": "Arthur Fleck adora hacer reír a la gente, pero su carrera como comediante es un fracaso. El repudio social, la marginación y una serie de trágicos acontecimientos lo conducen por el sendero de la locura y, finalmente, cae en el mundo del crimen.",
       "trailer_images": [
@@ -375,9 +357,7 @@
         "score_id": 1,
         "score": "prueba1"
       },
-
       "category_id": "4",
-
       "summary": "El empresario alemán Oskar Schindler, miembro del Partido Nazi, pone en marcha un elaborado, costoso y arriesgado plan para salvar a más de mil judíos del Holocausto.",
       "gender": "Drama histórico",
       "trailer_images": [
@@ -414,6 +394,60 @@
       "category_id": "3",
       "file": {},
       "id": 11
+    }
+  ],
+  "user": [
+    {
+      "name": "Yazuline",
+      "surname": "Viveros",
+      "email": "yavibe123@hotmail.com",
+      "password": "123",
+      "repassword": "123",
+      "id": 1
+    },
+    {
+      "name": "Yazuline",
+      "surname": "Viveros",
+      "email": "yavibe123@hotmail.com",
+      "password": "123",
+      "repassword": "123",
+      "id": 2
+    },
+    {
+      "name": "Ximena",
+      "surname": "Viveros",
+      "email": "yavibe123@hotmail.com",
+      "password": "1234",
+      "role_id": 1,
+      "repassword": "1234",
+      "id": 3
+    },
+    {
+      "name": "claudia",
+      "surname": "Viveros",
+      "email": "yavibe123@hotmail.com",
+      "password": "1234",
+      "role_id": 1,
+      "repassword": "1234",
+      "id": 4
+    },
+    {
+      "name": "Sofia",
+      "surname": "Lopez",
+      "email": "yavibe123@hotmail.com",
+      "password": "123",
+      "role_id": 1,
+      "repassword": "123",
+      "id": 5
+    },
+    {
+      "name": "Yazuline",
+      "surname": "Viveros",
+      "email": "alibvs@comercio.com",
+      "password": "123",
+      "role_id": 1,
+      "repassword": "123",
+      "id": 6
     }
   ],
   "categories": [
