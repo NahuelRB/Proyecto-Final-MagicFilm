@@ -151,7 +151,7 @@ const AddMovie = ({
           id="category"
           className="attach-button"
           onChange={handleInputChange}
-          defaultValue={0}
+          value={state.category_id || 0}
         >
           <option value="0" disabled>
             Categoria
@@ -167,7 +167,9 @@ const AddMovie = ({
         </a> */}
         <AddCategoryContainer
           setCategories={setCategories}
-          setNewCategories={setNewCategories}
+          selectCategory={(category) => {
+            setState({ ...state, category_id: category });
+          }}
         />
       </div>
 

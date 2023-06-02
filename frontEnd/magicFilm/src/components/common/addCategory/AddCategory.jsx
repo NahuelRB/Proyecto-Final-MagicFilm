@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./addCategory.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createCategory } from "../../../service/categoryServices";
@@ -23,7 +23,7 @@ const AddCategory = ({
   setState,
   initialState,
   setCategories,
-  setNewCategories,
+  selectCategory,
 }) => {
   const handleInputChange = (event) => {
     setState({
@@ -56,17 +56,22 @@ const AddCategory = ({
     setNewCategories(true);
     const create = createCategory(state);
     create
-      .then((data) => console.log(data))
+      .then((data) => {
+        selectCategory(data.data.id);
+        console.log(data);
+      })
       .catch((error) => console.log(error));
     getCategories().then((res) => {
       setCategories(res.data.filter((category) => category.id !== "0"));
       Swal.fire("Se creó correctamente!");
     });
+
     setOpen(false);
+    setState(initialState);
   };
 
   const handleReset = () => {
-    setState({ title: "", description: "", image: "" });
+    setState(initialState);
     setOpen(false);
   };
 
@@ -138,15 +143,15 @@ const AddCategory = ({
                   <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
                 </p>
               )}
-              <label htmlFor="file" className="attach-button">
+              <label htmlFor="image_category" className="attach-button">
                 <img className="icon" src={iconClip} alt="" />
                 {state?.file ? "Cambiar" : "Adjuntar"}
               </label>
               <input
-                id="file"
+                id="image_category"
                 type="file"
                 accept=".jpg, .jpeg, .png"
-                name="image"
+                name="image_category"
                 placeholder="Cargar portada"
                 onChange={handleFileChange}
                 style={{ display: "none" }}
