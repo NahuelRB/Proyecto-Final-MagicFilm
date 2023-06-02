@@ -17,7 +17,13 @@ const style = {
   p: 4,
 };
 
-const AddCategory = ({ state, setState, initialState, setCategories }) => {
+const AddCategory = ({
+  state,
+  setState,
+  initialState,
+  setCategories,
+  setNewCategories,
+}) => {
   const handleInputChange = (event) => {
     setState({
       ...state,
@@ -46,6 +52,7 @@ const AddCategory = ({ state, setState, initialState, setCategories }) => {
 
   const saveCategory = (event) => {
     event.preventDefault();
+    setNewCategories(true);
     const create = createCategory(state);
     create
       .then((data) => console.log(data))
@@ -64,9 +71,13 @@ const AddCategory = ({ state, setState, initialState, setCategories }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = (event) => {
     event.preventDefault();
+    setNewCategories(false);
+
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>

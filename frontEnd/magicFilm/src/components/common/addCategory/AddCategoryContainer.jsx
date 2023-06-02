@@ -3,7 +3,7 @@ import AddCategory from "./AddCategory";
 
 import "./addCategory.css";
 
-const AddCategoryContainer = () => {
+const AddCategoryContainer = ({ setCategories, setNewCategories }) => {
   const initialState = {
     title: "",
     description: "",
@@ -11,10 +11,16 @@ const AddCategoryContainer = () => {
     /* file: "", */
   };
   const [state, setState] = useState(initialState);
-  
+
   return (
     <div>
-      <AddCategory state={state} setState={setState} />
+      <AddCategory
+        state={state}
+        setState={setState}
+        initialState={initialState}
+        setCategories={setCategories}
+        setNewCategories={setNewCategories}
+      />
     </div>
   );
 };
