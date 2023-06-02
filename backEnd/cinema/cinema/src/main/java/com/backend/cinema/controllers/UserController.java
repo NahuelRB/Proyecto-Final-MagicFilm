@@ -14,48 +14,62 @@ import com.backend.cinema.services.impl.UserServiceImpl;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    
+
     private UserServiceImpl userService;
 
     @Autowired
-    public UserController(UserServiceImpl userService){
+    public UserController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserDTO userDTO) {
+        try {
+            String email = userDTO.getEmail();
+            String password = userDTO.getPassword();
+            userService.login(email, password);
+            return ResponseEntity.ok("Inicio de sesión exitoso");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+        }
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException{
+    public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException {
         UserDTO UserDTO = userService.getId(id);
         return ResponseEntity.ok().body(UserDTO);
     }
 
     @GetMapping()
-    public ResponseEntity<Set<UserDTO>> getMovies() throws ResourceNotFoundException{
+    public ResponseEntity<Set<UserDTO>> getMovies() throws ResourceNotFoundException {
         return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<UserDTO> save(@RequestBody UserDTO UserDTO){
+    public ResponseEntity<UserDTO> save(@RequestBody UserDTO UserDTO) {
         UserDTO response = userService.save(UserDTO);
         return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    public ResponseEntity delete(@PathVariable Long id) {
         ResponseEntity response = null;
-        if (id != 0) response = ResponseEntity.status(HttpStatus.OK).build();
-        else response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        if (id != 0)
+            response = ResponseEntity.status(HttpStatus.OK).build();
+        else
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         userService.delete(id);
         return response;
     }
 
     @PutMapping
-    public void update(@RequestBody UserDTO UserDTO){
-        userService.update(UserDTO); 
+    public void update(@RequestBody UserDTO UserDTO) {
+        userService.update(UserDTO);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public String ProcessResourceNotFoundException(ResourceNotFoundException resourceNotFoundException){
+    public String ProcessResourceNotFoundException(ResourceNotFoundException resourceNotFoundException) {
         return resourceNotFoundException.getMessage();
-    }  
+    }
 
 }

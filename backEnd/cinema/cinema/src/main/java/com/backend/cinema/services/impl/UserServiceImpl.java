@@ -1,5 +1,4 @@
 package com.backend.cinema.services.impl;
-
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +58,15 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	public void update(UserDTO userDTO) {
 		save(userDTO);
-	}
-    
+	} 
 
+	public User login(String email, String password){
+		Optional<User> userOptional = userRepository.findByEmailAndPassword(email, password);
+		if(userOptional.isPresent()){
+			return userOptional.get();
+		}else{
+			throw new IllegalArgumentException("Credenciales inválidas");
+		}
+	}
 
 }
