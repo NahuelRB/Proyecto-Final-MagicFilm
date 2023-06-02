@@ -29,5 +29,4 @@ public class MovieDTO {
     private Gender gender;
     private Image image;
     private Score score;
-    //Ver la relacion de la base de datos  para mappedby
 }
