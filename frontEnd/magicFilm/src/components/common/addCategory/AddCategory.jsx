@@ -4,6 +4,7 @@ import iconClip from "../../../assets/icon/clip.svg";
 import { createCategory } from "../../../service/categoryServices";
 import { Modal, Box } from "@mui/material";
 import { getCategories } from "../../../service/categoryServices";
+import Swal from "sweetalert2";
 
 const style = {
   position: "absolute",
@@ -59,6 +60,7 @@ const AddCategory = ({
       .catch((error) => console.log(error));
     getCategories().then((res) => {
       setCategories(res.data.filter((category) => category.id !== "0"));
+      Swal.fire("Se creó correctamente!");
     });
     setOpen(false);
   };
