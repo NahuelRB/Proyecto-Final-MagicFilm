@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddMovieForm from "./AddMovieForm";
 import AddMoviePreview from "./AddMoviePreview";
 import "./addMovie.css";
-import { getCategories } from "../../../service/productServices";
+import { getCategories } from "../../../service/categoryServices";
 
 const AddMovieContainer = () => {
   const [categories, setCategories] = useState([]);
@@ -10,7 +10,7 @@ const AddMovieContainer = () => {
     getCategories().then((res) => {
       setCategories(res.data.filter((category) => category.id !== "0"));
     });
-  }, []);
+  }, [categories]);
   const initialState = {
     title: "",
     release_date: "",
@@ -31,6 +31,7 @@ const AddMovieContainer = () => {
         setState={setState}
         initialState={initialState}
         categories={categories}
+        setCategories={setCategories}
       />
     </div>
   );

@@ -2,12 +2,26 @@ import React from "react";
 import "./addCategory.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createCategory } from "../../../service/categoryServices";
+import { Modal, Box } from "@mui/material";
+import { getCategories } from "../../../service/categoryServices";
 
-const AddCategory = ({ state, setState, initialState }) => {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+const AddCategory = ({ state, setState, initialState, setCategories }) => {
   const handleInputChange = (event) => {
     setState({
       ...state,
-      [event.target.title]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -30,97 +44,123 @@ const AddCategory = ({ state, setState, initialState }) => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const saveCategory = (event) => {
     event.preventDefault();
-    console.log(state);
     const create = createCategory(state);
     create
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
+    getCategories().then((res) => {
+      setCategories(res.data.filter((category) => category.id !== "0"));
+    });
+    setOpen(false);
   };
+
   const handleReset = () => {
-    setState(initialState);
+    setState({ title: "", description: "", image: "" });
+    setOpen(false);
   };
-  console.log(state);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = (event) => {
+    event.preventDefault();
+    setOpen(true);
+  };
+  const handleClose = () => setOpen(false);
+
   return (
-    <form onSubmit={handleSubmit} className="formulario-add-movie">
-      <h2 className="title">Agregar nueva Categoría</h2>
-      <input
-        type="text"
-        name="title"
-        placeholder="Categoría*"
-        value={state.title || ""}
-        onChange={handleInputChange}
-      />
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-
-          gap: "1rem",
-          flex: "1 1 auto",
-          width: "100%",
-        }}
-      ></div>
-      <input
-        type="text"
-        name="description"
-        placeholder="Descripción"
-        value={state.description || ""}
-        onChange={handleInputChange}
-      />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          flex: "1 1 auto",
-          alignItems: "center",
-          gap: "1rem",
-          width: "100%",
-        }}
+    <>
+      <button className="modal-button" onClick={handleOpen}>
+        Crear nueva Categoría
+      </button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        {state?.file ? (
-          <p style={{ fontSize: "0.9rem" }}>{state.file.title}</p>
-        ) : (
-          <p style={{ fontSize: "0.9rem" }}>
-            Cargar imagen*{" "}
-            <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
-          </p>
-        )}
-        <label htmlFor="file" className="attach-button">
-          <img className="icon" src={iconClip} alt="" />
-          {state?.file ? "Cambiar" : "Adjuntar"}
-        </label>
-        <input
-          id="file"
-          type="file"
-          accept=".jpg, .jpeg, .png"
-          name="image"
-          placeholder="Cargar portada"
-          onChange={handleFileChange}
-          style={{ display: "none" }}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flex: "1 1 auto",
-          alignItems: "center",
-          gap: "1rem",
-          width: "100%",
-        }}
-      >
-        <button className="solid" type="submit">
-          Crear
-        </button>
+        <Box sx={style}>
+          <div className="formulario-add-movie">
+            <h2 className="title">Agregar nueva Categoría</h2>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Categoría*"
+              onChange={handleInputChange}
+            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
 
-        <button className="solid" onClick={handleReset}>
-          Cancelar
-        </button>
-      </div>
-    </form>
+                gap: "1rem",
+                flex: "1 1 auto",
+                width: "100%",
+              }}
+            ></div>
+            <input
+              type="text"
+              name="description"
+              id="description"
+              placeholder="Descripción"
+              onChange={handleInputChange}
+            />
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                flex: "1 1 auto",
+                alignItems: "center",
+                gap: "1rem",
+                width: "100%",
+              }}
+            >
+              {state?.file ? (
+                <p style={{ fontSize: "0.9rem" }}>{state.file.title}</p>
+              ) : (
+                <p style={{ fontSize: "0.9rem" }}>
+                  Cargar imagen*{" "}
+                  <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
+                </p>
+              )}
+              <label htmlFor="file" className="attach-button">
+                <img className="icon" src={iconClip} alt="" />
+                {state?.file ? "Cambiar" : "Adjuntar"}
+              </label>
+              <input
+                id="file"
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                name="image"
+                placeholder="Cargar portada"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+              />
+            </div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                flex: "1 1 auto",
+                alignItems: "center",
+                gap: "1rem",
+                width: "100%",
+              }}
+            >
+              <button className="solid" onClick={saveCategory}>
+                Crear
+              </button>
+
+              <button className="solid" onClick={handleReset}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </Box>
+      </Modal>
+    </>
   );
 };
 

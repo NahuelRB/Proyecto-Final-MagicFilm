@@ -11,11 +11,9 @@ const AddCategoryContainer = () => {
     /* file: "", */
   };
   const [state, setState] = useState(initialState);
-
-  console.log(state);
-
+  
   return (
-    <div className="container-add-category">
+    <div>
       <AddCategory state={state} setState={setState} />
     </div>
   );
