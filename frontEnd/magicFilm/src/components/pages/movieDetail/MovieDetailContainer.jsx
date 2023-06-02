@@ -20,7 +20,7 @@ const MovieDetailContainer = () => {
   const { id } = useParams();
 
   const [dataMovie, setDataMovie] = useState({});
-  console.log(id);
+  // console.log(id);
 
   useEffect(() => {
     const movieById = getMovieById(id);

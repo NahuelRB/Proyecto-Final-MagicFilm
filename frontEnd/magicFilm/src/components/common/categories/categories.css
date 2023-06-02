@@ -2,22 +2,20 @@
   width: 100%;
   height: 40%;
   display: flex;
-  /* align-content: center;
-    align-items: center; */
   background-color: #000000;
 }
 
 .container-images {
-  width: 100%;
   height: 10%;
   display: flex;
   align-content: center;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .zoom {
-  max-width: 30vw;
+  width: 100%;
   transition: transform 0.2s;
   object-fit: contain;
 }
@@ -28,7 +26,7 @@
 
 a {
   height: auto;
-  max-width: 100%;
+  max-width: 40%;
 }
 
 .nav-menu {
@@ -45,10 +43,9 @@ a {
   }
 
   .nav-menu {
-    display: flex;
-    flex-direction: column;
+    width: 100%;
+    display: inline-block;
     background-color: #000000;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
   }
 }

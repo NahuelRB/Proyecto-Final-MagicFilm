@@ -2,7 +2,7 @@ import "./searchMovie.css";
 
 const SearchMovie = ({ handleSearch, dataSearch, setDataSearch }) => {
   const handleReset = (e) => {
-    console.log(e);
+    // console.log(e);
     setDataSearch("");
   };
 

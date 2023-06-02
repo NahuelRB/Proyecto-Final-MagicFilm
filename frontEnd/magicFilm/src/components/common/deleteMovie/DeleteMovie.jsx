@@ -17,7 +17,7 @@ const DeleteMovie = () => {
 
   return (
     <div>
-      <form action="submit" className="formulario-delete-movie">
+      <div className="formulario-delete-movie">
         <div className="titulo-delete-movie">Eliminar película</div>
 
         <SearchMovieContainer
@@ -55,7 +55,7 @@ const DeleteMovie = () => {
         >
           Eliminar película
         </button>
-      </form>
+      </div>
     </div>
   );
 };

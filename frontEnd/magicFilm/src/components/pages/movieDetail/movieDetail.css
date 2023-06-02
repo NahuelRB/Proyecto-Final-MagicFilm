@@ -1,4 +1,4 @@
-*{
+* {
   margin: 100%;
   padding: 0%;
 }
@@ -16,7 +16,7 @@
 
 .img-detail-movies {
   width: auto;
-  max-height: 50vh;
+  max-height: 60vh;
   border-color: rgb(25, 0, 255);
 }
 
@@ -34,6 +34,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   width: 100%;
   border: 2px solid rgba(0, 0, 0, 0.041);
   background-color: rgb(255, 255, 255);

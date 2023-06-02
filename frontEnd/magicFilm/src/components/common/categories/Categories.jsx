@@ -1,35 +1,34 @@
-import "./categories.css"
-
+import "./categories.css";
+import { Link } from "react-router-dom";
+import { getCategories } from "../../../service/productServices";
+import { useEffect, useState } from "react";
 const Categories = () => {
-    return (
-        <>
-        <div className='container-categories'>
-            <div className='container-images'>
-                <a href="#">
-                    <img className="zoom" src="https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684370572/estrenos_hish13.jpg" alt="estrenos"/>
-                </a>
-                <a href="#">
-                    <img className="zoom" src="https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684370572/preventa_qarwow.jpg" alt="películas en preventa"/>
-                </a>
-                <a href="#">
-                    <img className="zoom" src="https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684370573/cartelera_fed7av.jpg" alt="películas en cartelera"/>
-                </a>      
-            </div>
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const cat = getCategories().then((res) => {
+      setCategories(res.data.filter((category) => category.id !== "0"));
+    });
+  }, []);
+  return (
+    <>
+      <div className="container-categories">
+        <div className="container-images">
+          {categories.map((category) => (
+            <Link key={category.id} to={`/category/${category.id}`}>
+              <img className="zoom" src={category.zoom} alt={category.title} />
+            </Link>
+          ))}
         </div>
-         <div className='nav-menu'>
-         <a href="#">
-                 <img src="https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684697721/Estrenos_l0gwwa.png" alt="estrenos"/>
-             </a>
-             <a href="#">
-                 <img src="https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684697721/Preventa_mcttwl.png" alt="películas en preventa"/>
-             </a>
-             <a href="#">
-                 <img src="https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684697721/Cartelera_iw60vx.png" alt="películas en cartelera"/>
-             </a>     
-         </div>
+      </div>
+      <div className="nav-menu">
+        {categories.map((category) => (
+          <Link key={category.id} to={`/category/${category.id}`}>
+            <img src={category.logo} alt={category.title} />
+          </Link>
+        ))}
+      </div>
+    </>
+  );
+};
 
-         </>
-    )
-}
-
-export default Categories
+export default Categories;

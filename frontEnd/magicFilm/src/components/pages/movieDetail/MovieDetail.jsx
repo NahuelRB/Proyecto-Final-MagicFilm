@@ -11,7 +11,7 @@ import { Box, Grid } from "@mui/material";
 
 const MovieDetail = (props) => {
   const { dataMovie } = props;
-  console.log(dataMovie);
+  // console.log(dataMovie);
   return (
     <div className="container">
       <h2 className="titleRecommendedMovies">Detalle Pelicula</h2>
@@ -29,7 +29,7 @@ const MovieDetail = (props) => {
           </p>
           <p>
             <b>Género: </b>
-            {dataMovie.gender}
+            {dataMovie.gender?.name ? dataMovie.gender?.name : dataMovie.gender}
           </p>
         </div>
         <div>
@@ -48,7 +48,7 @@ const MovieDetail = (props) => {
       </div>
       <div className="detail-summary">
         <p>
-          <b>Resumen:</b>
+          <b>Resumen: </b>
           {dataMovie.summary}
         </p>
       </div>
