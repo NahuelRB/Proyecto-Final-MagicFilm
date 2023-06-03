@@ -53,18 +53,18 @@ const AddCategory = ({
 
   const saveCategory = (event) => {
     event.preventDefault();
-    setNewCategories(true);
+    // setNewCategories(true);
     const create = createCategory(state);
     create
       .then((data) => {
-        selectCategory(data.data.id);
         console.log(data);
+        getCategories().then((res) => {
+          Swal.fire("Se creó correctamente!");
+          setCategories(res.data.filter((category) => category.id !== "0"));
+        });
+        selectCategory(data.data.id);
       })
       .catch((error) => console.log(error));
-    getCategories().then((res) => {
-      setCategories(res.data.filter((category) => category.id !== "0"));
-      Swal.fire("Se creó correctamente!");
-    });
 
     setOpen(false);
     setState(initialState);
@@ -78,12 +78,12 @@ const AddCategory = ({
   const [open, setOpen] = React.useState(false);
   const handleOpen = (event) => {
     event.preventDefault();
-    setNewCategories(false);
 
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+    setState(initialState);
   };
 
   return (

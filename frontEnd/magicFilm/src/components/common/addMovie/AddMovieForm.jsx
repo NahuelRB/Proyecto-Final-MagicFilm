@@ -4,13 +4,7 @@ import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
 import AddCategoryContainer from "../addCategory/AddCategoryContainer";
 
-const AddMovie = ({
-  state,
-  setState,
-  setCategories,
-  categories,
-  setNewCategories,
-}) => {
+const AddMovie = ({ state, setState, setCategories, categories }) => {
   const handleInputChange = (event) => {
     setState({
       ...state,

@@ -24,5 +24,4 @@ const AddCategoryContainer = ({ setCategories, selectCategory }) => {
     </>
   );
 };
-
 export default AddCategoryContainer;
