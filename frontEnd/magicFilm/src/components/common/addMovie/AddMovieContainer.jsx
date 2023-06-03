@@ -2,9 +2,15 @@ import React, { useEffect, useState } from "react";
 import AddMovieForm from "./AddMovieForm";
 import AddMoviePreview from "./AddMoviePreview";
 import "./addMovie.css";
-
+import { getCategories } from "../../../service/categoryServices";
 const AddMovieContainer = () => {
   const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getCategories().then((data) => {
+      setCategories(data.data);
+    });
+  }, []);
 
   const initialState = {
     title: "",
