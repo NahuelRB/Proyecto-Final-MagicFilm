@@ -7,11 +7,14 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
 import com.backend.cinema.dto.UserDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.UserServiceImpl;
+//import com.backend.cinema.utilities.EmailService;
 import com.backend.cinema.utilities.EmailService;
 
 @RestController
@@ -21,23 +24,31 @@ public class UserController {
     public static final Logger log = LogManager.getLogger(UserServiceImpl.class);
 
     private UserServiceImpl userService;
+    // private final EmailService emailService;
 
-    private final EmailService emailService;
+    private final JavaMailSender mailSender;
 
     @Autowired
-    public UserController(UserServiceImpl userService,EmailService emailService) {
+    public UserController(UserServiceImpl userService,JavaMailSender mailSender) {
         this.userService = userService;
-        this.emailService = emailService;
+        this.mailSender = mailSender;
     }
 
     @GetMapping("/send")
-    public String sendEmail(){
-        String to = "nahuelr.barbosa@gmail.com";
-        String subject = "Hello";
-        String text = "This";
-
-        emailService.sendEmail(to, subject, text);
+    public String sendEmail() {
+        try{
+        SimpleMailMessage message = new SimpleMailMessage();
+        String to = "sistemastt8@gmail.com";
+        String subject = "Envio de mail Equipo 5";
+        String text = "Mail de prueba";
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        mailSender.send(message);
         return "Email sent successfully";
+         } catch (Exception e) {
+            return "Failed to send email: " + e.getMessage();
+        }
     }
 
     @PostMapping("/login")
@@ -53,15 +64,15 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getId(@PathVariable Long id){
+    public ResponseEntity<?> getId(@PathVariable Long id) {
         UserDTO UserDTO = userService.getId(id);
         return ResponseEntity.ok().body(UserDTO);
     }
 
     @GetMapping()
-    public ResponseEntity<Set<UserDTO>> getUsers(){  
+    public ResponseEntity<Set<UserDTO>> getUsers() {
         Set<UserDTO> users = userService.getAll();
-        return new ResponseEntity<>(users   , HttpStatus.OK);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PostMapping()
@@ -73,17 +84,17 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         try {
-            
-            if(!userService.existsById(id)){
-                log.warn("User not found with ID: {}",id);
+
+            if (!userService.existsById(id)) {
+                log.warn("User not found with ID: {}", id);
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
             userService.delete(id);
-            log.info("User deleted with ID: {}",id);
+            log.info("User deleted with ID: {}", id);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-               } catch (Exception e) {
+        } catch (Exception e) {
             log.warn("Invalid ID: {}", id);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();    
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
