@@ -11,7 +11,6 @@ const AddMovieContainer = () => {
       setCategories(data.data);
     });
   }, []);
-
   const initialState = {
     title: "",
     release_date: "",

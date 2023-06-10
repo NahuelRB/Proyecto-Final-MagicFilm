@@ -31,6 +31,7 @@ const indexInitial =(page-1) * resultsPerPage;
 const indexEnd = indexInitial + resultsPerPage;
 const moviesPage = dataMovies.slice(indexInitial, indexEnd);
 
+  console.log(dataMovies);
 
 const handleChangePage =(event,value) => {
   setPage(value);
