@@ -1,4 +1,5 @@
 .form-search-movies {
+
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -6,9 +7,10 @@
   margin-bottom: 20px;
 }
 
-.input-search-movies {
+.input-home-search-movies {
+  margin-top: 20px;
   border: 2px solid #00c9c8;
-  height: 30px;
+  height: 40px;
   border-radius: 4px;
   outline: none;
   width: 25vw;
@@ -16,13 +18,16 @@
   padding: 10px;
 }
 
-.button-search-movies {
+.button-home-search-movies {
   box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
   width: 8vw;
+  height: 2vw;
   min-width: max-content;
   background-color: #00c9c8;
   border: 0;
   border-radius: 4px;
+  margin: 20px;
+
 }
 .button-search-detail {
   background: #000000;

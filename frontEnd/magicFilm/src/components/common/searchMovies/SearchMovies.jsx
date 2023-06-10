@@ -10,10 +10,10 @@ const SearchMovies = (props) => {
       <form action="" className="form-search-movies">
         <input
           type="text"
-          className="input-search-movies"
+          className="input-home-search-movies"
           placeholder="Nombre película"
         />
-        <button className="button-search-movies">Buscar</button>
+        <button className="button-home-search-movies">Buscar</button>
       </form>
     </>
   );
