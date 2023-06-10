@@ -18,9 +18,9 @@ import java.util.Collections;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Table(name="user")
+@Table(name = "user")
 public class User implements UserDetails {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;

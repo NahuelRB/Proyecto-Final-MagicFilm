@@ -1,5 +1,6 @@
 package com.backend.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,23 +9,23 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "category")
+@Table (name="trailer_images")
 @Setter
 @Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Category {
+public class TrailerImages {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long category_id;
+    private Long trailer_image_id;
 
-    private String title;
-
+    @ManyToOne(fetch = FetchType.LAZY )
+    @JoinColumn(name = "movie_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @JsonIgnore
-    private String description;
+    private Movie movie;
 
-    @JsonIgnore
     private String image;
 
 }

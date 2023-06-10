@@ -6,17 +6,17 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table (name="gender")
+@Table(name = "gender")
 @Setter
 @Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Gender {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gender_id;
 
-        private String name;   
+    private String name;
 
 }

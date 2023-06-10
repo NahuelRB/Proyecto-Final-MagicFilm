@@ -27,11 +27,15 @@ public class MovieServiceImpl implements IMovieService{
     @Autowired
     ObjectMapper mapper;
 
-    public MovieDTO getId(Long id){
+    public Movie getId(Long id){
+//        Optional<Movie> movieOptional = movieRepository.findById(id);
+//        Movie movie = movieOptional.orElse(null);
+//        return mapper.convertValue(movie, MovieDTO.class);
         Optional<Movie> movieOptional = movieRepository.findById(id);
         Movie movie = movieOptional.orElse(null);
-        return mapper.convertValue(movie, MovieDTO.class);
+        return movie;
     }
+
 
     @Override
     public Set<MovieDTO> getAll() throws ResourceNotFoundException{

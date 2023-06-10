@@ -1,6 +1,7 @@
 package com.backend.cinema.controllers;
 import java.util.Set;
 
+import com.backend.cinema.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class MovieController{
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException{
-        MovieDTO movieDTO = movieService.getId(id);
+        Movie movieDTO = movieService.getId(id);
         return ResponseEntity.ok().body(movieDTO);
     }
 
