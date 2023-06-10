@@ -2,6 +2,8 @@ package com.backend.cinema.controllers;
 
 import java.util.Set;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,16 +12,32 @@ import org.springframework.web.bind.annotation.*;
 import com.backend.cinema.dto.UserDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.UserServiceImpl;
+import com.backend.cinema.utilities.EmailService;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+    public static final Logger log = LogManager.getLogger(UserServiceImpl.class);
+
     private UserServiceImpl userService;
 
+    private final EmailService emailService;
+
     @Autowired
-    public UserController(UserServiceImpl userService) {
+    public UserController(UserServiceImpl userService,EmailService emailService) {
         this.userService = userService;
+        this.emailService = emailService;
+    }
+
+    @GetMapping("/send")
+    public String sendEmail(){
+        String to = "nahuelr.barbosa@gmail.com";
+        String subject = "Hello";
+        String text = "This";
+
+        emailService.sendEmail(to, subject, text);
+        return "Email sent successfully";
     }
 
     @PostMapping("/login")
@@ -35,14 +53,15 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException {
+    public ResponseEntity<?> getId(@PathVariable Long id){
         UserDTO UserDTO = userService.getId(id);
         return ResponseEntity.ok().body(UserDTO);
     }
 
     @GetMapping()
-    public ResponseEntity<Set<UserDTO>> getMovies() throws ResourceNotFoundException {
-        return new ResponseEntity<>(userService.getAll(), HttpStatus.OK);
+    public ResponseEntity<Set<UserDTO>> getUsers(){  
+        Set<UserDTO> users = userService.getAll();
+        return new ResponseEntity<>(users   , HttpStatus.OK);
     }
 
     @PostMapping()
@@ -53,13 +72,19 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
-        ResponseEntity response = null;
-        if (id != 0)
-            response = ResponseEntity.status(HttpStatus.OK).build();
-        else
-            response = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        userService.delete(id);
-        return response;
+        try {
+            
+            if(!userService.existsById(id)){
+                log.warn("User not found with ID: {}",id);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            userService.delete(id);
+            log.info("User deleted with ID: {}",id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+               } catch (Exception e) {
+            log.warn("Invalid ID: {}", id);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();    
+        }
     }
 
     @PutMapping

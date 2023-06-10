@@ -1,5 +1,7 @@
 package com.backend.cinema.services.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,7 @@ import java.util.*;
 @Service
 public class MovieServiceImpl implements IMovieService{
     
-    //public static final Logger log = LogManager.getLogger(MovieServiceImpl.class);
+    public static final Logger log = LogManager.getLogger(MovieServiceImpl.class);
     
     private IMovieRepository movieRepository;
 
@@ -30,6 +32,7 @@ public class MovieServiceImpl implements IMovieService{
     public MovieDTO getId(Long id){
         Optional<Movie> movieOptional = movieRepository.findById(id);
         Movie movie = movieOptional.orElse(null);
+        
         return mapper.convertValue(movie, MovieDTO.class);
     }
 
@@ -41,24 +44,29 @@ public class MovieServiceImpl implements IMovieService{
         Set<MovieDTO> movieDto = new HashSet<>();
         for(Movie movie : movies){
             movieDto.add(mapper.convertValue(movie, MovieDTO.class));
-         }
+        }
+        log.info("Movies were found");
         return movieDto;
     }   
 
     public MovieDTO save(MovieDTO movieDTO){
         Movie movie = mapper.convertValue(movieDTO, Movie.class);
         Movie saveMovie = movieRepository.save(movie);
-        //Log
+        log.info("Movie saved successfully: {}",movieDTO);
         return mapper.convertValue(saveMovie, MovieDTO.class);
     }
 
     public void delete(Long id){
         movieRepository.deleteById(id);
-        //Log
+        log.info("Movie deleted successfully with ID: {}",id);
     }
 
     public void update(MovieDTO movieDTO){
         save(movieDTO);
+        log.info("Movie updated correctly: {}",movieDTO.getTitle());
     }
 
+    public boolean existsById(Long id) {
+        return movieRepository.existsById(id);
+    }
 }
