@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../../context/AuthContext";
-import LoginPage from "./login";
+import LoginPage from "./Login";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,5 @@
 import { axiosInstance } from "./axiosInstance";
 
-
 export const getMovies = () => {
   let movies = axiosInstance.get("/movies");
   return movies;

@@ -17,7 +17,7 @@ const recommendedMovies = (props) => {
                   Estreno: <p>{movies.release_date}</p>
                 </h4>
                 <h4>
-                  Género: <p>{movies.gender}</p>
+                  Género: <p>{movies.gender.name}</p>
                 </h4>
 
                 <br />
