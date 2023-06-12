@@ -19,6 +19,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long category_id;
 
+
+    @Column(nullable = false)
     private String title;
 
     @JsonIgnore
@@ -26,5 +28,4 @@ public class Category {
 
     @JsonIgnore
     private String image;
-
 }

@@ -30,5 +30,4 @@ public class MovieDTO {
     private String image;
     private List<TrailerImages> trailerImages;
     private Score score;
-    //Ver la relacion de la base de datos  para mappedby
 }
