@@ -386,6 +386,7 @@
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
       "id": 11,
       "name": "The Silence of the Lambs",
       "release_date": "20-05-2022",
@@ -784,6 +785,8 @@
       "file": {},
       "id": 51
 =======
+=======
+>>>>>>> d3285adeb56108479e952818c4e87698b3eec7ef
       "title": "Spider-Man: a través del Spider-Verso",
       "release_date": "2023-06-16",
       "gender": "Animacion",
@@ -879,6 +882,9 @@
       "description": "fffs",
       "image": "",
       "id": 5
+<<<<<<< HEAD
+>>>>>>> d3285adeb56108479e952818c4e87698b3eec7ef
+=======
 >>>>>>> d3285adeb56108479e952818c4e87698b3eec7ef
     }
   ]

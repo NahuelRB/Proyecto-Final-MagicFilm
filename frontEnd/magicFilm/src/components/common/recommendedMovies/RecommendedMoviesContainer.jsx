@@ -37,6 +37,10 @@ const handleChangePage =(event,value) => {
   setPage(value);
 };
 
+const handleChangePage =(event,value) => {
+  setPage(value);
+};
+
   return (
     <div>
       <h2 className="titleRecommendedMovies">Películas Recomendadas</h2>

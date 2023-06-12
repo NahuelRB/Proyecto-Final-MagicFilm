@@ -1,20 +1,4 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
-/* import MovieDetail from './movieDetail' */
-import { useParams } from "react-router-dom";
-import film from "../../../../films.json";
-//import "./movieDetail.css";
-
-const MovieDetailContainer = () => {
-  const [dataMovies, setDataMovies] = useState(film);
-
-  return (
-    <div>
-      <h2 className="titleRecommendedMovies">Detalle Pelicula</h2>
-      {/* <MovieDetail dataMovies={dataMovies}/> */}
-    </div>
-  );
-=======
 import { useParams } from "react-router-dom";
 import "./movieDetail.css";
 import MovieDetail from "./MovieDetail";
@@ -50,7 +34,6 @@ const MovieDetailContainer = () => {
   }, [id]);
 
   return <MovieDetail dataMovie={dataMovie} />;
->>>>>>> d3285adeb56108479e952818c4e87698b3eec7ef
 };
 
 export default MovieDetailContainer;
