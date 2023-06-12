@@ -6,8 +6,8 @@ const LoginPage = ({ handleLogin }) => {
     <div className="login-container">
       <form onSubmit={handleLogin} className="login-form">
         <h2 className="login-title">Iniciar sesión</h2>
-        <label htmlFor="username">Correo Electrónico</label>
-        <input id="username" required type="email" className="login-input" />
+        <label htmlFor="email">Correo Electrónico</label>
+        <input id="email" required type="email" className="login-input" />
         <label htmlFor="password">Contraseña</label>
         <input id="password" required type="password" className="login-input" />
         <a href="/forgot-password" className="link">

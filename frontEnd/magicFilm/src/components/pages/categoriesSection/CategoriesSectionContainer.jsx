@@ -1,5 +1,5 @@
 import CategoriesSection from "./CategoriesSection";
-import "./categoriesSection.css"
+import "./categoriesSection.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -22,10 +22,6 @@ const CategoriesSectionContainer = () => {
     });
     getMovieByCategoryId(category_id)
       .then((res) => {
-        console.log(
-          "🚀 ~ file: CategoriesSectionContainer.jsx:24 ~ .then ~ res:",
-          res
-        );
         setDataMovies(res.data);
       })
       .catch((error) => console.log(error));

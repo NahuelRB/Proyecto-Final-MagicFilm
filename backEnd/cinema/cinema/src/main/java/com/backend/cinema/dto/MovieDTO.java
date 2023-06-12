@@ -22,7 +22,6 @@ public class MovieDTO {
     private String title;
     private LocalDate release_date;
     private String summary;
-    private String trailer;
     private LocalDate finish_date;
     private Boolean state;
 

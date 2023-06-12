@@ -40,9 +40,11 @@ const HeaderLayout = ({ logout, user }) => {
             <button className="logout-button" onClick={logout}>
               Cerrar Sesion
             </button>
-            <Link to="/admin" className="signup-button">
-              Admin
-            </Link>
+            {user.rol === "ADMIN" && (
+              <Link to="/admin" className="signup-button">
+                Admin
+              </Link>
+            )}
           </>
         ) : (
           <>

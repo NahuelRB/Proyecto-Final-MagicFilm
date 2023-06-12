@@ -7,10 +7,6 @@ const CategoriesSection = ({
   activeButtonCategory,
   categories,
 }) => {
-  console.log(
-    "🚀 ~ file: CategoriesSection.jsx ~ line 126 ~ CategoriesSection ~ dataMovies",
-    dataMovies
-  );
   return (
     <div>
       <SearchCategories

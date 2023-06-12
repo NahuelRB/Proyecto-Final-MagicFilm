@@ -1,20 +1,20 @@
 import { axiosInstance } from "./axiosInstance";
 
 export const getMovies = () => {
-  let movies = axiosInstance.get("/movies");
+  let movies = axiosInstance.get("/movie");
   return movies;
 };
 
 export const getMovieById = (id) => {
-  return axiosInstance.get(`/movies/${id}`);
+  return axiosInstance.get(`/movie/${id}`);
 };
 
 export const getMovieByCategoryId = (category_id) => {
   if (category_id === "0") { // En caso que sean todas
-    return axiosInstance.get(`/movies`);
+    return axiosInstance.get(`/movie`);
   }
 
-  return axiosInstance.get(`/movies`).then((res) => { //Filtra el resto de categorias
+  return axiosInstance.get(`/movie`).then((res) => { //Filtra el resto de categorias
     const filteredMovies = res.data.filter(
       (movie) => parseInt(movie.category_id) === parseInt(category_id)
     );
@@ -23,21 +23,21 @@ export const getMovieByCategoryId = (category_id) => {
 };
 
 export const getMovie = (title) => {
-  let movies = axiosInstance.get("/movies", { params: { title: title } });
+  let movies = axiosInstance.get("/movie", { params: { title: title } });
   return movies;
 };
 
 export const deleteMovie = (id) => {
-  return axiosInstance.delete(`/movies/${id}`);
+  return axiosInstance.delete(`/movie/${id}`);
 };
 
 export const updateMovie = (id, data) => {
-  return axiosInstance.patch(`/movies/${id}`, data);
+  return axiosInstance.patch(`/movie/${id}`, data);
 };
 
 export const createMovie = (data) => {
 
-  return axiosInstance.post(`/movies/`, data);
+  return axiosInstance.post(`/movie`, data);
 };
 
 export const getCategories = () => {

@@ -12,7 +12,6 @@ import QualificationMovieContainer from "../../common/qualificationMovie/Qualifi
 
 const MovieDetail = (props) => {
   const { dataMovie } = props;
-  console.log(dataMovie.trailer_images);
   return (
     <div className="container">
       <h1 className="titleRecommendedMovies">Detalle Película</h1>

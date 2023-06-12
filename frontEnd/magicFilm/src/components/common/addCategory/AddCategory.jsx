@@ -57,7 +57,6 @@ const AddCategory = ({
     const create = createCategory(state);
     create
       .then((data) => {
-        console.log(data);
         getCategories().then((res) => {
           Swal.fire("Se creó correctamente!");
           setCategories(res.data.filter((category) => category.id !== "0"));

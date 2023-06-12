@@ -14,6 +14,7 @@ import com.backend.cinema.services.impl.MovieServiceImpl;
 
 @RestController
 @RequestMapping("/movie")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 public class MovieController{
     //public static final Logger log = LogManager.getLogger(MovieServiceImpl.class);
     private MovieServiceImpl movieService;

@@ -37,7 +37,6 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
     const create = createMovie(state);
     create
       .then((data) => {
-        console.log(data);
         Swal.fire("Pelicula Creada correctamente", "", "success");
       })
       .catch((error) => console.log(error));

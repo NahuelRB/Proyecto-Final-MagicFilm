@@ -13,6 +13,7 @@ import com.backend.cinema.services.impl.UserServiceImpl;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 public class UserController {
     
     private UserServiceImpl userService;
