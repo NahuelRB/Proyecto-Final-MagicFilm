@@ -28,13 +28,13 @@ public class MovieController{
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException {
-        MovieDTO movieDTO = movieService.getId(id);
-        if (movieDTO == null) {
+        Movie movie = movieService.getId(id);
+        if (movie == null) {
             log.error("Movie not found with ID: {}", id);
             throw new ResourceNotFoundException("Error retrieving movie.");
         }
         log.info("Movie successfully retrieved with ID: {}", id);
-        return ResponseEntity.ok().body(movieDTO);
+        return ResponseEntity.ok().body(movie);
     }
 
     @GetMapping()
