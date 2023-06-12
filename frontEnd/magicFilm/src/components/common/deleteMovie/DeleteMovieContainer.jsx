@@ -1,9 +1,9 @@
-import React from "react";
 import DeleteMovie from "./DeleteMovie";
+import "./deleteMovie.css";
 
 const DeleteMovieContainer = () => {
   return (
-    <div>
+    <div className="container-delete-movie">
       <DeleteMovie />
     </div>
   );
