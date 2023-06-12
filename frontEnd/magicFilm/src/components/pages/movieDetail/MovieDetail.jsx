@@ -8,43 +8,74 @@ import sound from "../../../assets/icon/sound.svg";
 import chair from "../../../assets/icon/chair.svg";
 import iceCream from "../../../assets/icon/iceCream.svg";
 import { Box, Grid } from "@mui/material";
+import QualificationMovieContainer from "../../common/qualificationMovie/QualificationMovieContainer";
 
 const MovieDetail = (props) => {
   const { dataMovie } = props;
-  // console.log(dataMovie);
+  console.log(dataMovie.trailer_images);
   return (
     <div className="container">
-      <h2 className="titleRecommendedMovies">Detalle Pelicula</h2>
-      <div className="container-details">
-        <img src={dataMovie.image} alt="" className="img-detail-movies" />
-        <div className="movie-details">
-          <h3>Detalle de la película</h3>
-          <p>
-            <b>Título: </b>
-            {dataMovie.title}
-          </p>
-          <p>
-            <b>Fecha de estreno: </b>
-            {dataMovie.release_date}
-          </p>
-          <p>
-            <b>Género: </b>
-            {dataMovie.gender?.name ? dataMovie.gender?.name : dataMovie.gender}
-          </p>
+      <h1 className="titleRecommendedMovies">Detalle Película</h1>
+
+      <div className="container-detail-movie">
+
+      <div className="container-detail-movie-properties">
+        <img
+          className="container-detail-movie-properties-image"
+          src={dataMovie.image}
+          alt=""
+        />
+
+        <div className="container-detail-movie-properties-text">
+          <QualificationMovieContainer />
+          <h1>Detalle película</h1>
+          <h2  >
+            Título: <span className="container-detail-movie-properties-span">{dataMovie.title}</span>
+          </h2>
+          <h2>
+            Fecha de estreno: <span className="container-detail-movie-properties-span">{dataMovie.release_date}</span>{" "}
+          </h2>
+          <h2>
+            Género:{" "}
+            <span className="container-detail-movie-properties-span">
+              {dataMovie.gender?.name
+                ? dataMovie.gender?.name
+                : dataMovie.gender}
+            </span>
+          </h2>
+          <h2>
+            Tráiler:{" "}
+            <span className="container-detail-movie-properties-span" >
+              <a href={dataMovie.trailer} target="_blank" style={{textDecoration:"none", color:"#00C9C8", fontWeight:"700"}} >Miralo aquí</a>
+            </span>
+          </h2>
         </div>
-        <div>
-          {dataMovie.trailer && (
-            <iframe
-              width="560"
-              height="315"
-              src={dataMovie.trailer}
-              title="YouTube video player"
-              frameBorder="0"
-              allow=" autoplay; fullscreen; picture-in-picture"
-              allowFullScreen="allowFullScreen"
-            ></iframe>
-          )}
-        </div>
+      </div>
+
+      <div className="container-detail-movie-galery">
+        
+        <img
+          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737714/integradorDh/image_79_a69z7h.png"
+          alt=""
+        />
+        <img
+          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737713/integradorDh/image_81_bqrueb.png"
+          alt=""
+        />
+        <img
+          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737713/integradorDh/image_78_ltn9sr.png"
+          alt=""
+        />
+        <img
+          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737713/integradorDh/image_80_fujadt.png"
+          alt=""
+        />
+      </div>
+
+      </div>
+
+      <div >
+        <a href="" className="detail-movie-ver-mas" >Ver más</a>
       </div>
       <div className="detail-summary">
         <p>
@@ -52,59 +83,43 @@ const MovieDetail = (props) => {
           {dataMovie.summary}
         </p>
       </div>
-      <Box
-        className="Box"
+      <section
+        className="container-box"
         style={{
-          border: "5px solid #00C9C8",
-          borderRadius: "41px",
-          display: "flex",
-          flexDirection: "column",
-          alignitems: "center",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateRows: "repeat(2, 1fr)",
+          gap: "10px",
+          border: "3px solid #00c9c8",
+          borderRadius: "81px",
           width: "100%",
-          margin: "100px",
-          padding: "30px",
+          margin: "0",
         }}
       >
-        <h2 style={{ display: "flex", fontSize: "25px", alignItems: "center" }}>
-          Disfrutarás esta película en el mejor cinema
-        </h2>
-        <Grid container spacing={10} style={{ margin: "10px" }}>
-          <Grid item xs={3}>
-            <img src={visual} alt="" className="visual" />{" "}
-            <h3 style={{ textAlign: "center", margin: "-40px" }}>Sala 3D</h3>
-          </Grid>
-          <Grid item xs={4}>
-            <img src={parking} alt="" className="parking" />{" "}
-            <h3 style={{ textAlign: "center", margin: "-55px" }}>
-              Parqueadero gratuito
-            </h3>
-          </Grid>
-          <Grid item xs={3}>
-            <img src={snak} alt="" className="snak" />{" "}
-            <h3 style={{ textAlign: "right", margin: "-50px" }}>
-              Llevamos a tu asiento
-            </h3>
-          </Grid>
-          <Grid item xs={3}>
-            <img src={chair} alt="" className="chair" />{" "}
-            <h3 style={{ margin: "-50px", textAlign: "center" }}>
-              Sillas reclinables
-            </h3>
-          </Grid>
-          <Grid item xs={4}>
-            <img src={sound} alt="" className="sound" />{" "}
-            <h3 style={{ margin: "-50px", textAlign: "center" }}>
-              Sonido envolvente
-            </h3>
-          </Grid>
-          <Grid item xs={4}>
-            <img src={iceCream} alt="" className="iceCream" />{" "}
-            <h3 style={{ marginTop: "-50px", textAlign: "right" }}>
-              Heladería y zona de comidas
-            </h3>
-          </Grid>
-        </Grid>
-      </Box>
+        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
+          <img src={visual} alt="" className="visual" />
+          <p style={{ marginLeft: "10px" }}>Sala 3D</p>
+        </div>
+
+        <div style={{ margin: "30px", display: "flex", alignItems: "center" }}>
+          <img src={parking} alt="" className="parking" />{" "}
+          <p>Parqueadero gratuito</p>
+        </div>
+        <div style={{ margin: "30px", display: "flex", alignItems: "center" }}>
+          <img src={snak} alt="" className="snak" />{" "}
+          <p>Llevanos a tu asiento</p>
+        </div>
+        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
+          <img src={chair} alt="" className="chair" /> <p>Sillas reclinables</p>
+        </div>
+        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
+          <img src={sound} alt="" className="sound" /> <p>Sonido envolvente</p>
+        </div>
+        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
+          <img src={iceCream} alt="" className="iceCream" />{" "}
+          <p>Heladería y zona de comidas</p>
+        </div>
+      </section>
     </div>
   );
 };

@@ -86,7 +86,7 @@
   border-radius: 4px;
 }
 .modal-button {
-  width: 160px;
+  width: 100%;
   height: 45px;
   background-color: #00c9c8;
   box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
@@ -94,12 +94,16 @@
   font-size: 1rem;
   color: #000;
   border-radius: 6px;
- 
+
   text-align: center;
   display: inline-block;
   cursor: pointer;
   transition: all 0.2s;
   border: none;
+}
+
+.MuiBox-root {
+  border-radius: 15px;
 }
 @media only screen and (max-width: 992px) {
   .titulo-add-movie {

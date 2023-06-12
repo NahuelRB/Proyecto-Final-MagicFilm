@@ -3,14 +3,15 @@ import AddMovieForm from "./AddMovieForm";
 import AddMoviePreview from "./AddMoviePreview";
 import "./addMovie.css";
 import { getCategories } from "../../../service/categoryServices";
-
 const AddMovieContainer = () => {
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
-    getCategories().then((res) => {
-      setCategories(res.data.filter((category) => category.id !== "0"));
+    getCategories().then((data) => {
+      setCategories(data.data);
     });
-  }, [categories]);
+  }, []);
+
   const initialState = {
     title: "",
     release_date: "",
@@ -25,13 +26,17 @@ const AddMovieContainer = () => {
 
   return (
     <div className="container-add-movie">
-      <AddMovieForm state={state} setState={setState} categories={categories} />
+      <AddMovieForm
+        state={state}
+        setState={setState}
+        categories={categories}
+        setCategories={setCategories}
+      />
       <AddMoviePreview
         state={state}
         setState={setState}
         initialState={initialState}
         categories={categories}
-        setCategories={setCategories}
       />
     </div>
   );

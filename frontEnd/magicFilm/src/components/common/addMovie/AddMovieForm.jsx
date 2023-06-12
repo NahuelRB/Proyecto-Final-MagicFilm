@@ -3,6 +3,7 @@ import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
 import AddCategoryContainer from "../addCategory/AddCategoryContainer";
+import Swal from "sweetalert2";
 
 const AddMovie = ({ state, setState, setCategories, categories }) => {
   const handleInputChange = (event) => {
@@ -35,7 +36,10 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
     event.preventDefault();
     const create = createMovie(state);
     create
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        Swal.fire("Pelicula Creada correctamente", "", "success");
+      })
       .catch((error) => console.log(error));
 
     /* data_send = { ...state };
@@ -145,7 +149,7 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
           id="category"
           className="attach-button"
           onChange={handleInputChange}
-          defaultValue={0}
+          value={state.category_id || 0}
         >
           <option value="0" disabled>
             Categoria
@@ -159,7 +163,12 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
         {/* <a href="/add-category" className="add-category">
           Nueva categoria
         </a> */}
-        <AddCategoryContainer setCategories={setCategories} />
+        <AddCategoryContainer
+          setCategories={setCategories}
+          selectCategory={(category) => {
+            setState({ ...state, category_id: category });
+          }}
+        />
       </div>
 
       <input

@@ -3,20 +3,25 @@ import AddCategory from "./AddCategory";
 
 import "./addCategory.css";
 
-const AddCategoryContainer = () => {
+const AddCategoryContainer = ({ setCategories, selectCategory }) => {
   const initialState = {
     title: "",
     description: "",
-    image: "",
-    /* file: "", */
+    image_category: "",
+    file: null,
   };
-  const [state, setState] = useState(initialState);
-  
+  const [catState, setCatState] = useState(initialState);
+
   return (
-    <div>
-      <AddCategory state={state} setState={setState} />
-    </div>
+    <>
+      <AddCategory
+        state={catState}
+        setState={setCatState}
+        initialState={initialState}
+        setCategories={setCategories}
+        selectCategory={selectCategory}
+      />
+    </>
   );
 };
-
 export default AddCategoryContainer;

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./addCategory.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createCategory } from "../../../service/categoryServices";
 import { Modal, Box } from "@mui/material";
 import { getCategories } from "../../../service/categoryServices";
+import Swal from "sweetalert2";
 
 const style = {
   position: "absolute",
@@ -17,7 +18,13 @@ const style = {
   p: 4,
 };
 
-const AddCategory = ({ state, setState, initialState, setCategories }) => {
+const AddCategory = ({
+  state,
+  setState,
+  initialState,
+  setCategories,
+  selectCategory,
+}) => {
   const handleInputChange = (event) => {
     setState({
       ...state,
@@ -46,27 +53,38 @@ const AddCategory = ({ state, setState, initialState, setCategories }) => {
 
   const saveCategory = (event) => {
     event.preventDefault();
+    // setNewCategories(true);
     const create = createCategory(state);
     create
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        getCategories().then((res) => {
+          Swal.fire("Se creó correctamente!");
+          setCategories(res.data.filter((category) => category.id !== "0"));
+        });
+        selectCategory(data.data.id);
+      })
       .catch((error) => console.log(error));
-    getCategories().then((res) => {
-      setCategories(res.data.filter((category) => category.id !== "0"));
-    });
+
     setOpen(false);
+    setState(initialState);
   };
 
   const handleReset = () => {
-    setState({ title: "", description: "", image: "" });
+    setState(initialState);
     setOpen(false);
   };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = (event) => {
     event.preventDefault();
+
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setState(initialState);
+  };
 
   return (
     <>
@@ -125,15 +143,15 @@ const AddCategory = ({ state, setState, initialState, setCategories }) => {
                   <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
                 </p>
               )}
-              <label htmlFor="file" className="attach-button">
+              <label htmlFor="image_category" className="attach-button">
                 <img className="icon" src={iconClip} alt="" />
                 {state?.file ? "Cambiar" : "Adjuntar"}
               </label>
               <input
-                id="file"
+                id="image_category"
                 type="file"
                 accept=".jpg, .jpeg, .png"
-                name="image"
+                name="image_category"
                 placeholder="Cargar portada"
                 onChange={handleFileChange}
                 style={{ display: "none" }}
