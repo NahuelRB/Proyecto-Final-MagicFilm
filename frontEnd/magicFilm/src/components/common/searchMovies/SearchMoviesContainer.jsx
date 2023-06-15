@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchMovies from "./SearchMovies";
 
 const SearchMoviesContainer = () => {
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
 
   return (
     <>
