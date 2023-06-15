@@ -3,7 +3,6 @@ import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
 import AddCategoryContainer from "../addCategory/AddCategoryContainer";
- 
 
 const AddMovie = ({ state, setState, setCategories, categories }) => {
   const handleInputChange = (event) => {
@@ -40,12 +39,11 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
         Swal.fire("Pelicula Creada correctamente", "", "success");
       })
       .catch((error) => console.log(error));
-
   };
 
   return (
     <form onSubmit={handleSubmit} className="formulario-add-movie">
-      <h2 className="title">Agregar película</h2> 
+      <h2 className="title">Agregar película</h2>
 
       <input
         type="text"
@@ -152,6 +150,7 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
           selectCategory={(category) => {
             setState({ ...state, category_id: category });
           }}
+          from="addMovie"
         />
       </div>
 

@@ -3,7 +3,7 @@ import AddCategory from "./AddCategory";
 
 import "./addCategory.css";
 
-const AddCategoryContainer = ({ setCategories, selectCategory }) => {
+const AddCategoryContainer = ({ setCategories, selectCategory, from }) => {
   const initialState = {
     title: "",
     description: "",
@@ -20,6 +20,7 @@ const AddCategoryContainer = ({ setCategories, selectCategory }) => {
         initialState={initialState}
         setCategories={setCategories}
         selectCategory={selectCategory}
+        from={from}
       />
     </>
   );
