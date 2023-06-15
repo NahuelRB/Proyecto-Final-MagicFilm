@@ -3,7 +3,7 @@ import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
 import AddCategoryContainer from "../addCategory/AddCategoryContainer";
-import Swal from "sweetalert2";
+ 
 
 const AddMovie = ({ state, setState, setCategories, categories }) => {
   const handleInputChange = (event) => {
@@ -41,27 +41,12 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
       })
       .catch((error) => console.log(error));
 
-    /* data_send = { ...state };
-    delete data_send.file;
-    fetch("URL_DEL_ENDPOINT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data_send),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      }); */
   };
 
   return (
     <form onSubmit={handleSubmit} className="formulario-add-movie">
-      <h2 className="title">Agregar película</h2>
+      <h2 className="title">Agregar película</h2> 
+
       <input
         type="text"
         name="title"

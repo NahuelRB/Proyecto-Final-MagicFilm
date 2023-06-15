@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./addUser.css";
+import "./AddUser.css";
 import { createUser } from "../../../service/userServices";
 import { object, string, ref } from "yup";
 import { Link } from "react-router-dom";

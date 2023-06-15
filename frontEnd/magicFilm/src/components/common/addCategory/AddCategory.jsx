@@ -88,7 +88,7 @@ const AddCategory = ({
   return (
     <>
       <button className="modal-button" onClick={handleOpen}>
-        Crear nueva Categoría
+        Nueva Categoría
       </button>
       <Modal
         open={open}

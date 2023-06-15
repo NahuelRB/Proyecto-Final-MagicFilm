@@ -9,8 +9,8 @@ const AdminPanel = () => {
         Hola, bienvenidos al panel de administración
       </h1>
       <div className="admin-panel">
-        <AddMovieContainer />
-        <DeleteMovieContainer />
+        {/* <AddMovieContainer />
+        <DeleteMovieContainer /> */}
       </div>
     </div>
   );
