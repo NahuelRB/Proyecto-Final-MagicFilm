@@ -4,14 +4,11 @@ import { createScore, getScores } from "../../../service/rating";
 import Swal from "sweetalert2";
 
 const RatingMovieContainer = (props) => {
-  const{dataMovie}=props
+  const { dataMovie } = props
   console.log(dataMovie.id);
   const [value, setValue] = useState(2);
   const [valueCalification, setValueCalification] = useState(true);
   
-
-
-
   console.log(value);
 
   const ratingData =

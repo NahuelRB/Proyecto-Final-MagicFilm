@@ -14,57 +14,45 @@ import { useEffect } from "react";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
 
 const MovieDetail = (props) => {
- 
-  const { dataMovie, user, login } = props;
-
+  const { dataMovie, user } = props;
+  console.log("🚀 ~ file: MovieDetail.jsx:18 ~ MovieDetail ~ user:", user);
 
   return (
     <div className="container">
       <h1 className="titleRecommendedMovies">Detalle Película</h1>
 
       <div className="container-detail-movie">
-        <div className="container-detail-movie-properties">
+        <div className="container-detail-movie-properties-image" >
           <img
-            className="container-detail-movie-properties-image"
+            
             src={dataMovie.image}
             alt=""
           />
-
+        </div>
+        <div className="container-detail-movie-properties">
           <div className="container-detail-movie-properties-text">
-            {
-                login && <RatingMovieContainer dataMovie={dataMovie}/>
-
-            }
-            
-            {
-             !login && <ScoreMovieContainer dataMovie={dataMovie}/>
-
-            }
-            
-            
-
             <h1>Detalle película</h1>
-            <h2>
+            <h3>
               Título:{" "}
               <span className="container-detail-movie-properties-span">
                 {dataMovie.title}
               </span>
-            </h2>
-            <h2>
+            </h3>
+            <h3>
               Fecha de estreno:{" "}
               <span className="container-detail-movie-properties-span">
                 {dataMovie.release_date}
               </span>{" "}
-            </h2>
-            <h2>
+            </h3>
+            <h3>
               Género:{" "}
               <span className="container-detail-movie-properties-span">
                 {dataMovie.gender?.name
                   ? dataMovie.gender?.name
                   : dataMovie.gender}
               </span>
-            </h2>
-            <h2>
+            </h3>
+            <h3>
               Tráiler:{" "}
               <span className="container-detail-movie-properties-span">
                 <a
@@ -79,27 +67,30 @@ const MovieDetail = (props) => {
                   Miralo aquí
                 </a>
               </span>
-            </h2>
+            </h3>
+            {user?.id ? (
+              <RatingMovieContainer dataMovie={dataMovie} />
+            ) : (
+              <ScoreMovieContainer dataMovie={dataMovie} />
+            )}
           </div>
         </div>
-
-        <div className="container-detail-movie-galery">
-
-          {dataMovie?.trailer_images?.length > 0 &&
-            dataMovie.trailer_images.map((image, index) => {
-              while (index<4) {
-                return <img src={image.image} key={index} alt="" />;
-              }
-              
-            })}
-        </div>
+        {dataMovie?.trailer_images?.length > 0 && (
+          <div style={{ flexDirection: "column" }}>
+            <div className="container-detail-movie-galery">
+              {dataMovie.trailer_images.map((image, index) => {
+                while (index < 4) {
+                  return <img src={image.image} key={index} alt="" />;
+                }
+              })}
+            </div>
+            <a href="" className="detail-movie-ver-mas">
+              Ver más
+            </a>
+          </div>
+        )}
       </div>
 
-      <div>
-        <a href="" className="detail-movie-ver-mas">
-          Ver más
-        </a>
-      </div>
       <div className="detail-summary">
         <p>
           <b>Resumen: </b>

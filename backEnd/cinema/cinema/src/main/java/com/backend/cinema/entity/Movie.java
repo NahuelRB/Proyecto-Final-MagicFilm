@@ -31,7 +31,7 @@ public class Movie {
     private LocalDate finish_date;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-    private List<TrailerImages> trailerImages = new ArrayList<>();
+    private List<TrailerImages> trailer_images = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -47,7 +47,7 @@ public class Movie {
     private String trailer;
 
     public void setTrailerImages(List<TrailerImages> trailerImages) {
-        this.trailerImages = trailerImages;
+        this.trailer_images = trailerImages;
         for (TrailerImages trailerImage: trailerImages ) {
             trailerImage.setMovie(this);
         }

@@ -19,14 +19,11 @@ const obtenerIdVideoYoutube = (url) => {
 };
 
 const MovieDetailContainer = () => {
-  const[login, setLogin]= useState(true)
   const { user } = useContext(AuthContext);
-
 
   const { id } = useParams();
 
   const [dataMovie, setDataMovie] = useState({});
-
 
   useEffect(() => {
     const movieById = getMovieById(id);
@@ -39,7 +36,7 @@ const MovieDetailContainer = () => {
       .catch((error) => console.log(error));
   }, [id]);
 
-  return <MovieDetail dataMovie={dataMovie} user={user} login={login} setLogin={setLogin}/>;
+  return <MovieDetail dataMovie={dataMovie} user={user} />;
 };
 
 export default MovieDetailContainer;

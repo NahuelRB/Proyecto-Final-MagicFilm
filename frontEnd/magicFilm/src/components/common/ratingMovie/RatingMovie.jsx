@@ -6,14 +6,10 @@ import Typography from "@mui/material/Typography";
 const RatingMovie = (props) => {
   const { value, setValue } = props;
   return (
-    <Box
-      sx={{
-        "& > legend": { mt: 2 },
-      }}
-    >
-      <Typography component="legend" variant="h4" color="secundary">
+    <div>
+      <h4 component="legend" variant="h4" color="secundary">
         Calificación
-      </Typography>
+      </h4>
       <Rating
         style={{ fontSize: "40px", color: "#00C9C8", width: "200px" }}
         precision={1}
@@ -24,7 +20,7 @@ const RatingMovie = (props) => {
           setValue(newValue);
         }}
       />
-    </Box>
+    </div>
   );
 };
 
