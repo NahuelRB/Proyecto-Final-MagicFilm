@@ -21,7 +21,7 @@ const SearchMovie = ({ handleSearch, dataSearch, setDataSearch }) => {
             handleSearch(dataSearch);
             e.preventDefault();
           }}
-          className="solid"
+          className="solidCancel"
           //className="button-search-movies"
         >
           Buscar

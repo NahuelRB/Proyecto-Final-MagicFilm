@@ -24,6 +24,7 @@ const AddCategory = ({
   initialState,
   setCategories,
   selectCategory,
+  from,
 }) => {
   const handleInputChange = (event) => {
     setState({
@@ -85,98 +86,107 @@ const AddCategory = ({
     setState(initialState);
   };
 
+  const modalCategory = () => {
+    return (
+      <Box sx={style}>
+        <div className="formulario-add-movie">
+          <h2 className="title">Agregar Categoría</h2>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Categoría*"
+            onChange={handleInputChange}
+          />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+
+              gap: "1rem",
+              flex: "1 1 auto",
+              width: "100%",
+            }}
+          ></div>
+          <input
+            type="text"
+            name="description"
+            id="description"
+            placeholder="Descripción"
+            onChange={handleInputChange}
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flex: "1 1 auto",
+              alignItems: "center",
+              gap: "1rem",
+              width: "100%",
+            }}
+          >
+            {state?.file ? (
+              <p style={{ fontSize: "0.9rem" }}>{state.file.title}</p>
+            ) : (
+              <p style={{ fontSize: "0.9rem" }}>
+                Cargar imagen*{" "}
+                <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
+              </p>
+            )}
+            <label htmlFor="image_category" className="attach-button">
+              <img className="icon" src={iconClip} alt="" />
+              {state?.file ? "Cambiar" : "Adjuntar"}
+            </label>
+            <input
+              id="image_category"
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              name="image_category"
+              placeholder="Cargar portada"
+              onChange={handleFileChange}
+              style={{ display: "none" }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              flex: "1 1 auto",
+              alignItems: "center",
+              gap: "1rem",
+              width: "100%",
+            }}
+          >
+            <button className="solid" onClick={saveCategory}>
+              Crear
+            </button>
+
+            <button className="solidCancel" onClick={handleReset}>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </Box>
+    );
+  };
+
   return (
     <>
-      <button className="modal-button" onClick={handleOpen}>
-        Crear nueva Categoría
-      </button>
+      {from !== undefined && (
+        <button className="modal-button" onClick={handleOpen}>
+          Nueva Categoría
+        </button>
+      )}
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <div className="formulario-add-movie">
-            <h2 className="title">Agregar nueva Categoría</h2>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Categoría*"
-              onChange={handleInputChange}
-            />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-
-                gap: "1rem",
-                flex: "1 1 auto",
-                width: "100%",
-              }}
-            ></div>
-            <input
-              type="text"
-              name="description"
-              id="description"
-              placeholder="Descripción"
-              onChange={handleInputChange}
-            />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                flex: "1 1 auto",
-                alignItems: "center",
-                gap: "1rem",
-                width: "100%",
-              }}
-            >
-              {state?.file ? (
-                <p style={{ fontSize: "0.9rem" }}>{state.file.title}</p>
-              ) : (
-                <p style={{ fontSize: "0.9rem" }}>
-                  Cargar imagen*{" "}
-                  <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
-                </p>
-              )}
-              <label htmlFor="image_category" className="attach-button">
-                <img className="icon" src={iconClip} alt="" />
-                {state?.file ? "Cambiar" : "Adjuntar"}
-              </label>
-              <input
-                id="image_category"
-                type="file"
-                accept=".jpg, .jpeg, .png"
-                name="image_category"
-                placeholder="Cargar portada"
-                onChange={handleFileChange}
-                style={{ display: "none" }}
-              />
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-around",
-                flex: "1 1 auto",
-                alignItems: "center",
-                gap: "1rem",
-                width: "100%",
-              }}
-            >
-              <button className="solid" onClick={saveCategory}>
-                Crear
-              </button>
-
-              <button className="solid" onClick={handleReset}>
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </Box>
+        <div>{modalCategory()}</div>
       </Modal>
+      {from === undefined && modalCategory()}
     </>
   );
 };

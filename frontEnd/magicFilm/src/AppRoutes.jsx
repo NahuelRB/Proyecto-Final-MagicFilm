@@ -9,6 +9,10 @@ import AdminPanelContainer from "./components/pages/adminPanel/AdminPanelContain
 import PrivateRoute from "./PrivateRoute";
 import AddUserContainer from "./components/pages/addUser/AddUserContainer";
 import EmailVerifyContainer from "./components/pages/emailVerify/EmailVerifyContainer";
+import SidebarContainer from "./components/layout/sidebar/SidebarContainer";
+import AddMovieContainer from "./components/common/addMovie/AddMovieContainer";
+import AddCategoryContainer from "./components/common/addCategory/AddCategoryContainer";
+import DeleteMovieContainer from "./components/common/deleteMovie/DeleteMovieContainer";
 
 const AppRoutes = () => {
   return (
@@ -21,12 +25,19 @@ const AppRoutes = () => {
           <Route path="/details/:id" element={<MovieDetailContainer />} />
           <Route path="/register" element={<AddUserContainer />} />
           <Route path="/verify" element={<EmailVerifyContainer />} />
+
           <Route
             path="/category/:category_id"
             element={<CategoriesSectionContainer />}
           />
           <Route element={<PrivateRoute />}>
-            <Route path="/admin" element={<AdminPanelContainer />} />
+            <Route element={<SidebarContainer />}>
+              <Route path="/admin" element={<AdminPanelContainer />} />
+              <Route path="/register2" element={<AddUserContainer />} />
+              <Route path="/movie" element={<AddMovieContainer />} />
+              <Route path="/newcategory" element={<AddCategoryContainer />} />
+              <Route path="/delete" element={<DeleteMovieContainer />} />
+            </Route>
           </Route>
         </Route>
       </Route>
