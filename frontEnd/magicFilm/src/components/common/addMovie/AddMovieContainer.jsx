@@ -8,7 +8,8 @@ const AddMovieContainer = () => {
 
   useEffect(() => {
     getCategories().then((data) => {
-      setCategories(data.data);
+      const cat = [...data.data, { id: 0, name: "Todas" }];
+      setCategories(cat);
     });
   }, []);
   const initialState = {

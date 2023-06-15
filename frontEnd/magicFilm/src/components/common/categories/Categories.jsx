@@ -1,12 +1,12 @@
 import "./categories.css";
 import { Link } from "react-router-dom";
-import { getCategories } from "../../../service/productServices";
+import { getCategories } from "../../../service/categoryServices";
 import { useEffect, useState } from "react";
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const cat = getCategories().then((res) => {
-      setCategories(res.data.filter((category) => category.id !== "0"));
+      setCategories(res.data?.slice(0, 4));
     });
   }, []);
   return (

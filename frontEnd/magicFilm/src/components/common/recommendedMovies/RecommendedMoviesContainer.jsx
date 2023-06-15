@@ -16,19 +16,19 @@ const RecommendedMoviesContainer = () => {
       .catch((error) => console.log(error));
   }, []);
 
- //Cambio aleatorio del elementos del array
- 
- dataMovies.sort(function() { return Math.random() - 0.5 });
+  //Cambio aleatorio del elementos del array
 
-const indexInitial =(page-1) * resultsPerPage;
-const indexEnd = indexInitial + resultsPerPage;
-const moviesPage = dataMovies.slice(indexInitial, indexEnd);
+  dataMovies.sort(function () {
+    return Math.random() - 0.5;
+  });
 
-  console.log(dataMovies);
+  const indexInitial = (page - 1) * resultsPerPage;
+  const indexEnd = indexInitial + resultsPerPage;
+  const moviesPage = dataMovies.slice(indexInitial, indexEnd);
 
-const handleChangePage =(event,value) => {
-  setPage(value);
-};
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
 
   return (
     <div>

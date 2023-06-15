@@ -59,7 +59,7 @@ const AddCategory = ({
       .then((data) => {
         getCategories().then((res) => {
           Swal.fire("Se creó correctamente!");
-          setCategories(res.data.filter((category) => category.id !== "0"));
+          setCategories(res.data);
         });
         selectCategory(data.data.id);
       })

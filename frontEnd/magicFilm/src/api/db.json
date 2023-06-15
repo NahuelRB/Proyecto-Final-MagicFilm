@@ -498,33 +498,31 @@
   "categories": [
     {
       "id": 1,
-      "title": "En Cartelera",
-      "description": "Se esta reproduciendo en este momento",
-      "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204089/Films/p_avengersendgame_19751_e14a0104_cuykcz.jpg"
+      "title": "Cartelera",
+      "description": "Cartelera",
+      "logo": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684697721/Cartelera_iw60vx.png",
+      "zoom": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684978967/Cartelera_eerfch.png"
     },
     {
       "id": 2,
-      "title": "Preventa",
-      "description": "Tiene fecha de estreno en menos de 15 dias",
-      "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204089/Films/p_avengersendgame_19751_e14a0104_cuykcz.jpg"
+      "title": "Estrenos",
+      "description": "Estrenos",
+      "logo": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684697721/Estrenos_l0gwwa.png",
+      "zoom": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684978863/Estrenos_etsgfy.png"
     },
     {
       "id": 3,
-      "title": "A estrenar",
-      "description": "Tiene fecha de estreno",
-      "image": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684204089/Films/p_avengersendgame_19751_e14a0104_cuykcz.jpg"
+      "title": "Preventa",
+      "description": "Preventa",
+      "logo": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684697721/Preventa_mcttwl.png",
+      "zoom": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684978919/Preventa_p2hofm.png"
     },
     {
-      "title": "Proximamente",
-      "description": "",
-      "image": "",
-      "id": 4
-    },
-    {
-      "title": "Proximamente",
-      "description": "fffs",
-      "image": "",
-      "id": 5
+      "id": 4,
+      "title": "Promociones",
+      "description": "Promociones",
+      "logo": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684977985/promocionesMobile_jyofic.png",
+      "zoom": "https://res.cloudinary.com/dtzs6lm4b/image/upload/v1684979172/Promociones_h5tjv8.png"
     }
   ]
 }

@@ -1,29 +1,29 @@
 import { axiosInstance } from "./axiosInstance";
 
 export const getCategories = () => {
-  let categories = axiosInstance.get("/categories");
-  return categories;
+  let category = axiosInstance.get("/category");
+  return category;
 };
 
 export const getCategoryById = (id) => {
-  return axiosInstance.get(`/categories/${id}`);
+  return axiosInstance.get(`/category/${id}`);
 };
 
 /* export const getCategory = (title) => {
-  let categories = axiosInstance.get("/categories", {
+  let category = axiosInstance.get("/category", {
     params: { title: title },
   });
-  return categories;
+  return category;
 }; */
 
 export const deleteCategory = (id) => {
-  return axiosInstance.delete(`/categories/${id}`);
+  return axiosInstance.delete(`/category/${id}`);
 };
 
 export const updateCategory = (id, data) => {
-  return axiosInstance.patch(`/categories/${id}`, data);
+  return axiosInstance.patch(`/category/${id}`, data);
 };
 
 export const createCategory = (data) => {
-  return axiosInstance.post(`/categories/`, data);
+  return axiosInstance.post(`/category/`, data);
 };
