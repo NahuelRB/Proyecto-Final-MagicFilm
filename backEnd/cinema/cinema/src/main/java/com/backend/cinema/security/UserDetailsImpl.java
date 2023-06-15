@@ -58,6 +58,6 @@ public class UserDetailsImpl implements UserDetails {
         return  user.getRole().name();
     }
     public Long getID(){
-        return  user.getUser_id();
+        return  user.getId();
     }
 }

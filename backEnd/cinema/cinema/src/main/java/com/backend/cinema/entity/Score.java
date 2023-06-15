@@ -16,15 +16,15 @@ public class Score {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long score_id;
+    private Long id;
 
     private int score;
 
     @OneToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="id")
     private User user;
 
     @OneToOne
-    @JoinColumn(name="movie_id")
+    @JoinColumn(name="id")
     private Movie movie;
 }
