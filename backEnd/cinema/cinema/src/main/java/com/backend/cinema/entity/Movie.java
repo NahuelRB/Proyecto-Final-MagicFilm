@@ -42,6 +42,8 @@ public class Movie {
 
     private boolean state;
 
+    private String trailer;
+
     public void setTrailerImages(List<TrailerImages> trailerImages) {
         this.trailerImages = trailerImages;
         for (TrailerImages trailerImage: trailerImages ) {

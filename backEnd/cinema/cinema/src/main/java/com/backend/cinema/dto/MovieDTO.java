@@ -28,6 +28,7 @@ public class MovieDTO {
     private Category category;
     private Gender gender;
     private String image;
+    private String trailer;
     private List<TrailerImages> trailerImages;
     private Score score;
 }
