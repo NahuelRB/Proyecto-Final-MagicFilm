@@ -12,6 +12,7 @@ import EmailVerifyContainer from "./components/pages/emailVerify/EmailVerifyCont
 import SidebarContainer from "./components/layout/sidebar/SidebarContainer";
 import AddMovieContainer from "./components/common/addMovie/AddMovieContainer";
 import AddCategoryContainer from "./components/common/addCategory/AddCategoryContainer";
+import DeleteMovieContainer from "./components/common/deleteMovie/DeleteMovieContainer";
 
 const AppRoutes = () => {
   return (
@@ -31,10 +32,11 @@ const AppRoutes = () => {
           />
           <Route element={<PrivateRoute />}>
             <Route element={<SidebarContainer />}>
-              <Route path="/admin" element={<AdminPanelContainer/>} />
+              <Route path="/admin" element={<AdminPanelContainer />} />
               <Route path="/register2" element={<AddUserContainer />} />
               <Route path="/movie" element={<AddMovieContainer />} />
               <Route path="/newcategory" element={<AddCategoryContainer />} />
+              <Route path="/delete" element={<DeleteMovieContainer />} />
             </Route>
           </Route>
         </Route>

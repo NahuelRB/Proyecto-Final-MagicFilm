@@ -90,7 +90,7 @@ const AddCategory = ({
     return (
       <Box sx={style}>
         <div className="formulario-add-movie">
-          <h2 className="title">Agregar nueva Categoría</h2>
+          <h2 className="title">Agregar Categoría</h2>
           <input
             type="text"
             name="title"
@@ -162,7 +162,7 @@ const AddCategory = ({
               Crear
             </button>
 
-            <button className="solid" onClick={handleReset}>
+            <button className="solidCancel" onClick={handleReset}>
               Cancelar
             </button>
           </div>

@@ -36,12 +36,12 @@ export const sidebarNavItems = [
     section: "register2",
   },
   {
-    display: "Películas",
+    display: "Agregar Película",
     icon: <i className="bx bx-film"></i>,
     to: "/movie",
     section: "movie",
 
-    subNav: [
+    /*  subNav: [
       {
         display: "Agregar",
         icon: <i className="bx bx-film"></i>,
@@ -54,7 +54,13 @@ export const sidebarNavItems = [
         to: "/movie/delete",
         section: "movie",
       },
-    ],
+    ], */
+  },
+  {
+    display: "Eliminar Película",
+    icon: <i className="bx bx-film"></i>,
+    to: "/delete",
+    section: "delete",
   },
   {
     display: "Categorías",
@@ -93,7 +99,6 @@ const Sidebar = () => {
     setActiveIndex(curPath.length === 0 ? 0 : activeItem);
   }, [location]);
 
-
   return (
     <div className="sidebar">
       <div className="sidebar__logo">Panel Admin</div>
@@ -118,9 +123,7 @@ const Sidebar = () => {
               <div className="sidebar__menu__item__text">{item.display}</div>
             </div>
           </Link>
-          
         ))}
-        
       </div>
     </div>
   );
