@@ -14,7 +14,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ScoreDTO {
 
-    private Long score_id;
+    private Long id;
 
     private String score;
 }

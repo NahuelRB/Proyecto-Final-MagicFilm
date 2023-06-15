@@ -1,7 +1,8 @@
 package com.backend.cinema.controllers;
 
-import java.util.Set;
-
+import com.backend.cinema.dto.UserDTO;
+import com.backend.cinema.exception.ResourceNotFoundException;
+import com.backend.cinema.services.impl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
-import com.backend.cinema.dto.UserDTO;
-import com.backend.cinema.exception.ResourceNotFoundException;
-import com.backend.cinema.services.impl.UserServiceImpl;
-//import com.backend.cinema.utilities.EmailService;
-import com.backend.cinema.utilities.EmailService;
+import java.util.HashMap;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
@@ -74,6 +72,12 @@ public class UserController {
     public ResponseEntity<Set<UserDTO>> getUsers() {
         Set<UserDTO> users = userService.getAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/verify-email/{token}")
+    public ResponseEntity<?> verifyEmail(@PathVariable String token) {
+        HashMap<String, Object> verifiedData = userService.verifyEmail(token);
+        return ResponseEntity.ok().body(verifiedData);
     }
 
     @PostMapping()

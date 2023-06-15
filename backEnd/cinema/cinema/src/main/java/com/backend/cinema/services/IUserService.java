@@ -1,8 +1,10 @@
 package com.backend.cinema.services;
-import java.util.Set;
 
 import com.backend.cinema.dto.UserDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
+
+import java.util.HashMap;
+import java.util.Set;
 
 public interface IUserService {    
     UserDTO getId(Long id) throws ResourceNotFoundException;
@@ -10,4 +12,5 @@ public interface IUserService {
     UserDTO save(UserDTO userDTO);
     void delete(Long id);
     void update(UserDTO userDTO);
+    HashMap<String,Object> verifyEmail(String Token);
 }

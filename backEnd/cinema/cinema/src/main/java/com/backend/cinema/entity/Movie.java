@@ -1,11 +1,14 @@
 package com.backend.cinema.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "movie")
@@ -34,13 +37,12 @@ public class Movie {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "gender_id")
-    private Gender gender;
+
+    private String gender;
 
     private String image;
 
-    private boolean state;
+    private Boolean state;
 
     private String trailer;
 

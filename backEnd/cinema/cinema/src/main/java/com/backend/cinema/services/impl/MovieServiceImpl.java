@@ -1,18 +1,18 @@
 package com.backend.cinema.services.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.backend.cinema.dto.MovieDTO;
 import com.backend.cinema.entity.Movie;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.repository.IMovieRepository;
 import com.backend.cinema.services.IMovieService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieServiceImpl implements IMovieService{
@@ -38,18 +38,37 @@ public class MovieServiceImpl implements IMovieService{
         return movie;
     }
 
+    @Override
+    public Set<MovieDTO> getByCategoryId(Long category_id){
+        Set<MovieDTO> movieDto = new HashSet<>();
+        Set<Movie> moviesByCategory= movieRepository.getByCategoryId(category_id);
+        if (moviesByCategory.isEmpty()) {
+            return movieDto;
+        }
+        for(Movie movie : moviesByCategory){
+            movieDto.add(mapper.convertValue(movie, MovieDTO.class));
+        }
+        log.info("Movies were found by category");
+        return movieDto.stream()
+                .sorted(Comparator.comparing(MovieDTO::getId))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
+    }
 
     @Override
     public Set<MovieDTO> getAll() throws ResourceNotFoundException{
-        if(movieRepository.findAll().isEmpty())
+        if(movieRepository.findAll().isEmpty()) {
+            log.warn("No Movies Founded");
             throw new ResourceNotFoundException("No se encontraron peliculas");
+        }
         List<Movie> movies = movieRepository.findAll();
         Set<MovieDTO> movieDto = new HashSet<>();
         for(Movie movie : movies){
             movieDto.add(mapper.convertValue(movie, MovieDTO.class));
         }
         log.info("Movies were found");
-        return movieDto;
+        return movieDto.stream()
+                .sorted(Comparator.comparing(MovieDTO::getId))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }   
 
     public MovieDTO save(MovieDTO movieDTO){

@@ -1,22 +1,23 @@
 	package com.backend.cinema.services.impl;
 
-import java.util.*;
+	import com.backend.cinema.dto.UserDTO;
+	import com.backend.cinema.entity.User;
+	import com.backend.cinema.exception.ResourceNotFoundException;
+	import com.backend.cinema.repository.IUserRepository;
+	import com.backend.cinema.security.TokenUtils;
+	import com.backend.cinema.services.IUserService;
+	import com.fasterxml.jackson.databind.ObjectMapper;
+	import io.jsonwebtoken.Claims;
+	import jakarta.persistence.EntityNotFoundException;
+	import jakarta.transaction.Transactional;
+	import org.apache.logging.log4j.LogManager;
+	import org.apache.logging.log4j.Logger;
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.dao.DataIntegrityViolationException;
+	import org.springframework.stereotype.Service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
-
-import com.backend.cinema.dto.UserDTO;
-import com.backend.cinema.entity.User;
-import com.backend.cinema.exception.ResourceNotFoundException;
-import com.backend.cinema.repository.IUserRepository;
-import com.backend.cinema.services.IUserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
+	import java.util.*;
+	import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -56,7 +57,9 @@ public class UserServiceImpl implements IUserService {
 				userDto.add(mapper.convertValue(user, UserDTO.class));
 			}
 			log.info("Users were found");
-			return userDto;
+			return userDto.stream()
+					.sorted(Comparator.comparing(UserDTO::getId))
+					.collect(Collectors.toCollection(LinkedHashSet::new));
 		}
 	}
 
@@ -110,5 +113,35 @@ public class UserServiceImpl implements IUserService {
 			throw new IllegalArgumentException("Credenciales inválidas");
 		}
 	}
+
+	public HashMap<String, Object> verifyEmail(String token) {
+		Claims data = TokenUtils.decodeToken(token);
+		if (data != null) {
+			String email = data.getSubject();
+			Optional<User> userFilter = userRepository.findOneByEmail(email);
+			HashMap<String, Object> verifiedData = new HashMap<>();
+
+			Date now = new Date();
+
+			if (userFilter.isPresent()) {
+				verifiedData.put("email", email);
+				User user = userFilter.get();
+				long diffInMillis = now.getTime() - user.getRegisterDate().getTime();
+				long diffInHours = diffInMillis / (60 * 60 * 1000);
+				if (diffInHours > 48 && user.getIsVerified().equals(Boolean.FALSE)) {
+					user.setIsVerified(Boolean.TRUE);
+					user = userRepository.save(user);
+				}
+
+				verifiedData.put("is_verified",user.getIsVerified());
+				verifiedData.put("register_date", user.getRegisterDate());
+
+			}
+			return verifiedData;
+		} else {
+			throw new IllegalArgumentException("Token inválido o expirado");
+		}
+	}
+
 
 }

@@ -44,4 +44,15 @@ public class TokenUtils {
             return null;
         }
     }
+    public static Claims decodeToken(String token){
+        try{
+            return Jwts.parserBuilder()
+                    .setSigningKey(ACCESS_TOKEN_SECRET.getBytes())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+        }catch (JwtException e){
+            return null;
+        }
+    }
 }

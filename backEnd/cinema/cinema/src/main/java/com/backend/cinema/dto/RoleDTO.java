@@ -14,7 +14,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RoleDTO {
 
-    private Long role_id;
+    private Long id;
 
     private String name;
     private String description;

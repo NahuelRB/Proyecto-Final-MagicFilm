@@ -14,9 +14,11 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CategoryDTO {
 
-    private Long category_id;
+    private Long id;
 
     private String title;
     private String description;
-    private String image;  
+
+    private String logo;
+    private String zoom;
 }

@@ -1,8 +1,9 @@
 package com.backend.cinema.controllers;
 
-import java.util.Set;
-
+import com.backend.cinema.dto.MovieDTO;
 import com.backend.cinema.entity.Movie;
+import com.backend.cinema.exception.ResourceNotFoundException;
+import com.backend.cinema.services.impl.MovieServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.backend.cinema.dto.MovieDTO;
-import com.backend.cinema.exception.ResourceNotFoundException;
-import com.backend.cinema.services.impl.MovieServiceImpl;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/movie")
@@ -37,13 +36,16 @@ public class MovieController{
         return ResponseEntity.ok().body(movie);
     }
 
+    @GetMapping("/category/{category_id}")
+    public ResponseEntity<Set<MovieDTO>> getMoviesByCategoryId(@PathVariable Long category_id) throws ResourceNotFoundException {
+        Set<MovieDTO> movies = movieService.getByCategoryId(category_id);
+        log.info("Movies found: {}", movies);
+        return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
+
     @GetMapping()
     public ResponseEntity<Set<MovieDTO>> getMovies() throws ResourceNotFoundException {
         Set<MovieDTO> movies = movieService.getAll();
-        if (movies.isEmpty()) {
-            log.warn("No movies found");
-            throw new ResourceNotFoundException("No movie found");
-        }
         log.info("Movies found: {}", movies);
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
