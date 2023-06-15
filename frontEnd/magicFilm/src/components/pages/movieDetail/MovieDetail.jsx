@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import "./movieDetail.css";
 import { Link } from "react-router-dom";
 import visual from "../../../assets/icon/visual.svg";
@@ -9,72 +9,96 @@ import chair from "../../../assets/icon/chair.svg";
 import iceCream from "../../../assets/icon/iceCream.svg";
 import { Box, Grid } from "@mui/material";
 import QualificationMovieContainer from "../../common/qualificationMovie/QualificationMovieContainer";
+import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
+import { useEffect } from "react";
+import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
 
 const MovieDetail = (props) => {
-  const { dataMovie } = props;
+ 
+  const { dataMovie, user, login } = props;
+
+
   return (
     <div className="container">
       <h1 className="titleRecommendedMovies">Detalle Película</h1>
 
       <div className="container-detail-movie">
+        <div className="container-detail-movie-properties">
+          <img
+            className="container-detail-movie-properties-image"
+            src={dataMovie.image}
+            alt=""
+          />
 
-      <div className="container-detail-movie-properties">
-        <img
-          className="container-detail-movie-properties-image"
-          src={dataMovie.image}
-          alt=""
-        />
+          <div className="container-detail-movie-properties-text">
+            {
+                login && <RatingMovieContainer dataMovie={dataMovie}/>
 
-        <div className="container-detail-movie-properties-text">
-          <QualificationMovieContainer />
-          <h1>Detalle película</h1>
-          <h2  >
-            Título: <span className="container-detail-movie-properties-span">{dataMovie.title}</span>
-          </h2>
-          <h2>
-            Fecha de estreno: <span className="container-detail-movie-properties-span">{dataMovie.release_date}</span>{" "}
-          </h2>
-          <h2>
-            Género:{" "}
-            <span className="container-detail-movie-properties-span">
-              {dataMovie.gender?.name
-                ? dataMovie.gender?.name
-                : dataMovie.gender}
-            </span>
-          </h2>
-          <h2>
-            Tráiler:{" "}
-            <span className="container-detail-movie-properties-span" >
-              <a href={dataMovie.trailer} target="_blank" style={{textDecoration:"none", color:"#00C9C8", fontWeight:"700"}} >Miralo aquí</a>
-            </span>
-          </h2>
+            }
+            
+            {
+             !login && <ScoreMovieContainer dataMovie={dataMovie}/>
+
+            }
+            
+            
+
+            <h1>Detalle película</h1>
+            <h2>
+              Título:{" "}
+              <span className="container-detail-movie-properties-span">
+                {dataMovie.title}
+              </span>
+            </h2>
+            <h2>
+              Fecha de estreno:{" "}
+              <span className="container-detail-movie-properties-span">
+                {dataMovie.release_date}
+              </span>{" "}
+            </h2>
+            <h2>
+              Género:{" "}
+              <span className="container-detail-movie-properties-span">
+                {dataMovie.gender?.name
+                  ? dataMovie.gender?.name
+                  : dataMovie.gender}
+              </span>
+            </h2>
+            <h2>
+              Tráiler:{" "}
+              <span className="container-detail-movie-properties-span">
+                <a
+                  href={dataMovie.trailer}
+                  target="_blank"
+                  style={{
+                    textDecoration: "none",
+                    color: "#00C9C8",
+                    fontWeight: "700",
+                  }}
+                >
+                  Miralo aquí
+                </a>
+              </span>
+            </h2>
+          </div>
+        </div>
+
+        <div className="container-detail-movie-galery">
+
+          {dataMovie?.trailer_images?.length > 0 &&
+            dataMovie.trailer_images.map((image, index) => {
+              while (index<4) {
+                return <img src={image.image} key={index} alt="" />;
+              }
+              
+            })}
         </div>
       </div>
 
-      <div className="container-detail-movie-galery">
-        
-        <img
-          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737714/integradorDh/image_79_a69z7h.png"
-          alt=""
-        />
-        <img
-          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737713/integradorDh/image_81_bqrueb.png"
-          alt=""
-        />
-        <img
-          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737713/integradorDh/image_78_ltn9sr.png"
-          alt=""
-        />
-        <img
-          src="https://res.cloudinary.com/dmzibpgwk/image/upload/v1685737713/integradorDh/image_80_fujadt.png"
-          alt=""
-        />
-      </div>
-
-      </div>
-
-      <div >
-        <a href="" className="detail-movie-ver-mas" >Ver más</a>
+      <div>
+        <a href="" className="detail-movie-ver-mas">
+          Ver más
+        </a>
       </div>
       <div className="detail-summary">
         <p>

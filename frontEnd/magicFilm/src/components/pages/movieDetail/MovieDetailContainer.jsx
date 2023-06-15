@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./movieDetail.css";
 import MovieDetail from "./MovieDetail";
 import { getMovieById } from "../../../service/productServices";
+import { AuthContext } from "../../../context/AuthContext";
+import { Troubleshoot } from "@mui/icons-material";
 
 const obtenerIdVideoYoutube = (url) => {
   const regex =
@@ -17,10 +19,14 @@ const obtenerIdVideoYoutube = (url) => {
 };
 
 const MovieDetailContainer = () => {
+  const[login, setLogin]= useState(true)
+  const { user } = useContext(AuthContext);
+
+
   const { id } = useParams();
 
   const [dataMovie, setDataMovie] = useState({});
-  // console.log(id);
+
 
   useEffect(() => {
     const movieById = getMovieById(id);
@@ -33,7 +39,7 @@ const MovieDetailContainer = () => {
       .catch((error) => console.log(error));
   }, [id]);
 
-  return <MovieDetail dataMovie={dataMovie} />;
+  return <MovieDetail dataMovie={dataMovie} user={user} login={login} setLogin={setLogin}/>;
 };
 
 export default MovieDetailContainer;
