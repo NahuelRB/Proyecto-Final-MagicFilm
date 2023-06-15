@@ -30,7 +30,7 @@ const LoginContainer = () => {
             name: "name",
             email: "email",
             rol: "admin",
-            id: "1",
+            id: "2",
           },
         };
         dispatch({ type: dispatchActions.login, payload: data });
