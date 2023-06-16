@@ -4,7 +4,7 @@ import "./login.css";
 const LoginPage = ({ handleLogin }) => {
   return (
     <div className="login-container">
-      <form onSubmit={handleLogin} className="login-form">
+      <form onSubmit={handleLogin} className="login-form" autocomplete="off">
         <h2 className="login-title">Iniciar sesión</h2>
         <label htmlFor="email">Correo Electrónico</label>
         <input id="email" required type="email" className="login-input" />

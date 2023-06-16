@@ -12,22 +12,20 @@ import QualificationMovieContainer from "../../common/qualificationMovie/Qualifi
 import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
 import { useEffect } from "react";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
-
+import BackButton from "../../common/backButton/BackButton";
 const MovieDetail = (props) => {
   const { dataMovie, user } = props;
   console.log("🚀 ~ file: MovieDetail.jsx:18 ~ MovieDetail ~ user:", user);
 
   return (
     <div className="container">
+      <BackButton />
+
       <h1 className="titleRecommendedMovies">Detalle Película</h1>
 
       <div className="container-detail-movie">
-        <div className="container-detail-movie-properties-image" >
-          <img
-            
-            src={dataMovie.image}
-            alt=""
-          />
+        <div className="container-detail-movie-properties-image">
+          <img src={dataMovie.image} alt="" />
         </div>
         <div className="container-detail-movie-properties">
           <div className="container-detail-movie-properties-text">
@@ -76,7 +74,15 @@ const MovieDetail = (props) => {
           </div>
         </div>
         {dataMovie?.trailer_images?.length > 0 && (
-          <div style={{ flexDirection: "column" }}>
+          <div
+            style={{
+              flexDirection: "column",
+              display: "flex",
+              justifyContent: "center",
+              width: "45%",
+              flex: 1,
+            }}
+          >
             <div className="container-detail-movie-galery">
               {dataMovie.trailer_images.map((image, index) => {
                 while (index < 4) {

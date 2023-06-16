@@ -27,6 +27,13 @@ public class CategoryServiceImpl implements ICategoryService {
     ObjectMapper mapper;
 
 
+    public CategoryDTO save(CategoryDTO categoryDTO){
+        Category category = mapper.convertValue(categoryDTO, Category.class);
+        Category saveCategory = categoryRepository.save(category);
+        log.info("Movie saved successfully: {}",categoryDTO);
+        return mapper.convertValue(saveCategory, CategoryDTO.class);
+    }
+
     @Override
     public Set<CategoryDTO> getAll() throws ResourceNotFoundException{
         if(categoryRepository.findAll().isEmpty())

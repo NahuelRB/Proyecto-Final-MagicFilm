@@ -25,5 +25,5 @@ export const updateCategory = (id, data) => {
 };
 
 export const createCategory = (data) => {
-  return axiosInstance.post(`/category/`, data);
+  return axiosInstance.post(`/category`, data);
 };

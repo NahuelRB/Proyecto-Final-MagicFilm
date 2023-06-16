@@ -44,7 +44,6 @@ const AddCategory = ({
         setState({
           ...state,
           [event.target.name]: base64String,
-          file: file,
         });
       };
 
@@ -55,7 +54,8 @@ const AddCategory = ({
   const saveCategory = (event) => {
     event.preventDefault();
     // setNewCategories(true);
-    const create = createCategory(state);
+    const { file, ...data } = state;
+    const create = createCategory(data);
     create
       .then((data) => {
         getCategories().then((res) => {
@@ -116,6 +116,38 @@ const AddCategory = ({
             placeholder="Descripción"
             onChange={handleInputChange}
           />
+          {/* <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flex: "1 1 auto",
+              alignItems: "center",
+              gap: "1rem",
+              width: "100%",
+            }}
+          >
+            {state?.zoom ? (
+              <p style={{ fontSize: "0.9rem" }}></p>
+            ) : (
+              <p style={{ fontSize: "0.9rem" }}>
+                Cargar imagen*{" "}
+                <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
+              </p>
+            )}
+            <label htmlFor="zoom" className="attach-button">
+              <img className="icon" src={iconClip} alt="" />
+              {state?.zoom ? "Cambiar" : "Adjuntar"}
+            </label>
+            <input
+              id="zoom"
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              name="zoom"
+              placeholder="Cargar portada"
+              onChange={handleFileChange}
+              style={{ display: "none" }}
+            />
+          </div>
           <div
             style={{
               display: "flex",
@@ -126,28 +158,28 @@ const AddCategory = ({
               width: "100%",
             }}
           >
-            {state?.file ? (
-              <p style={{ fontSize: "0.9rem" }}>{state.file.title}</p>
+            {state?.logo ? (
+              <p style={{ fontSize: "0.9rem" }}></p>
             ) : (
               <p style={{ fontSize: "0.9rem" }}>
-                Cargar imagen*{" "}
+                Cargar Logo*{" "}
                 <span style={{ fontSize: "0.7rem" }}>(JPEG, PNG)</span>
               </p>
             )}
-            <label htmlFor="image_category" className="attach-button">
+            <label htmlFor="logo" className="attach-button">
               <img className="icon" src={iconClip} alt="" />
-              {state?.file ? "Cambiar" : "Adjuntar"}
+              {state?.logo ? "Cambiar Logo" : "Adjuntar"}
             </label>
             <input
-              id="image_category"
+              id="logo"
               type="file"
               accept=".jpg, .jpeg, .png"
-              name="image_category"
+              name="logo"
               placeholder="Cargar portada"
               onChange={handleFileChange}
               style={{ display: "none" }}
             />
-          </div>
+          </div> */}
           <div
             style={{
               display: "flex",

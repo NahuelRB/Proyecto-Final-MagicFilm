@@ -134,7 +134,7 @@ const AddMovie = ({ state, setState, setCategories, categories }) => {
           value={state.category_id || 0}
         >
           <option value="0" disabled>
-            Categoria
+            Categoría
           </option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>

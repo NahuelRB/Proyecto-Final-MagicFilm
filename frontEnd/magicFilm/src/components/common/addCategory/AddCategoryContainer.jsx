@@ -7,7 +7,8 @@ const AddCategoryContainer = ({ setCategories, selectCategory, from }) => {
   const initialState = {
     title: "",
     description: "",
-    image_category: "",
+    logo: "",
+    zoom: "",
     file: null,
   };
   const [catState, setCatState] = useState(initialState);

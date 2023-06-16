@@ -41,7 +41,7 @@ public class WebSecurityConfig  {
                         .requestMatchers(HttpMethod.POST, "/user/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/movie/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
-
+                        .requestMatchers(HttpMethod.POST, "/category/**").permitAll()
                         /*.requestMatchers(HttpMethod.POST, "/login").permitAll()*/
                         .anyRequest().authenticated()
                 )

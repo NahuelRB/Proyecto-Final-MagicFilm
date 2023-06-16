@@ -1,6 +1,7 @@
 package com.backend.cinema.controllers;
 
 import com.backend.cinema.dto.CategoryDTO;
+import com.backend.cinema.dto.UserDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.CategoryServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -8,10 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -37,4 +35,13 @@ public class CategoryController{
         log.info("categories found: {}", categories);
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
+
+    @PostMapping()
+    public ResponseEntity<CategoryDTO> save(@RequestBody CategoryDTO categoryDTO) {
+        CategoryDTO response = categoryService.save(categoryDTO);
+        return ResponseEntity.ok().body(response);
+    }
+
+
+
 }

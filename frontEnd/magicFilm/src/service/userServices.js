@@ -20,7 +20,7 @@ export const getUsersByID =(id)=>{
     return users;
 };
 
-export const  getUser=(name)=>{
+export const getUser=(name)=>{
     let users = axiosProtected.get("/user/", {params:{name:name}})
     return users;
 };
@@ -35,5 +35,5 @@ export const updateUser=(id, data)=>{
 }
 
 export const createUser =(data)=>{
-    return axiosInstance.post("/user/", data);
+    return axiosInstance.post("http://localhost:3000/user/", data);
 }

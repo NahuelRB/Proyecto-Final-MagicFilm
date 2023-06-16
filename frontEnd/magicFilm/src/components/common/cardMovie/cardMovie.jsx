@@ -20,7 +20,7 @@ const CardMovie = ({ state, categories }) => {
         <br />
 
         <p>
-          <b className="card-movie-title">Titulo: </b>
+          <b className="card-movie-title">Título: </b>
           {title}
         </p>
 

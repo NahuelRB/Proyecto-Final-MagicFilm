@@ -7,4 +7,7 @@ import java.util.Set;
 
 public interface ICategoryService {
     Set<CategoryDTO> getAll() throws ResourceNotFoundException;
+
+    CategoryDTO save(CategoryDTO categoryDTO);
+
 }

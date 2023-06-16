@@ -12,15 +12,18 @@ const RecommendedMoviesContainer = () => {
   useEffect(() => {
     const movies = getMovies();
     movies
-      .then((res) => setDataMovies(res.data))
+      .then((res) => {
+        const dataMovies = res.data;
+        dataMovies.sort(function () {
+          return Math.random() - 0.5;
+        });
+        setDataMovies(dataMovies);
+      })
+
       .catch((error) => console.log(error));
   }, []);
 
   //Cambio aleatorio del elementos del array
-
-  dataMovies.sort(function () {
-    return Math.random() - 0.5;
-  });
 
   const indexInitial = (page - 1) * resultsPerPage;
   const indexEnd = indexInitial + resultsPerPage;
