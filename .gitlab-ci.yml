@@ -24,7 +24,7 @@ deploy-backend:
         - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     script: 
         
-        - scp -o StrictHostKeyChecking=no backEnd/cinema/cinematarget/cinema-0.0.1-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
+        - scp -o StrictHostKeyChecking=no backEnd/cinema/cinema/target/cinema-0.0.1-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
         - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "java -jar /home/ubuntu/integrador/cinema-0.0.1-SNAPSHOT.jar &"
         
          
