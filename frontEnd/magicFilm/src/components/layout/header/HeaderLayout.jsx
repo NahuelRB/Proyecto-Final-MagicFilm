@@ -28,17 +28,23 @@ const HeaderLayout = ({ logout, user }) => {
         {user?.name ? (
           <>
             <p className="user-data">Hola {user.name}</p>
-            <img
+            {/* <img
               src={user.image ? user.image : people}
               alt="user-avatar"
               className="user-avatar"
-            />
+            /> */}
+            <div className="avatar">
+              {user?.name?.charAt(0).toUpperCase() +
+                user?.last_name?.charAt(0).toUpperCase()}
+            </div>
             <button className="logout-button" onClick={logout}>
               Cerrar Sesion
             </button>
-            <Link to="/admin" className="signup-button">
-              Admin
-            </Link>
+            {user.rol === "ADMIN" && (
+              <Link to="/admin" className="signup-button">
+                Admin
+              </Link>
+            )}
           </>
         ) : (
           <>

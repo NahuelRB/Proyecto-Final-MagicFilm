@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../../context/AuthContext";
-import LoginPage from "./login";
+import { userLogin } from "../../../service/userServices";
+import LoginPage from "./Login";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -13,34 +14,23 @@ const LoginContainer = () => {
       navigate("/", { replace: true });
     }
   }, []);
-  const handleLogin = async (loginData) => {
-    console.log(loginData);
-  };
+
   const loginSubmit = async (e) => {
     e.preventDefault();
     const loginData = {
-      username: e.target.username.value,
+      email: e.target.email.value,
       password: e.target.password.value,
     };
-    handleLogin(loginData)
-      .then(() => {
-        const data = {
-          accessToken: "token",
-          user: {
-            name: "name",
-            email: "email",
-            rol: "admin",
-            id: "1",
-          },
-        };
-        dispatch({ type: dispatchActions.login, payload: data });
+    userLogin(loginData)
+      .then((data) => {
+        const { accessToken, ...user } = data.data;
+        dispatch({
+          type: dispatchActions.login,
+          payload: { accessToken, user },
+        });
         navigate("/", { replace: true });
       })
       .catch((err) => {
-        console.log(
-          "🚀 ~ file: loginContainer.jsx:21 ~ loginSubmit ~ err:",
-          err
-        );
         Swal.fire({
           title: "Error",
           text: "Los datos de inicio de sesión son incorrectos. Por favor, inténtalo nuevamente.",

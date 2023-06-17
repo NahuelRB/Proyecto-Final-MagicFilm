@@ -1,4 +1,4 @@
-import SearchCategories from "../../common/searchCategories/searchCategories";
+import SearchCategories from "../../common/searchCategories/SearchCategories";
 import MoviesByCategories from "../../common/moviesByCategories/MoviesByCategories";
 
 const CategoriesSection = ({
@@ -7,10 +7,6 @@ const CategoriesSection = ({
   activeButtonCategory,
   categories,
 }) => {
-  console.log(
-    "🚀 ~ file: CategoriesSection.jsx ~ line 126 ~ CategoriesSection ~ dataMovies",
-    dataMovies
-  );
   return (
     <div>
       <SearchCategories

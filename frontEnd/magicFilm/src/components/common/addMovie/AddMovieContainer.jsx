@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import AddMovieForm from "./AddMovieForm";
 import AddMoviePreview from "./AddMoviePreview";
 import "./addMovie.css";
-import { getCategories } from "../../../service/productServices";
-
+import { getCategories } from "../../../service/categoryServices";
 const AddMovieContainer = () => {
   const [categories, setCategories] = useState([]);
+
   useEffect(() => {
-    getCategories().then((res) => {
-      setCategories(res.data.filter((category) => category.id !== "0"));
+    getCategories().then((data) => {
+      const cat = [...data.data, { id: 0, name: "Todas" }];
+      setCategories(cat);
     });
   }, []);
   const initialState = {
@@ -25,7 +26,12 @@ const AddMovieContainer = () => {
 
   return (
     <div className="container-add-movie">
-      <AddMovieForm state={state} setState={setState} categories={categories} />
+      <AddMovieForm
+        state={state}
+        setState={setState}
+        categories={categories}
+        setCategories={setCategories}
+      />
       <AddMoviePreview
         state={state}
         setState={setState}

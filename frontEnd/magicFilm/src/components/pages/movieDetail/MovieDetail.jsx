@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import "./movieDetail.css";
 import { Link } from "react-router-dom";
 import visual from "../../../assets/icon/visual.svg";
@@ -8,44 +8,95 @@ import sound from "../../../assets/icon/sound.svg";
 import chair from "../../../assets/icon/chair.svg";
 import iceCream from "../../../assets/icon/iceCream.svg";
 import { Box, Grid } from "@mui/material";
-
+import QualificationMovieContainer from "../../common/qualificationMovie/QualificationMovieContainer";
+import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
+import { useEffect } from "react";
+import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
+import BackButton from "../../common/backButton/BackButton";
 const MovieDetail = (props) => {
-  const { dataMovie } = props;
-  // console.log(dataMovie);
+  const { dataMovie, user } = props;
+  console.log("🚀 ~ file: MovieDetail.jsx:18 ~ MovieDetail ~ user:", user);
+
   return (
     <div className="container">
-      <h2 className="titleRecommendedMovies">Detalle Pelicula</h2>
-      <div className="container-details">
-        <img src={dataMovie.image} alt="" className="img-detail-movies" />
-        <div className="movie-details">
-          <h3>Detalle de la película</h3>
-          <p>
-            <b>Título: </b>
-            {dataMovie.title}
-          </p>
-          <p>
-            <b>Fecha de estreno: </b>
-            {dataMovie.release_date}
-          </p>
-          <p>
-            <b>Género: </b>
-            {dataMovie.gender?.name ? dataMovie.gender?.name : dataMovie.gender}
-          </p>
+      <BackButton />
+
+      <h1 className="titleRecommendedMovies">Detalle Película</h1>
+
+      <div className="container-detail-movie">
+        <div className="container-detail-movie-properties-image">
+          <img src={dataMovie.image} alt="" />
         </div>
-        <div>
-          {dataMovie.trailer && (
-            <iframe
-              width="560"
-              height="315"
-              src={dataMovie.trailer}
-              title="YouTube video player"
-              frameBorder="0"
-              allow=" autoplay; fullscreen; picture-in-picture"
-              allowFullScreen="allowFullScreen"
-            ></iframe>
-          )}
+        <div className="container-detail-movie-properties">
+          <div className="container-detail-movie-properties-text">
+            <h1>Detalle película</h1>
+            <h3>
+              Título:{" "}
+              <span className="container-detail-movie-properties-span">
+                {dataMovie.title}
+              </span>
+            </h3>
+            <h3>
+              Fecha de estreno:{" "}
+              <span className="container-detail-movie-properties-span">
+                {dataMovie.release_date}
+              </span>{" "}
+            </h3>
+            <h3>
+              Género:{" "}
+              <span className="container-detail-movie-properties-span">
+                {dataMovie.gender?.name
+                  ? dataMovie.gender?.name
+                  : dataMovie.gender}
+              </span>
+            </h3>
+            <h3>
+              Tráiler:{" "}
+              <span className="container-detail-movie-properties-span">
+                <a
+                  href={dataMovie.trailer}
+                  target="_blank"
+                  style={{
+                    textDecoration: "none",
+                    color: "#00C9C8",
+                    fontWeight: "700",
+                  }}
+                >
+                  Miralo aquí
+                </a>
+              </span>
+            </h3>
+            {user?.id ? (
+              <RatingMovieContainer dataMovie={dataMovie} />
+            ) : (
+              <ScoreMovieContainer dataMovie={dataMovie} />
+            )}
+          </div>
         </div>
+        {dataMovie?.trailer_images?.length > 0 && (
+          <div
+            style={{
+              flexDirection: "column",
+              display: "flex",
+              justifyContent: "center",
+              width: "45%",
+              flex: 1,
+            }}
+          >
+            <div className="container-detail-movie-galery">
+              {dataMovie.trailer_images.map((image, index) => {
+                while (index < 4) {
+                  return <img src={image.image} key={index} alt="" />;
+                }
+              })}
+            </div>
+            <a href="" className="detail-movie-ver-mas">
+              Ver más
+            </a>
+          </div>
+        )}
       </div>
+
       <div className="detail-summary">
         <p>
           <b>Resumen: </b>

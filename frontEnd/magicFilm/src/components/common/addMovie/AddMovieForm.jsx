@@ -2,8 +2,9 @@ import React from "react";
 import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 import { createMovie } from "../../../service/productServices";
+import AddCategoryContainer from "../addCategory/AddCategoryContainer";
 
-const AddMovie = ({ state, setState, categories }) => {
+const AddMovie = ({ state, setState, setCategories, categories }) => {
   const handleInputChange = (event) => {
     setState({
       ...state,
@@ -34,30 +35,16 @@ const AddMovie = ({ state, setState, categories }) => {
     event.preventDefault();
     const create = createMovie(state);
     create
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-
-    /* data_send = { ...state };
-    delete data_send.file;
-    fetch("URL_DEL_ENDPOINT", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data_send),
-    })
-      .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        Swal.fire("Pelicula Creada correctamente", "", "success");
       })
-      .catch((error) => {
-        console.error(error);
-      }); */
+      .catch((error) => console.log(error));
   };
 
   return (
     <form onSubmit={handleSubmit} className="formulario-add-movie">
       <h2 className="title">Agregar película</h2>
+
       <input
         type="text"
         name="title"
@@ -144,10 +131,10 @@ const AddMovie = ({ state, setState, categories }) => {
           id="category"
           className="attach-button"
           onChange={handleInputChange}
-          defaultValue={0}
+          value={state.category_id || 0}
         >
           <option value="0" disabled>
-            Categoria
+            Categoría
           </option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
@@ -155,9 +142,16 @@ const AddMovie = ({ state, setState, categories }) => {
             </option>
           ))}
         </select>
-        <a href="/add-category" className="add-category">
+        {/* <a href="/add-category" className="add-category">
           Nueva categoria
-        </a>
+        </a> */}
+        <AddCategoryContainer
+          setCategories={setCategories}
+          selectCategory={(category) => {
+            setState({ ...state, category_id: category });
+          }}
+          from="addMovie"
+        />
       </div>
 
       <input
