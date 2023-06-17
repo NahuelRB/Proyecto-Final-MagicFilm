@@ -7,7 +7,7 @@ build-backend:
     stage: build
     image: maven:3.8.3-openjdk-17
     script:
-        - cd backEnd/cinema
+        - cd backEnd/cinema/cinema
         - mvn clean package
     artifacts:
         paths:
