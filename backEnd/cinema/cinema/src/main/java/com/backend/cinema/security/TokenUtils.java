@@ -14,6 +14,7 @@ import java.util.Map;
 public class TokenUtils {
     private final static String ACCESS_TOKEN_SECRET = "8x/A?D(G+KbPeShVmYq3s6v9y$B&E)H@k";
     private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
+    private final static Long VERIFY_TOKEN_VALIDITY_SECONDS = 48*60*60L;
 
     public static String createToken(String nombre, String email){
         long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1000;
@@ -29,6 +30,19 @@ public class TokenUtils {
                 .signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
                 .compact();
     }
+
+    public static String createVerifyToken(String email){
+        long expirationTime = VERIFY_TOKEN_VALIDITY_SECONDS * 1000;
+        Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
+        Map<String, Object> extra = new HashMap<>();
+        return Jwts.builder()
+                .setSubject(email)
+                .setExpiration(expirationDate)
+                .addClaims(extra)
+                .signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
+                .compact();
+    }
+
 
     public static UsernamePasswordAuthenticationToken getAuthentication(String token){
         try{

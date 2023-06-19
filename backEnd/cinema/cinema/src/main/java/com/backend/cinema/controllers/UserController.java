@@ -5,6 +5,7 @@ import com.backend.cinema.dto.UserDTO;
 import com.backend.cinema.dto.UserResponseDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.UserServiceImpl;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -39,22 +40,25 @@ public class UserController {
     private String awsBucketName;
     private final JavaMailSender mailSender;
 
+
+
     @Autowired
     public UserController(UserServiceImpl userService,JavaMailSender mailSender) {
         this.userService = userService;
         this.mailSender = mailSender;
     }
 
-    @GetMapping("/send")
+    @PostMapping("/send")
     public String sendEmail() {
         try{
-        SimpleMailMessage message = new SimpleMailMessage();
-        String to = "mayraalejandratorressumalave@gmail.com";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        String to = "yayaho4989@bodeem.com";
         String subject = "Envio de mail Equipo 5";
-        String text = "Mail de prueba";
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText("Email de prueba");
         mailSender.send(message);
         return "Email sent successfully";
          } catch (Exception e) {

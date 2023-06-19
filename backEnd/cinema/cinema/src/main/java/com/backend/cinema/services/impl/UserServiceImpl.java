@@ -10,6 +10,7 @@
 	import com.backend.cinema.repository.IUserRepository;
 	import com.backend.cinema.security.TokenUtils;
 	import com.backend.cinema.services.IUserService;
+	import com.backend.cinema.utilities.EmailService;
 	import com.fasterxml.jackson.databind.ObjectMapper;
 	import io.jsonwebtoken.Claims;
 	import jakarta.persistence.EntityNotFoundException;
@@ -33,11 +34,17 @@ public class UserServiceImpl implements IUserService {
 	private final IRoleRepository roleRepository;
 
 	private final PasswordEncoder passwordEncoder;
+
+	private final EmailService emailService;
+
+
 	@Autowired
-	public UserServiceImpl(IUserRepository userRepository, PasswordEncoder passwordEncoder, IRoleRepository roleRepository) {
+	public UserServiceImpl(IUserRepository userRepository, PasswordEncoder passwordEncoder,IRoleRepository roleRepository,EmailService emailService) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
 		this.roleRepository= roleRepository;
+		this.emailService = emailService;
+
 	}
 
 	@Autowired
@@ -78,6 +85,7 @@ public class UserServiceImpl implements IUserService {
 					|| userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
 				throw new IllegalArgumentException("Email and password are required");
 			}
+
 			User user = mapper.convertValue(userDTO, User.class);
 			Role userRole = roleRepository.getReferenceById(2L);
 			System.out.println("userRole = " + userRole);
@@ -87,6 +95,9 @@ public class UserServiceImpl implements IUserService {
 			user.setRegisterDate(new Date());
 			System.out.println("user = " + user);
 			User userMovie = userRepository.save(user);
+			String token= TokenUtils.createVerifyToken(userDTO.getEmail());
+			String url = "http://localhost:5173/verify?email="+userDTO.getEmail() + "&token=" + token;
+			emailService.sendRegisterEmail(userDTO.getName(), url, userDTO.getEmail(), "Verificacíon del Correo");
 			log.info("User saved successfully: {}", userDTO);
 			/*return mapper.convertValue(userMovie, UserResponseDTO.class);*/
 		} catch (DataIntegrityViolationException ex) {
@@ -98,6 +109,8 @@ public class UserServiceImpl implements IUserService {
 			}
 
 				throw new IllegalArgumentException(errorMessage);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
