@@ -79,6 +79,12 @@ public class MovieController{
         return new ResponseEntity<>(movie, HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<Set<MovieDTO>> searchMovies(@RequestParam("search_input") String searchInput) {
+        Set<MovieDTO> movies = movieService.search(searchInput);
+        return ResponseEntity.ok().body(movies);
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public String ProcessResourceNotFoundException(ResourceNotFoundException resourceNotFoundException) {
         return resourceNotFoundException.getMessage();

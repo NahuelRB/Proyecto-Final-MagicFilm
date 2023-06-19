@@ -13,6 +13,7 @@ public interface IMovieService{
    void delete(Long id);
    void update(MovieDTO movieDTO);
    Set<MovieDTO> getByCategoryId(Long category_id);
+   Set<MovieDTO> search(String search_input);
 
 }
 

@@ -77,6 +77,18 @@ public class MovieServiceImpl implements IMovieService{
         log.info("Movie saved successfully: {}",movieDTO);
         return mapper.convertValue(saveMovie, MovieDTO.class);
     }
+    public Set<MovieDTO> search(String search_input) {
+        Set<Movie> movies = movieRepository.search(search_input);
+        if (movies.isEmpty()) {
+            log.info("No movies found for search query: {}", search_input);
+            return Collections.emptySet();
+        }
+        log.info("Movies found successfully for search query: {}", search_input);
+        return movies.stream()
+                .map(movie -> mapper.convertValue(movie, MovieDTO.class))
+                .collect(Collectors.toSet());
+    }
+
 
     public void delete(Long id){
         movieRepository.deleteById(id);
