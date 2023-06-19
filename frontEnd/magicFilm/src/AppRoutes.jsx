@@ -33,7 +33,7 @@ const AppRoutes = () => {
           <Route element={<PrivateRoute />}>
             <Route element={<SidebarContainer />}>
               <Route path="/admin" element={<AdminPanelContainer />} />
-              <Route path="/register2" element={<AddUserContainer />} />
+              <Route path="/adduser" element={<AddUserContainer />} />
               <Route path="/movie" element={<AddMovieContainer />} />
               <Route path="/newcategory" element={<AddCategoryContainer />} />
               <Route path="/delete" element={<DeleteMovieContainer />} />

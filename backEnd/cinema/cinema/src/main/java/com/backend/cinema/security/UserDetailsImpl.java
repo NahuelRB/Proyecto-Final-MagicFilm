@@ -55,7 +55,7 @@ public class UserDetailsImpl implements UserDetails {
         return  user.getSurname();
     }
     public String getRol(){
-        return  user.getRole().name();
+        return  user.getRole().getName();
     }
     public Long getID(){
         return  user.getId();

@@ -16,7 +16,7 @@ const recommendedMovies = (props) => {
               Estreno: <p>{movie.release_date}</p>
             </h4>
             <h4>
-              Género: <p>{movie.gender.name}</p>
+              Género: <p>{movie.gender}</p>
             </h4>
             <br />
             <Link to={`/details/${movie.id}`}>

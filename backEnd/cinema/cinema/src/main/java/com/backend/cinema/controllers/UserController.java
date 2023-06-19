@@ -3,9 +3,11 @@ package com.backend.cinema.controllers;
 import com.backend.cinema.dto.UserDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.UserServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -25,6 +27,14 @@ public class UserController {
     private UserServiceImpl userService;
     // private final EmailService emailService;
 
+    @Value("${aws.secret.key}")
+    private String awsSecretKey;
+
+    @Value("${aws.access.key}")
+    private String awsAccessKey;
+
+    @Value("${aws.bucket.name}")
+    private String awsBucketName;
     private final JavaMailSender mailSender;
 
     @Autowired
@@ -66,6 +76,24 @@ public class UserController {
     public ResponseEntity<?> getId(@PathVariable Long id) {
         UserDTO UserDTO = userService.getId(id);
         return ResponseEntity.ok().body(UserDTO);
+    }
+
+
+    @GetMapping("/secrets")
+    public ResponseEntity<?> getSecrets(HttpServletRequest request){
+        String token = request.getHeader("Authorization");
+        HashMap<String, String> verifiedData = new HashMap<>();
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7); // Eliminar el prefijo "Bearer "
+            UserDTO user = userService.getUserFromToken(token);
+            if (user.getRole().getName().equals("ADMIN")) {
+                verifiedData.put("access", awsAccessKey);
+                verifiedData.put("secret", awsSecretKey);
+                verifiedData.put("name", awsBucketName);
+            }
+        }
+        return ResponseEntity.ok().body(verifiedData);
+
     }
 
     @GetMapping()

@@ -144,4 +144,19 @@ public class UserServiceImpl implements IUserService {
 	}
 
 
+	public UserDTO getUserFromToken(String token) {
+		Claims data = TokenUtils.decodeToken(token);
+		if (data != null) {
+			String email = data.getSubject();
+			Optional<User> userFilter = userRepository.findOneByEmail(email);
+			if (userFilter.isPresent()) {
+				User user = userFilter.get();
+				return mapper.convertValue(user, UserDTO.class);
+			}
+			return null;
+		} else {
+			throw new IllegalArgumentException("Token inválido o expirado");
+		}
+	}
+
 }

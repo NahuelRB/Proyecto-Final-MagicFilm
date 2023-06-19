@@ -1,10 +1,10 @@
 package com.backend.cinema.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.mapping.Join;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "score")
@@ -21,10 +21,10 @@ public class Score {
     private int score;
 
     @OneToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="user_id")
     private User user;
 
     @OneToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="movie_id")
     private Movie movie;
 }

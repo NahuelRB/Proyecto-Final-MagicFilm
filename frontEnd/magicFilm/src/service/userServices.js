@@ -25,6 +25,11 @@ export const getUser=(name)=>{
     return users;
 };
 
+export const getSecrets=(   )=>{
+    let user = axiosProtected.get("/user/secrets")
+    return user;
+};
+
 export const deleteUser=(id)=>{
     return axiosProtected.delete(`/user/${id}`);
 }

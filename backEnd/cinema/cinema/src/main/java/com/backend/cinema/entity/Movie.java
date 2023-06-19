@@ -26,6 +26,8 @@ public class Movie {
 
     private LocalDate release_date;
 
+    @Lob
+    @Column(columnDefinition = "text")
     private String summary;
 
     private LocalDate finish_date;
@@ -46,7 +48,7 @@ public class Movie {
 
     private String trailer;
 
-    public void setTrailerImages(List<TrailerImages> trailerImages) {
+    public void setTrailer_images(List<TrailerImages> trailerImages) {
         this.trailer_images = trailerImages;
         for (TrailerImages trailerImage: trailerImages ) {
             trailerImage.setMovie(this);

@@ -15,7 +15,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/movie")
-@CrossOrigin(origins = "http://127.0.0.1:5173")
+@CrossOrigin(origins = "*")
 public class MovieController{
     public static final Logger log = LogManager.getLogger(MovieServiceImpl.class);
     private MovieServiceImpl movieService;
@@ -52,7 +52,7 @@ public class MovieController{
 
     @PostMapping()
     public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movieDTO) {
-        log.info("Creating user:", movieDTO);
+        log.info("Creating movie:", movieDTO);
         MovieDTO response = movieService.save(movieDTO);
         return ResponseEntity.ok().body(response);
     }

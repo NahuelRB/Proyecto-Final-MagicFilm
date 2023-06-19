@@ -1,28 +1,42 @@
-import React, { useState } from "react";
-import AddCategory from "./AddCategory";
+import React from "react";
 
 import "./addCategory.css";
+import AddCategoryForm from "./AddCategoryForm";
+import ModalAddCategory from "./ModalAddCategory";
+import {
+  getCategories,
+  createCategory,
+} from "../../../service/categoryServices";
+import Swal from "sweetalert2";
 
-const AddCategoryContainer = ({ setCategories, selectCategory, from }) => {
-  const initialState = {
-    title: "",
-    description: "",
-    logo: "",
-    zoom: "",
-    file: null,
+const AddCategoryContainer = ({
+  open,
+  selectCategory,
+  setCategories,
+  from,
+}) => {
+  const saveCategory = async (data) => {
+    const create = await createCategory(data);
+    if (from !== undefined && create.status === 200) {
+      getCategories().then((res) => {
+        setCategories(res.data);
+        selectCategory(create.data.id);
+        Swal.fire("Se creó correctamente la Categoria");
+      });
+    }
   };
-  const [catState, setCatState] = useState(initialState);
 
   return (
     <>
-      <AddCategory
-        state={catState}
-        setState={setCatState}
-        initialState={initialState}
-        setCategories={setCategories}
-        selectCategory={selectCategory}
-        from={from}
-      />
+      {from !== undefined ? (
+        <ModalAddCategory
+          open={open}
+          saveCategory={saveCategory}
+          handleClose={() => selectCategory("0")}
+        />
+      ) : (
+        <AddCategoryForm saveCategory={saveCategory} />
+      )}
     </>
   );
 };
