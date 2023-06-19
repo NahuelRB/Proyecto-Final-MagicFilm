@@ -14,9 +14,6 @@ const RecommendedMoviesContainer = () => {
     movies
       .then((res) => {
         const dataMovies = res.data;
-        dataMovies.sort(function () {
-          return Math.random() - 0.5;
-        });
         setDataMovies(dataMovies);
       })
 

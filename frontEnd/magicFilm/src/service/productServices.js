@@ -40,6 +40,12 @@ export const createMovie = (data) => {
   return axiosProtected.post(`/movie`, data);
 };
 
+export const searchMovie = (search) => {
+
+  return axiosInstance.get(`/movie/search?search_input=${search}`);
+};
+
+
 // export const getCategories = () => {
 //   // return axiosInstance.get(`/categories`);
 //   // ESTO ES TEMPORAL

@@ -1,6 +1,7 @@
 .form-search-movies {
-
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 10px;
   margin-top: 20px;
@@ -8,20 +9,19 @@
 }
 
 .input-home-search-movies {
-  margin-top: 20px;
   border: 2px solid #00c9c8;
   height: 40px;
   border-radius: 4px;
   outline: none;
-  width: 25vw;
+  width: 80%;
   box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
   padding: 10px;
 }
 
 .button-home-search-movies {
   box-shadow: 4px 4px 8px -6px rgba(0, 0, 0, 0.75);
-  width: 8vw;
-  height: 2vw;
+  width: 25%;
+  height: 40px;
   min-width: max-content;
   background-color: #00c9c8;
   border: 0;
@@ -36,7 +36,7 @@
   padding: 10px;
 }
 
-.error-message{
+.error-message {
   color: red;
   display: flex;
   justify-content: center;
@@ -67,8 +67,8 @@
   width: 35%;
 }
 
-.contain-detail-movie-found-properties-span{
-  font-weight: 100 ;
+.contain-detail-movie-found-properties-span {
+  font-weight: 100;
   font-size: 17px;
 }
 
@@ -80,15 +80,14 @@
   gap: 20px;
 }
 
-.contain-detail-movie-found-galery img{ 
+.contain-detail-movie-found-galery img {
   max-width: 350px;
   height: 250px;
-
 }
 
 @media only screen and (max-width: 992px) {
   .form-search-movies {
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
   }
 

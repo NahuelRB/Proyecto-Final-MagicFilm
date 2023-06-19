@@ -66,9 +66,7 @@ public class MovieServiceImpl implements IMovieService{
             movieDto.add(mapper.convertValue(movie, MovieDTO.class));
         }
         log.info("Movies were found");
-        return movieDto.stream()
-                .sorted(Comparator.comparing(MovieDTO::getId))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+        return new LinkedHashSet<>(movieDto);
     }   
 
     public MovieDTO save(MovieDTO movieDTO){

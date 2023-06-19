@@ -13,6 +13,7 @@ import SidebarContainer from "./components/layout/sidebar/SidebarContainer";
 import AddMovieContainer from "./components/common/addMovie/AddMovieContainer";
 import AddCategoryContainer from "./components/common/addCategory/AddCategoryContainer";
 import DeleteMovieContainer from "./components/common/deleteMovie/DeleteMovieContainer";
+import SearchMoviesContainer from "./components/common/searchMovies/SearchMoviesContainer";
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,7 @@ const AppRoutes = () => {
           <Route path="/details/:id" element={<MovieDetailContainer />} />
           <Route path="/register" element={<AddUserContainer />} />
           <Route path="/verify" element={<EmailVerifyContainer />} />
+          <Route path="/search" element={<SearchMoviesContainer />} />
 
           <Route
             path="/category/:category_id"
