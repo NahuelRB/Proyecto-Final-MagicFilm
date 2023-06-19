@@ -1,7 +1,6 @@
 package com.backend.cinema.controllers;
 
 import com.backend.cinema.dto.MovieDTO;
-import com.backend.cinema.entity.Movie;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.MovieServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +26,7 @@ public class MovieController{
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException {
-        Movie movie = movieService.getId(id);
+        MovieDTO movie = movieService.getId(id);
         if (movie == null) {
             log.error("Movie not found with ID: {}", id);
             throw new ResourceNotFoundException("Error retrieving movie.");

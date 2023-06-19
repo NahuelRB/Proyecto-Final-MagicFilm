@@ -12,11 +12,7 @@ const RecommendedMoviesContainer = () => {
   useEffect(() => {
     const movies = getMovies();
     movies
-      .then((res) => {
-        const dataMovies = res.data;
-        setDataMovies(dataMovies);
-      })
-
+      .then((res) => setDataMovies(res.data))
       .catch((error) => console.log(error));
   }, []);
 

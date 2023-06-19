@@ -1,6 +1,8 @@
 package com.backend.cinema.controllers;
 
+import com.backend.cinema.dto.UserCreateDTO;
 import com.backend.cinema.dto.UserDTO;
+import com.backend.cinema.dto.UserResponseDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,7 +49,7 @@ public class UserController {
     public String sendEmail() {
         try{
         SimpleMailMessage message = new SimpleMailMessage();
-        String to = "sistemastt8@gmail.com";
+        String to = "mayraalejandratorressumalave@gmail.com";
         String subject = "Envio de mail Equipo 5";
         String text = "Mail de prueba";
         message.setTo(to);
@@ -97,8 +99,8 @@ public class UserController {
     }
 
     @GetMapping()
-    public ResponseEntity<Set<UserDTO>> getUsers() {
-        Set<UserDTO> users = userService.getAll();
+    public ResponseEntity<Set<UserResponseDTO>> getUsers() {
+        Set<UserResponseDTO> users = userService.getAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
@@ -109,9 +111,9 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<UserDTO> save(@RequestBody UserDTO UserDTO) {
-        UserDTO response = userService.save(UserDTO);
-        return ResponseEntity.ok().body(response);
+    public ResponseEntity<?> save(@RequestBody UserCreateDTO UserDTO) {
+        userService.save(UserDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body("User Created successfully");
     }
 
     @DeleteMapping("/{id}")
@@ -131,10 +133,10 @@ public class UserController {
         }
     }
 
-    @PutMapping
-    public void update(@RequestBody UserDTO UserDTO) {
-        userService.update(UserDTO);
-    }
+//    @PutMapping
+//    public void update(@RequestBody UserDTO UserDTO) {
+//        userService.update(UserDTO);
+//    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public String ProcessResourceNotFoundException(ResourceNotFoundException resourceNotFoundException) {

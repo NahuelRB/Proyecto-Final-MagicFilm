@@ -40,7 +40,6 @@ public class User implements UserDetails {
 
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date registerDate;
-
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
@@ -75,4 +74,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return isVerified;
     }
+
 }

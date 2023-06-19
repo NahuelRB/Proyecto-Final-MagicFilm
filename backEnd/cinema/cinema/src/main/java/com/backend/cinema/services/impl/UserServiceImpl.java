@@ -1,8 +1,12 @@
 	package com.backend.cinema.services.impl;
 
+	import com.backend.cinema.dto.UserCreateDTO;
 	import com.backend.cinema.dto.UserDTO;
+	import com.backend.cinema.dto.UserResponseDTO;
+	import com.backend.cinema.entity.Role;
 	import com.backend.cinema.entity.User;
 	import com.backend.cinema.exception.ResourceNotFoundException;
+	import com.backend.cinema.repository.IRoleRepository;
 	import com.backend.cinema.repository.IUserRepository;
 	import com.backend.cinema.security.TokenUtils;
 	import com.backend.cinema.services.IUserService;
@@ -14,6 +18,7 @@
 	import org.apache.logging.log4j.Logger;
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.dao.DataIntegrityViolationException;
+	import org.springframework.security.crypto.password.PasswordEncoder;
 	import org.springframework.stereotype.Service;
 
 	import java.util.*;
@@ -24,11 +29,15 @@ public class UserServiceImpl implements IUserService {
 
 	public static final Logger log = LogManager.getLogger(MovieServiceImpl.class);
 
-	private IUserRepository userRepository;
+	private final IUserRepository userRepository;
+	private final IRoleRepository roleRepository;
 
+	private final PasswordEncoder passwordEncoder;
 	@Autowired
-	public UserServiceImpl(IUserRepository userRepository) {
+	public UserServiceImpl(IUserRepository userRepository, PasswordEncoder passwordEncoder, IRoleRepository roleRepository) {
 		this.userRepository = userRepository;
+		this.passwordEncoder = passwordEncoder;
+		this.roleRepository= roleRepository;
 	}
 
 	@Autowired
@@ -46,33 +55,40 @@ public class UserServiceImpl implements IUserService {
 		return mapper.convertValue(user, UserDTO.class);
 	}
 
-	public Set<UserDTO> getAll() throws ResourceNotFoundException {
+	public Set<UserResponseDTO> getAll() throws ResourceNotFoundException {
 		if (userRepository.findAll().isEmpty()) {
 			log.info("No users found");
 			throw new ResourceNotFoundException("No users found");
 		} else {
-			Set<UserDTO> userDto = new HashSet<>();
+			Set<UserResponseDTO> userDto = new HashSet<>();
 			List<User> users = userRepository.findAll();
 			for (User user : users) {
-				userDto.add(mapper.convertValue(user, UserDTO.class));
+				userDto.add(mapper.convertValue(user, UserResponseDTO.class));
 			}
 			log.info("Users were found");
 			return userDto.stream()
-					.sorted(Comparator.comparing(UserDTO::getId))
+					.sorted(Comparator.comparing(UserResponseDTO::getId))
 					.collect(Collectors.toCollection(LinkedHashSet::new));
 		}
 	}
 
-	public UserDTO save(UserDTO userDTO) {
+	public void save(UserCreateDTO userDTO) {
 		try {
 			if (userDTO == null || userDTO.getEmail() == null || userDTO.getEmail().isEmpty()
 					|| userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
 				throw new IllegalArgumentException("Email and password are required");
 			}
 			User user = mapper.convertValue(userDTO, User.class);
+			Role userRole = roleRepository.getReferenceById(2L);
+			System.out.println("userRole = " + userRole);
+			user.setRole(userRole);
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setIsVerified(false);
+			user.setRegisterDate(new Date());
+			System.out.println("user = " + user);
 			User userMovie = userRepository.save(user);
 			log.info("User saved successfully: {}", userDTO);
-			return mapper.convertValue(userMovie, UserDTO.class);
+			/*return mapper.convertValue(userMovie, UserResponseDTO.class);*/
 		} catch (DataIntegrityViolationException ex) {
 			String errorMessage = "An error ocurred while saving the user";
 			System.out.println("Exception message: " + ex.getMessage());
@@ -94,11 +110,11 @@ public class UserServiceImpl implements IUserService {
 		log.info("User deleted successfully with ID: {}", id);
 	}
 
-	@Override
-	public void update(UserDTO userDTO) {
-		save(userDTO);
-		log.info("User updated correctly: {}", userDTO.getEmail());
-	}
+//	@Override
+//	public void update(UserDTO userDTO) {
+//		save(userDTO);
+//		log.info("User updated correctly: {}", userDTO.getEmail());
+//	}
 
 	public boolean existsById(Long id) {
 		return userRepository.existsById(id);

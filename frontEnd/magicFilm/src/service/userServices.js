@@ -11,7 +11,7 @@ export const userLogout = (data, headers) => {
 
 
 export const getUsers =()=>{
-    let users= axiosProtected.get("/user/");
+    let users= axiosProtected.get("/user");
     return users;
 };
 
@@ -40,5 +40,5 @@ export const updateUser=(id, data)=>{
 }
 
 export const createUser =(data)=>{
-    return axiosInstance.post("http://localhost:3000/user/", data);
+    return axiosInstance.post("/user", data);
 }

@@ -89,9 +89,4 @@ public class WebSecurityConfig  {
 //        return source;
 //    }
 
-
-//    Para encriptar la contra
-//    public static void main(String[] args) {
-//        System.out.println("pass" + new BCryptPasswordEncoder().encode("1234"));
-//    }
 }

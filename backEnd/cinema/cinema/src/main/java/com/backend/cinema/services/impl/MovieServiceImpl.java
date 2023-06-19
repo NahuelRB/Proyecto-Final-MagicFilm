@@ -29,13 +29,13 @@ public class MovieServiceImpl implements IMovieService{
     @Autowired
     ObjectMapper mapper;
 
-    public Movie getId(Long id){
+    public MovieDTO getId(Long id){
 //        Optional<Movie> movieOptional = movieRepository.findById(id);
 //        Movie movie = movieOptional.orElse(null);
 //        return mapper.convertValue(movie, MovieDTO.class);
         Optional<Movie> movieOptional = movieRepository.findById(id);
         Movie movie = movieOptional.orElse(null);
-        return movie;
+        return mapper.convertValue(movie, MovieDTO.class);
     }
 
     @Override

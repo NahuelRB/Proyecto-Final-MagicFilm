@@ -1,6 +1,5 @@
 package com.backend.cinema.dto;
 
-import com.backend.cinema.entity.Score;
 import com.backend.cinema.entity.TrailerImages;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -31,5 +30,5 @@ public class MovieDTO {
     private String image;
     private String trailer;
     private List<TrailerImages> trailer_images;
-    private Score score;
+    private double avg_score;
 }
