@@ -25,7 +25,15 @@ const EmailVerifyContainer = () => {
   // Ejemplo de acceso a un parámetro de búsqueda específico
   const status = searchParams.get("status");
   const email = searchParams.get("email");
+  console.log(
+    "🚀 ~ file: EmailVerifyContainer.jsx:28 ~ EmailVerifyContainer ~ email:",
+    email
+  );
   const token = searchParams.get("token");
+  console.log(
+    "🚀 ~ file: EmailVerifyContainer.jsx:29 ~ EmailVerifyContainer ~ token:",
+    token
+  );
   const handleResend = () => {
     console.log("Reenviar email", email);
   };
