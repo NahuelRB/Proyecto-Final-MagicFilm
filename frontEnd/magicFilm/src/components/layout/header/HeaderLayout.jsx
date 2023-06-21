@@ -43,7 +43,13 @@ const HeaderLayout = ({ logout, user }) => {
               {user?.name?.charAt(0).toUpperCase() +
                 user?.last_name?.charAt(0).toUpperCase()}
             </div>
-            <button className="logout-button" onClick={logout}>
+            <button
+              className="logout-button"
+              onClick={() => {
+                setIsOpen(false);
+                logout();
+              }}
+            >
               Cerrar Sesion
             </button>
             {user.rol === "ADMIN" && (

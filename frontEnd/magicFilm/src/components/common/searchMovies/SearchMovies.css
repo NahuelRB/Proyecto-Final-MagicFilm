@@ -27,7 +27,19 @@
   border: 0;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
+
+.button-home-search-movies:active {
+  background-color: #008a89;
+  transform: scale(0.95);
+}
+
+.button-home-search-movies:hover {
+  /* Estilos al pasar el cursor por encima del botón */
+  background: #00fffb;
+}
+
 .button-search-detail {
   background: #000000;
   border: 1px solid #00c9c8;

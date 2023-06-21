@@ -5,15 +5,20 @@ export const userLogin = (data) => {
     return axiosInstance.post(`/login`, data);
 };
 
-export const userLogout = (data, headers) => {
-    return axiosProtected.post(`/logout`, data), headers={headers};
-};
-
-
 export const getUsers =()=>{
     let users= axiosProtected.get("/user");
     return users;
 };
+
+
+export const verifyUser = (data) => { 
+    return axiosInstance.post("/user/verify-email", data);
+}
+export const reenviarMail = (data) => { 
+    return axiosInstance.post("/user/resend-email", data);
+}
+
+
 
 export const getUsersByID =(id)=>{
     let users= axiosProtected.get(`/user/${id}`);

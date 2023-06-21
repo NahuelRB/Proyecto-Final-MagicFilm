@@ -65,8 +65,9 @@ public class MovieServiceImpl implements IMovieService{
         for(Movie movie : movies){
             movieDto.add(mapper.convertValue(movie, MovieDTO.class));
         }
-        log.info("Movies were found");
-        return new LinkedHashSet<>(movieDto);
+        return movieDto.stream()
+               .sorted(Comparator.comparing(MovieDTO::getId))
+               .collect(Collectors.toCollection(LinkedHashSet::new));
     }   
 
     public MovieDTO save(MovieDTO movieDTO){
@@ -81,12 +82,14 @@ public class MovieServiceImpl implements IMovieService{
             log.info("No movies found for search query: {}", search_input);
             return Collections.emptySet();
         }
-        log.info("Movies found successfully for search query: {}", search_input);
-        return movies.stream()
-                .map(movie -> mapper.convertValue(movie, MovieDTO.class))
-                .collect(Collectors.toSet());
+        Set<MovieDTO> movieDto = new HashSet<>();
+        for(Movie movie : movies){
+            movieDto.add(mapper.convertValue(movie, MovieDTO.class));
+        }
+        return movieDto.stream()
+                .sorted(Comparator.comparing(MovieDTO::getId))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
-
 
     public void delete(Long id){
         movieRepository.deleteById(id);

@@ -28,21 +28,17 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
                 System.out.println("usernamePAT = " + usernamePAT);
                 SecurityContextHolder.getContext().setAuthentication(usernamePAT);
                 System.out.println("usernamePAT = " + usernamePAT);
-
-            }catch (Exception e){
+            }
+            catch (Exception e){
                 System.out.println("e.getMessage() = " + e.getMessage());
 
-                response.getWriter().write(e.toString());
+                response.getWriter().write(e.getMessage());
                 response.setStatus(HttpStatus.FORBIDDEN.value());
-                /*response.getWriter().flush();*/
-
+                response.getWriter().flush();
+                return;
             }
 
         }
-        try{
         filterChain.doFilter(request, response);
-        }catch(Exception e) {
-            System.out.println(e.toString());
-        }
     }
 }

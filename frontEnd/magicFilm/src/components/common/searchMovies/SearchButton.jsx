@@ -12,10 +12,10 @@ const SearchButton = ({ home, search }) => {
     let params = new URLSearchParams({ search_input: searchInput }).toString();
     console.log(`/search?${params}`);
 
-    if (home === true) {
+    if (home === true && search === undefined) {
       navigate(`/search?${params}`);
     } else {
-      setSearchParams(params);
+      setSearchParams(params, { replace: true });
     }
   };
 

@@ -42,13 +42,13 @@
   text-align: center;
   display: inline-block;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease-in-out;
   border: none;
 }
 
 .solid:active {
   background-color: #008a89;
-  border: 3px solid #008a89;
+  transform: scale(0.95);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -65,14 +65,18 @@
   text-align: center;
   display: inline-block;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease-in-out;
   border: 2px solid #00c9c8;
 }
 
 .outline:active {
-  background-color: #008a89;
-  border: 3px solid #008a89;
+  background-color: #b7b7b7;
+  transform: scale(0.95);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.solid:hover {
+  background: #00d8d6;
 }
 @media screen and (max-width: 768px) {
   .admin-container {

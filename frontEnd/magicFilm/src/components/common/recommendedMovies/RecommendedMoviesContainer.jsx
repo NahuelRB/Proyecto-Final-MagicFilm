@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import RecommendedMovies from "./RecommendedMovies";
 import "./RecommendedMovies.css";
 import { getMovies } from "../../../service/productServices";
@@ -7,16 +7,25 @@ import { Pagination } from "@mui/material";
 const RecommendedMoviesContainer = () => {
   const [dataMovies, setDataMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [hasFetchedData, setHasFetchedData] = useState(false);
+
   const resultsPerPage = 5;
 
   useEffect(() => {
-    const movies = getMovies();
-    movies
-      .then((res) => setDataMovies(res.data))
-      .catch((error) => console.log(error));
-  }, []);
+    const fetchData = async () => {
+      try {
+        const res = await getMovies();
+        setDataMovies(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  //Cambio aleatorio del elementos del array
+    if (!hasFetchedData) {
+      fetchData();
+      setHasFetchedData(true);
+    }
+  }, [hasFetchedData]);
 
   const indexInitial = (page - 1) * resultsPerPage;
   const indexEnd = indexInitial + resultsPerPage;
@@ -29,7 +38,9 @@ const RecommendedMoviesContainer = () => {
   return (
     <div>
       <h2 className="titleRecommendedMovies">Películas Recomendadas</h2>
-      <RecommendedMovies dataMovies={moviesPage} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <RecommendedMovies dataMovies={moviesPage} />
+      </Suspense>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Pagination

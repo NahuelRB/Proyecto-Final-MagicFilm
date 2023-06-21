@@ -109,16 +109,38 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/verify-email/{token}")
-    public ResponseEntity<?> verifyEmail(@PathVariable String token) {
-        HashMap<String, Object> verifiedData = userService.verifyEmail(token);
-        return ResponseEntity.ok().body(verifiedData);
+    @PostMapping("/verify-email")
+    public ResponseEntity<?> verifyEmail(@RequestBody HashMap<String, String> requestMap) {
+        String token = requestMap.get("token");
+        System.out.println("token = " + token);
+        try {
+            HashMap<String, Object> verifiedData = userService.verifyEmail(token);
+            return ResponseEntity.ok().body(verifiedData);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
+    @PostMapping("/resend-email")
+    public ResponseEntity<?> resendEmail(@RequestBody HashMap<String, String> requestMap) {
+        String email = requestMap.get("email");
+        try {
+            userService.resendEmail(email);
+            return ResponseEntity.ok().body("Email reenviado con exito.");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
 
     @PostMapping()
     public ResponseEntity<?> save(@RequestBody UserCreateDTO UserDTO) {
-        userService.save(UserDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body("User Created successfully");
+        try {
+            userService.save(UserDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body("User Created successfully");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

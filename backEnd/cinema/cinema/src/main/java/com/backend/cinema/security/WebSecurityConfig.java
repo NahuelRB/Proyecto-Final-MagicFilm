@@ -31,7 +31,7 @@ public class WebSecurityConfig  {
          JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
          jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
          jwtAuthenticationFilter.setFilterProcessesUrl("/login");
-
+         jwtAuthenticationFilter.setAuthenticationFailureHandler(new LoginFailureHandler());
 
         return http
                 .cors()

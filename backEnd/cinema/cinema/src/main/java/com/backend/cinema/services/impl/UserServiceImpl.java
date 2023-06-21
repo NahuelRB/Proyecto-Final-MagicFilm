@@ -88,14 +88,13 @@ public class UserServiceImpl implements IUserService {
 
 			User user = mapper.convertValue(userDTO, User.class);
 			Role userRole = roleRepository.getReferenceById(2L);
-			System.out.println("userRole = " + userRole);
 			user.setRole(userRole);
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setIsVerified(false);
 			user.setRegisterDate(new Date());
-			System.out.println("user = " + user);
 			User userMovie = userRepository.save(user);
 			String token= TokenUtils.createVerifyToken(userDTO.getEmail());
+			System.out.println("token = " + token);
 			String url = "http://localhost:5173/verify?email="+userDTO.getEmail() + "&token=" + token;
 			emailService.sendRegisterEmail(userDTO.getName(), url, userDTO.getEmail(), "Verificacíon del Correo");
 			log.info("User saved successfully: {}", userDTO);
@@ -123,6 +122,21 @@ public class UserServiceImpl implements IUserService {
 		log.info("User deleted successfully with ID: {}", id);
 	}
 
+	public void resendEmail(String email) throws Exception {
+		Optional<User> userFind= userRepository.findOneByEmail(email);
+		if (userFind.isPresent()){
+			try {
+				User user= userFind.get();
+				String token= TokenUtils.createVerifyToken(user.getEmail());
+				String url = "http://localhost:5173/verify?email="+user.getEmail() + "&token=" + token;
+				emailService.sendRegisterEmail(user.getName(), url, user.getEmail(), "Verificacíon del Correo");
+			}catch (Exception e){
+				throw new Exception("Hubo un problema al enviarl el correo :" + e.getMessage());
+			}
+
+		}
+	}
+
 //	@Override
 //	public void update(UserDTO userDTO) {
 //		save(userDTO);
@@ -144,48 +158,54 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	public HashMap<String, Object> verifyEmail(String token) {
-		Claims data = TokenUtils.decodeToken(token);
-		if (data != null) {
-			String email = data.getSubject();
-			Optional<User> userFilter = userRepository.findOneByEmail(email);
-			HashMap<String, Object> verifiedData = new HashMap<>();
+		try{
+			Claims data = TokenUtils.decodeToken(token);
+			if (data != null) {
+				String email = data.getSubject();
+				Optional<User> userFilter = userRepository.findOneByEmail(email);
+				HashMap<String, Object> verifiedData = new HashMap<>();
 
-			Date now = new Date();
+				Date now = new Date();
 
-			if (userFilter.isPresent()) {
-				verifiedData.put("email", email);
-				User user = userFilter.get();
-				long diffInMillis = now.getTime() - user.getRegisterDate().getTime();
-				long diffInHours = diffInMillis / (60 * 60 * 1000);
-				if (diffInHours > 48 && user.getIsVerified().equals(Boolean.FALSE)) {
-					user.setIsVerified(Boolean.TRUE);
-					user = userRepository.save(user);
+				if (userFilter.isPresent()) {
+					verifiedData.put("email", email);
+					User user = userFilter.get();
+					long diffInMillis = now.getTime() - user.getRegisterDate().getTime();
+					long diffInHours = diffInMillis / (60 * 60 * 1000);
+					if (diffInHours<48 && user.getIsVerified().equals(Boolean.FALSE)) {
+						user.setIsVerified(Boolean.TRUE);
+						user = userRepository.save(user);
+					}
+
+
+					verifiedData.put("is_verified",user.getIsVerified());
+					verifiedData.put("register_date", user.getRegisterDate());
+
 				}
-
-				verifiedData.put("is_verified",user.getIsVerified());
-				verifiedData.put("register_date", user.getRegisterDate());
-
+				return verifiedData;
 			}
-			return verifiedData;
-		} else {
-			throw new IllegalArgumentException("Token inválido o expirado");
+		} catch(Exception e) {
+			throw new IllegalArgumentException("Token inválido o expirado: "+ e.getMessage());
 		}
+		return null;
 	}
 
 
 	public UserDTO getUserFromToken(String token) {
-		Claims data = TokenUtils.decodeToken(token);
-		if (data != null) {
-			String email = data.getSubject();
-			Optional<User> userFilter = userRepository.findOneByEmail(email);
-			if (userFilter.isPresent()) {
-				User user = userFilter.get();
-				return mapper.convertValue(user, UserDTO.class);
+		try {
+			Claims data = TokenUtils.decodeToken(token);
+			if (data != null) {
+				String email = data.getSubject();
+				Optional<User> userFilter = userRepository.findOneByEmail(email);
+				if (userFilter.isPresent()) {
+					User user = userFilter.get();
+					return mapper.convertValue(user, UserDTO.class);
+				}
+				return null;
 			}
-			return null;
-		} else {
-			throw new IllegalArgumentException("Token inválido o expirado");
+		}catch (Exception e){
+			throw new IllegalArgumentException("Token inválido o expirado: "+ e.getMessage());
 		}
+		return null;
 	}
-
 }
