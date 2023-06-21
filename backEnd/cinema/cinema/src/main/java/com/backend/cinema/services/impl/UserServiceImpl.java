@@ -51,7 +51,7 @@ public class UserServiceImpl implements IUserService {
 	ObjectMapper mapper;
 
 	@Override
-	public UserDTO getId(Long id) {
+	public UserResponseDTO getId(Long id) {
 		Optional<User> userOptional = userRepository.findById(id);
 		User user = userOptional.orElse(null);
 		if (user == null) {
@@ -59,7 +59,7 @@ public class UserServiceImpl implements IUserService {
 			throw new ResourceNotFoundException("Error retrieving user.");
 		}
 		log.info("User successfully retrieved with ID: {}", id);
-		return mapper.convertValue(user, UserDTO.class);
+		return mapper.convertValue(user, UserResponseDTO.class);
 	}
 
 	public Set<UserResponseDTO> getAll() throws ResourceNotFoundException {

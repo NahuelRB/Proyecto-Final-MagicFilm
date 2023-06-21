@@ -40,17 +40,14 @@ const EmailVerifyContainer = () => {
   useEffect(() => {
     // const status = "pending";
     let stateData = {};
-    if (status === "success") {
+    if (status === "error") {
       stateData = {
-        statusImage: tick,
-        image: popCorn,
-        title: "¡Bien! Hemos verificado tu cuenta de correo electrónico",
+        statusImage: equis,
+        image: robot,
+        title:
+          "Ups! Sucedió un error al intentar verificar tu cuenta de correo electrónico ",
         subtitle:
-          "Ya puedes disfrutar de las mejores películas en el mejor cinema. ",
-        redirect: {
-          title: "Iniciar sesión",
-          link: "/login",
-        },
+          "Vuelve a dar clic en el email de confirmación que te enviamos, de lo contrario comunícate con nosotros. ",
       };
     } else if (status === "pending") {
       stateData = {
@@ -71,14 +68,17 @@ const EmailVerifyContainer = () => {
           "Vuelve a dar clic en el email de confirmación que te enviamos, de lo contrario comunícate con nosotros. ",
         resend: handleResend,
       };
-    } else if (status === "error") {
+    } else if (status === "success") {
       stateData = {
-        statusImage: equis,
-        image: robot,
-        title:
-          "Ups! Sucedió un error al intentar verificar tu cuenta de correo electrónico ",
+        statusImage: tick,
+        image: popCorn,
+        title: "¡Bien! Hemos verificado tu cuenta de correo electrónico",
         subtitle:
-          "Vuelve a dar clic en el email de confirmación que te enviamos, de lo contrario comunícate con nosotros. ",
+          "Ya puedes disfrutar de las mejores películas en el mejor cinema. ",
+        redirect: {
+          title: "Iniciar sesión",
+          link: "/login",
+        },
       };
     }
     setState(stateData);

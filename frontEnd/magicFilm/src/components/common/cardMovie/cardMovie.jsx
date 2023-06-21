@@ -1,5 +1,6 @@
 import React from "react";
 import "./cardMovie.css";
+import ScoreMovie from "../scoreMovie/ScoreMovie";
 const CardMovie = ({ state, categories, stateImages }) => {
   console.log(
     "🚀 ~ file: cardMovie.jsx:4 ~ CardMovie ~ stateImages:",
@@ -13,6 +14,7 @@ const CardMovie = ({ state, categories, stateImages }) => {
     file_image,
     trailer,
     trailer_images,
+    avg_score,
   } = state;
   let categorySelected = categories?.find(
     (cat) => cat.id == category_id
@@ -65,6 +67,8 @@ const CardMovie = ({ state, categories, stateImages }) => {
             <a href={trailer}>Ver Trailer</a>
           </>
         )}
+
+
 
         {stateImages?.length > 0 && (
           <div className="card-trailer-img">

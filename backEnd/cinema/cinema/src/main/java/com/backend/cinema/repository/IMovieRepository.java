@@ -16,6 +16,6 @@ public interface IMovieRepository extends JpaRepository<Movie,Long>{
 
     @Query("from Movie m where m.category.id =?1")
     Set<Movie> getByCategoryId( Long category_id);
-    @Query("SELECT m FROM Movie m WHERE m.title ILIKE %:searchInput% OR m.summary ILIKE %:searchInput%")
+    @Query("SELECT m FROM Movie m WHERE m.title ILIKE %:searchInput%")
     Set<Movie> search(@Param("searchInput") String searchInput);
 }

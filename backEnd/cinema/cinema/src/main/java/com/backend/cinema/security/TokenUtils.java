@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class TokenUtils {
     private final static String ACCESS_TOKEN_SECRET = "8x/A?D(G+KbPeShVmYq3s6v9y$B&E)H@k";
-    private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
+    private final static Long ACCESS_TOKEN_VALIDITY_SECONDS =  5*60L;
     private final static Long VERIFY_TOKEN_VALIDITY_SECONDS = 48*60*60L;
 
     public static String createToken(String nombre, String email){
@@ -44,7 +44,8 @@ public class TokenUtils {
     }
 
 
-    public static UsernamePasswordAuthenticationToken getAuthentication(String token){
+    public static UsernamePasswordAuthenticationToken
+    getAuthentication(String token){
         try{
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(ACCESS_TOKEN_SECRET.getBytes())
@@ -55,7 +56,7 @@ public class TokenUtils {
 
             return new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
         }catch (JwtException e){
-            return null;
+           return null;
         }
     }
     public static Claims decodeToken(String token){

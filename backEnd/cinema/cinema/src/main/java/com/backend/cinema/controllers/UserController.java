@@ -80,7 +80,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getId(@PathVariable Long id) {
-        UserDTO UserDTO = userService.getId(id);
+        System.out.println("LLEGOOO id = " + id);
+        UserResponseDTO UserDTO = userService.getId(id);
         return ResponseEntity.ok().body(UserDTO);
     }
 

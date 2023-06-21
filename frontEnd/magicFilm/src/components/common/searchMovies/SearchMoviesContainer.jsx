@@ -11,18 +11,12 @@ const SearchMoviesContainer = () => {
 
   useEffect(() => {
     const getMovieData = async () => {
-      console.log(
-        "🚀 ~ file: SearchMoviesContainer.jsx:14 ~ getMovieData ~ inputValue:",
-        inputValue
-      );
       const response = await searchMovie(inputValue);
-
-      console.log(
-        "🚀 ~ file: SearchMovies.jsx:34 ~ .then ~ res:",
-        response.data
-      );
-
       if (response.data) {
+        console.log(
+          "🚀 ~ file: SearchMoviesContainer.jsx:16 ~ getMovieData ~ response.data:",
+          response.data
+        );
         setMovies(response.data);
       } else {
         setMovies([]);

@@ -1,22 +1,21 @@
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
-import Typography from "@mui/material/Typography";
-
-const ScoreMovie = () => {
+const ScoreMovie = ({ value }) => {
+  console.log("🚀 ~ file: ScoreMovie.jsx:4 ~ ScoreMovie ~ value:", value);
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <StarIcon
-        fontSize="string"
-        sx={{ color: "#ffd700", fontSize: "60px" }}
-      ></StarIcon>
+    <div
+      style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+    >
+      <h3>Valoracion Promedio:</h3>
 
-      <Typography
+      <StarIcon fontSize="string" sx={{ color: "#ffd700", fontSize: "30px" }} />
+      <h2
         variant="h3"
         color="initial"
-        sx={{ fontSize: "50px", margin: "auto 10px" }}
+        sx={{ fontSize: "30px", margin: "auto 10px" }}
       >
-        4.5
-      </Typography>
+        {value}
+      </h2>
     </div>
   );
 };
