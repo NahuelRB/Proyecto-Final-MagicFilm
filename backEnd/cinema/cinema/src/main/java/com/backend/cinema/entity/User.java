@@ -40,13 +40,13 @@ public class User implements UserDetails {
 
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date registerDate;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.name());
+        SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
         return Collections.singletonList(grantedAuthority);
     }
 
@@ -74,4 +74,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return isVerified;
     }
+
 }

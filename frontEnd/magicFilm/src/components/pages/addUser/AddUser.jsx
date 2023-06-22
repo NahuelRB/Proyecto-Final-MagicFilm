@@ -47,10 +47,16 @@ const AddUser = ({ state, setState }) => {
 
     try {
       await validationSchema.validate(state, { abortEarly: false });
-      const create = createUser(state);
+      const { repassword, ...new_user } = state;
 
-      create.then((data) => console.log(data));
-      setShowPopup(true) // Mostrar ventana emergente
+      const create = createUser(new_user);
+
+      create
+        .then((data) => {
+          if (data.status === 201) {
+            setShowPopup(true); // Mostrar ventana emergente
+          }
+        })
         .catch((error) => console.log(error));
     } catch (error) {
       const validationErrors = {};
@@ -67,7 +73,6 @@ const AddUser = ({ state, setState }) => {
       surname: "",
       email: "",
       password: "",
-      repassword: "",
     });
     setErrors({});
   };
@@ -160,7 +165,13 @@ const AddUser = ({ state, setState }) => {
               creación de tu cuenta.
             </h4>
             <Link to="/">
-              <button className=" solid" onClick={() => setShowPopup(false)}>
+              <button
+                className=" solid"
+                onClick={() => {
+                  setShowPopup(false);
+                  handleReset();
+                }}
+              >
                 Cerrar
               </button>
             </Link>

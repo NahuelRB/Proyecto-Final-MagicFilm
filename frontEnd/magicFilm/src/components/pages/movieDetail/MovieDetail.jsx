@@ -90,9 +90,6 @@ const MovieDetail = (props) => {
                 }
               })}
             </div>
-            <a href="" className="detail-movie-ver-mas">
-              Ver más
-            </a>
           </div>
         )}
       </div>

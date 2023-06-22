@@ -22,11 +22,8 @@ public class Category {
     private String title;
 
     private String description;
-    @Lob
-    @Column(columnDefinition = "text")
+
     private String zoom;
 
-    @Lob
-    @Column(columnDefinition = "text")
     private String logo;
 }

@@ -1,4 +1,4 @@
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance, axiosProtected } from "./axiosInstance";
 
 export const getMovies = () => {
   let movies = axiosInstance.get("/movie");
@@ -37,8 +37,14 @@ export const updateMovie = (id, data) => {
 
 export const createMovie = (data) => {
 
-  return axiosInstance.post(`/movie`, data);
+  return axiosProtected.post(`/movie`, data);
 };
+
+export const searchMovie = (search) => {
+
+  return axiosInstance.get(`/movie/search?search_input=${search}`);
+};
+
 
 // export const getCategories = () => {
 //   // return axiosInstance.get(`/categories`);

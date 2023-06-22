@@ -32,8 +32,8 @@ export const sidebarNavItems = [
   {
     display: "Usuarios",
     icon: <i className="bx bx-user"></i>,
-    to: "/register2",
-    section: "register2",
+    to: "/addUser",
+    section: "addUser",
   },
   {
     display: "Agregar Película",
@@ -77,25 +77,23 @@ const Sidebar = () => {
   const indicatorRef = useRef();
   const location = useLocation();
 
-  useEffect(() => {
-    setTimeout(() => {
-      const sidebarItem = sidebarRef.current.querySelector(
-        ".sidebar__menu__item"
-      );
-      indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-      setStepHeight(sidebarItem.clientHeight);
-    }, 50);
-    console.log(indicatorRef);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     const sidebarItem = sidebarRef.current.querySelector(
+  //       ".sidebar__menu__item"
+  //     );
+  //     indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
+  //     setStepHeight(sidebarItem.clientHeight);
+  //   }, 50);
+  //   console.log(indicatorRef);
+  // }, []);
 
   // change active index
   useEffect(() => {
     const curPath = window.location.pathname.split("/")[1];
-    console.log(curPath);
     const activeItem = sidebarNavItems.findIndex(
       (item) => item.section === curPath
     );
-    console.log(activeItem);
     setActiveIndex(curPath.length === 0 ? 0 : activeItem);
   }, [location]);
 
@@ -103,15 +101,6 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar__logo">Panel Admin</div>
       <div ref={sidebarRef} className="sidebar__menu">
-        <div
-          ref={indicatorRef}
-          className="sidebar__menu__indicator"
-          style={{
-            transform: `translateX(-50%) translateY(${
-              activeIndex * stepHeight
-            }px)`,
-          }}
-        ></div>
         {sidebarNavItems.map((item, index) => (
           <Link to={item.to} key={index}>
             <div

@@ -26,12 +26,17 @@ public class Movie {
 
     private LocalDate release_date;
 
+    @Lob
+    @Column(columnDefinition = "text")
     private String summary;
 
     private LocalDate finish_date;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<TrailerImages> trailer_images = new ArrayList<>();
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+    private List<Score> scores = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -46,10 +51,40 @@ public class Movie {
 
     private String trailer;
 
-    public void setTrailerImages(List<TrailerImages> trailerImages) {
+    private double avg_score;
+
+    public void setTrailer_images(List<TrailerImages> trailerImages) {
         this.trailer_images = trailerImages;
         for (TrailerImages trailerImage: trailerImages ) {
             trailerImage.setMovie(this);
         }
     }
+
+    public double getAvg_score() {
+        double avg = 0.0;
+        if (this.scores != null && !this.scores.isEmpty()) {
+            int sum = this.scores.stream()
+                    .mapToInt(Score::getScore)
+                    .sum();
+            avg = (double) sum / this.scores.size();
+        }
+        this.avg_score=avg;
+        return avg;
+
+    }
+    public void setScores(List<Score> scores) {
+        this.scores = scores;
+
+        int sum = 0;
+        for (Score score : scores) {
+            score.setMovie(this);
+            sum += score.getScore();
+        }
+        if (!scores.isEmpty()) {
+            this.avg_score = (double) sum / scores.size();
+        } else {
+            this.avg_score = 0.0;
+        }
+    }
+
 }

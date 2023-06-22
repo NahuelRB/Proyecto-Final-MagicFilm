@@ -1,7 +1,6 @@
 package com.backend.cinema.controllers;
 
 import com.backend.cinema.dto.MovieDTO;
-import com.backend.cinema.entity.Movie;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.MovieServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +14,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/movie")
-@CrossOrigin(origins = "http://127.0.0.1:5173")
+@CrossOrigin(origins = "*")
 public class MovieController{
     public static final Logger log = LogManager.getLogger(MovieServiceImpl.class);
     private MovieServiceImpl movieService;
@@ -27,7 +26,7 @@ public class MovieController{
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException {
-        Movie movie = movieService.getId(id);
+        MovieDTO movie = movieService.getId(id);
         if (movie == null) {
             log.error("Movie not found with ID: {}", id);
             throw new ResourceNotFoundException("Error retrieving movie.");
@@ -52,7 +51,7 @@ public class MovieController{
 
     @PostMapping()
     public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movieDTO) {
-        log.info("Creating user:", movieDTO);
+        log.info("Creating movie:", movieDTO);
         MovieDTO response = movieService.save(movieDTO);
         return ResponseEntity.ok().body(response);
     }
@@ -77,6 +76,12 @@ public class MovieController{
     public ResponseEntity<MovieDTO> update(@PathVariable Long id, @RequestBody MovieDTO movieDTO){
         MovieDTO movie = movieService.save(movieDTO);
         return new ResponseEntity<>(movie, HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Set<MovieDTO>> searchMovies(@RequestParam("search_input") String searchInput) {
+        Set<MovieDTO> movies = movieService.search(searchInput);
+        return ResponseEntity.ok().body(movies);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

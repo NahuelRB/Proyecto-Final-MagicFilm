@@ -1,15 +1,20 @@
 package com.backend.cinema.controllers;
 
+import com.backend.cinema.dto.UserCreateDTO;
 import com.backend.cinema.dto.UserDTO;
+import com.backend.cinema.dto.UserResponseDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.UserServiceImpl;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpServletRequest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -25,7 +30,17 @@ public class UserController {
     private UserServiceImpl userService;
     // private final EmailService emailService;
 
+    @Value("${aws.secret.key}")
+    private String awsSecretKey;
+
+    @Value("${aws.access.key}")
+    private String awsAccessKey;
+
+    @Value("${aws.bucket.name}")
+    private String awsBucketName;
     private final JavaMailSender mailSender;
+
+
 
     @Autowired
     public UserController(UserServiceImpl userService,JavaMailSender mailSender) {
@@ -33,16 +48,17 @@ public class UserController {
         this.mailSender = mailSender;
     }
 
-    @GetMapping("/send")
+    @PostMapping("/send")
     public String sendEmail() {
         try{
-        SimpleMailMessage message = new SimpleMailMessage();
-        String to = "sistemastt8@gmail.com";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        String to = "yayaho4989@bodeem.com";
         String subject = "Envio de mail Equipo 5";
-        String text = "Mail de prueba";
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText("Email de prueba");
         mailSender.send(message);
         return "Email sent successfully";
          } catch (Exception e) {
@@ -64,26 +80,67 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getId(@PathVariable Long id) {
-        UserDTO UserDTO = userService.getId(id);
+        System.out.println("LLEGOOO id = " + id);
+        UserResponseDTO UserDTO = userService.getId(id);
         return ResponseEntity.ok().body(UserDTO);
     }
 
+
+    @GetMapping("/secrets")
+    public ResponseEntity<?> getSecrets(HttpServletRequest request){
+        String token = request.getHeader("Authorization");
+        HashMap<String, String> verifiedData = new HashMap<>();
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7); // Eliminar el prefijo "Bearer "
+            UserDTO user = userService.getUserFromToken(token);
+            if (user.getRole().getName().equals("ADMIN")) {
+                verifiedData.put("access", awsAccessKey);
+                verifiedData.put("secret", awsSecretKey);
+                verifiedData.put("name", awsBucketName);
+            }
+        }
+        return ResponseEntity.ok().body(verifiedData);
+
+    }
+
     @GetMapping()
-    public ResponseEntity<Set<UserDTO>> getUsers() {
-        Set<UserDTO> users = userService.getAll();
+    public ResponseEntity<Set<UserResponseDTO>> getUsers() {
+        Set<UserResponseDTO> users = userService.getAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/verify-email/{token}")
-    public ResponseEntity<?> verifyEmail(@PathVariable String token) {
-        HashMap<String, Object> verifiedData = userService.verifyEmail(token);
-        return ResponseEntity.ok().body(verifiedData);
+    @PostMapping("/verify-email")
+    public ResponseEntity<?> verifyEmail(@RequestBody HashMap<String, String> requestMap) {
+        String token = requestMap.get("token");
+        System.out.println("token = " + token);
+        try {
+            HashMap<String, Object> verifiedData = userService.verifyEmail(token);
+            return ResponseEntity.ok().body(verifiedData);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @PostMapping("/resend-email")
+    public ResponseEntity<?> resendEmail(@RequestBody HashMap<String, String> requestMap) {
+        String email = requestMap.get("email");
+        try {
+            userService.resendEmail(email);
+            return ResponseEntity.ok().body("Email reenviado con exito.");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
+
+
     @PostMapping()
-    public ResponseEntity<UserDTO> save(@RequestBody UserDTO UserDTO) {
-        UserDTO response = userService.save(UserDTO);
-        return ResponseEntity.ok().body(response);
+    public ResponseEntity<?> save(@RequestBody UserCreateDTO UserDTO) {
+        try {
+            userService.save(UserDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body("User Created successfully");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -103,10 +160,10 @@ public class UserController {
         }
     }
 
-    @PutMapping
-    public void update(@RequestBody UserDTO UserDTO) {
-        userService.update(UserDTO);
-    }
+//    @PutMapping
+//    public void update(@RequestBody UserDTO UserDTO) {
+//        userService.update(UserDTO);
+//    }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public String ProcessResourceNotFoundException(ResourceNotFoundException resourceNotFoundException) {

@@ -29,13 +29,13 @@ public class MovieServiceImpl implements IMovieService{
     @Autowired
     ObjectMapper mapper;
 
-    public Movie getId(Long id){
+    public MovieDTO getId(Long id){
 //        Optional<Movie> movieOptional = movieRepository.findById(id);
 //        Movie movie = movieOptional.orElse(null);
 //        return mapper.convertValue(movie, MovieDTO.class);
         Optional<Movie> movieOptional = movieRepository.findById(id);
         Movie movie = movieOptional.orElse(null);
-        return movie;
+        return mapper.convertValue(movie, MovieDTO.class);
     }
 
     @Override
@@ -65,10 +65,9 @@ public class MovieServiceImpl implements IMovieService{
         for(Movie movie : movies){
             movieDto.add(mapper.convertValue(movie, MovieDTO.class));
         }
-        log.info("Movies were found");
         return movieDto.stream()
-                .sorted(Comparator.comparing(MovieDTO::getId))
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+               .sorted(Comparator.comparing(MovieDTO::getId))
+               .collect(Collectors.toCollection(LinkedHashSet::new));
     }   
 
     public MovieDTO save(MovieDTO movieDTO){
@@ -76,6 +75,20 @@ public class MovieServiceImpl implements IMovieService{
         Movie saveMovie = movieRepository.save(movie);
         log.info("Movie saved successfully: {}",movieDTO);
         return mapper.convertValue(saveMovie, MovieDTO.class);
+    }
+    public Set<MovieDTO> search(String search_input) {
+        Set<Movie> movies = movieRepository.search(search_input);
+        if (movies.isEmpty()) {
+            log.info("No movies found for search query: {}", search_input);
+            return Collections.emptySet();
+        }
+        Set<MovieDTO> movieDto = new HashSet<>();
+        for(Movie movie : movies){
+            movieDto.add(mapper.convertValue(movie, MovieDTO.class));
+        }
+        return movieDto.stream()
+                .sorted(Comparator.comparing(MovieDTO::getId))
+                .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     public void delete(Long id){

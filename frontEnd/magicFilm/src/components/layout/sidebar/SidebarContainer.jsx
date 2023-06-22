@@ -16,7 +16,9 @@ const SidebarContainer = () => {
       </article> */}
 
       <Sidebar />
-      <Outlet />
+      <div style={{ width: "100%" }}>
+        <Outlet />
+      </div>
     </div>
   );
 };

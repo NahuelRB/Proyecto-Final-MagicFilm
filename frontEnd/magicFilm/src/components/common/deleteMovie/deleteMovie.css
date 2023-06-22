@@ -12,7 +12,6 @@
   justify-content: space-between;
 }
 
-
 .container-delete-movie {
   width: 100%;
   display: flex;
@@ -31,7 +30,6 @@
   align-items: center;
   margin-bottom: 20px;
   gap: 28px;
-  padding: 30px;
   flex: 1;
 }
 
