@@ -26,5 +26,4 @@ deploy-backend:
         - scp -o StrictHostKeyChecking=no backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
         - ssh -t -o StrictHostKeyChecking=no ubuntu@$EC2_IP "fuser -k -n tcp 8080 > /dev/null 2>&1 && nohup java -jar /home/ubuntu/integrador/cinema-0.0.8-SNAPSHOT.jar &"
         - sleep 5s
-        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "cat nohup.out"
         - echo "Deployment successful"
