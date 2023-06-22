@@ -25,7 +25,7 @@ deploy-backend:
     script: 
         
         - scp -o StrictHostKeyChecking=no backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
-        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "kill $(lsof -t -i:8080)"
+        - kill $(lsof -t -i:8080)
         - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "nohup java -jar /home/ubuntu/integrador/cinema-0.0.8-SNAPSHOT.jar &"
         
          
