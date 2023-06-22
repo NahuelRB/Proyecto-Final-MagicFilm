@@ -11,7 +11,7 @@ build-backend:
         - mvn clean package
     artifacts:
         paths:
-            - backEnd/cinema/cinema/target/cinema-0.0.1-SNAPSHOT.jar
+            - backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar
 
 deploy-backend:
     stage: deploy
@@ -24,8 +24,8 @@ deploy-backend:
         - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     script: 
         
-        - scp -o StrictHostKeyChecking=no backEnd/cinema/cinema/target/cinema-0.0.1-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
-        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "java -jar /home/ubuntu/integrador/cinema-0.0.1-SNAPSHOT.jar &"
+        - scp -o StrictHostKeyChecking=no backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
+        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "java -jar /home/ubuntu/integrador/cinema-0.0.8-SNAPSHOT.jar &"
         
          
 
