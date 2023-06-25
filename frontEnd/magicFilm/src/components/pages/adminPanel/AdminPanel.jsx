@@ -1,7 +1,7 @@
 import React from "react";
 import AddMovieContainer from "../../common/addMovie/AddMovieContainer";
 import DeleteMovieContainer from "../../common/deleteMovie/DeleteMovieContainer";
-import BackButton from "../../common/backButton/BackButton";
+import BackButton from "../../common/backButton/backButton";
 
 const AdminPanel = () => {
   return (
