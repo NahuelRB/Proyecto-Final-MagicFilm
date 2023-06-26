@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./movieDetail.css";
 import MovieDetail from "./MovieDetail";
 import { getMovieById } from "../../../service/productServices";
 import { AuthContext } from "../../../context/AuthContext";
 import { Troubleshoot } from "@mui/icons-material";
+import Swal from "sweetalert2";
 
 const obtenerIdVideoYoutube = (url) => {
   const regex =
@@ -25,6 +26,18 @@ const MovieDetailContainer = () => {
 
   const [dataMovie, setDataMovie] = useState({});
 
+  const nav = useNavigate()
+
+  const loginReservation = (id) => {
+    {user?.id ? (
+      nav(`/reservation/${id}`)
+    ) : (
+      Swal.fire('Debes iniciar sesión')   
+    )}
+  };
+
+
+
   useEffect(() => {
     const movieById = getMovieById(id);
     movieById
@@ -36,7 +49,7 @@ const MovieDetailContainer = () => {
       .catch((error) => console.log(error));
   }, [id]);
 
-  return <MovieDetail dataMovie={dataMovie} user={user} />;
+  return <MovieDetail dataMovie={dataMovie} user={user} loginReservation={loginReservation}/>;
 };
 
 export default MovieDetailContainer;

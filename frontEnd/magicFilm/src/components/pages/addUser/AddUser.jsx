@@ -152,7 +152,7 @@ const AddUser = ({ state, setState }) => {
         )}
       </div>
 
-      <button className=" solid" type="submit">
+      <button className="solid" type="submit">
         Crear
       </button>
 

@@ -14,6 +14,7 @@ import AddMovieContainer from "./components/common/addMovie/AddMovieContainer";
 import AddCategoryContainer from "./components/common/addCategory/AddCategoryContainer";
 import DeleteMovieContainer from "./components/common/deleteMovie/DeleteMovieContainer";
 import SearchMoviesContainer from "./components/common/searchMovies/SearchMoviesContainer";
+import ReservationContainer from "./components/pages/reservation/ReservationContainer";
 
 const AppRoutes = () => {
   return (
@@ -27,6 +28,7 @@ const AppRoutes = () => {
           <Route path="/register" element={<AddUserContainer />} />
           <Route path="/verify" element={<EmailVerifyContainer />} />
           <Route path="/search" element={<SearchMoviesContainer />} />
+          <Route path="/reservation/:id" element={<ReservationContainer />} />
 
           <Route
             path="/category/:category_id"
@@ -38,7 +40,7 @@ const AppRoutes = () => {
               <Route path="/adduser" element={<AddUserContainer />} />
               <Route path="/movie" element={<AddMovieContainer />} />
               <Route path="/newcategory" element={<AddCategoryContainer />} />
-              <Route path="/delete" element={<DeleteMovieContainer />} />
+              <Route path="/delete" element={<DeleteMovieContainer/>} />
             </Route>
           </Route>
         </Route>

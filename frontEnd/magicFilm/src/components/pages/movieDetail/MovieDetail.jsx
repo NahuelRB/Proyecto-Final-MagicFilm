@@ -7,14 +7,15 @@ import snak from "../../../assets/icon/snak.svg";
 import sound from "../../../assets/icon/sound.svg";
 import chair from "../../../assets/icon/chair.svg";
 import iceCream from "../../../assets/icon/iceCream.svg";
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import QualificationMovieContainer from "../../common/qualificationMovie/QualificationMovieContainer";
 import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
 import { useEffect } from "react";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
 import BackButton from "../../common/backButton/BackButton";
+
 const MovieDetail = (props) => {
-  const { dataMovie, user } = props;
+  const { dataMovie, user, loginReservation } = props;
   console.log("🚀 ~ file: MovieDetail.jsx:18 ~ MovieDetail ~ user:", user);
 
   return (
@@ -71,6 +72,16 @@ const MovieDetail = (props) => {
             ) : (
               <ScoreMovieContainer dataMovie={dataMovie} />
             )}
+
+
+            <button
+              className=" solid"
+              type="submit"
+              onClick={() => {loginReservation(dataMovie.id)}}
+            
+            >
+              Reserva
+            </button>
           </div>
         </div>
         {dataMovie?.trailer_images?.length > 0 && (

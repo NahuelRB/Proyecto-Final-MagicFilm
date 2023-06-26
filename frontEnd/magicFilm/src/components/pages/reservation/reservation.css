@@ -1,0 +1,57 @@
+.ContainerReservation{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.6fr 1.5fr 1.2fr;
+    grid-template-areas:
+    "sidebarReservation followUpReservation followUpReservation followUpReservation"
+    "sidebarReservation calendarReservation hoursCinema counterChairs" 
+    "sidebarReservation dataReservation dataReservation dataReservation"
+    "sidebarReservation dataReservation dataReservation dataReservation"
+    
+    
+    ;
+}
+
+#followUpReservation{
+    background-color: #c1c6c6;
+    grid-area: followUpReservation ;
+    
+}
+
+
+#sidebarReservation{
+    background-color: #00C9C8;
+    grid-area:sidebarReservation;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    
+}
+
+#calendarReservation{
+    background-color: #82f499;
+    grid-area:calendarReservation ;
+}
+
+#hoursCinema{
+    background-color: #72d2ff;
+    grid-area:hoursCinema ;
+
+}
+
+#counterChairs{
+    background-color: #f6a5ff;
+    grid-area:counterChairs ;
+
+}
+
+#dataReservation{
+    background-color: #ff9292;
+    grid-area: dataReservation;
+
+}
+
+
+
