@@ -10,9 +10,9 @@ const LoginPage = ({ handleLogin }) => {
         <input id="email" required type="email" className="login-input" />
         <label htmlFor="password">Contraseña</label>
         <input id="password" required type="password" className="login-input" />
-        <a href="/forgot-password" className="link">
+        {/* <a href="/forgot-password" className="link">
           ¿Olvidaste tu contraseña?
-        </a>
+        </a> */}
         <button type="submit" className="login-button">
           Iniciar sesión
         </button>

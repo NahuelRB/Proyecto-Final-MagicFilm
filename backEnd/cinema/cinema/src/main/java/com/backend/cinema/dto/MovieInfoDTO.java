@@ -6,14 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ScoreDTO {
-
+public class MovieInfoDTO {
     private Long id;
-    private Long score;
+    private String title;
+    private Boolean state;
+    private double avg_score;
 
 }

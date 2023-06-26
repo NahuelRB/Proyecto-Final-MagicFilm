@@ -5,6 +5,11 @@ export const getMovies = () => {
   return movies;
 };
 
+export const getRecommendedMovies = () => {
+  let movies = axiosInstance.get("/movie/recommended");
+  return movies;
+};
+
 export const getMovieById = (id) => {
   return axiosInstance.get(`/movie/${id}`);
 };

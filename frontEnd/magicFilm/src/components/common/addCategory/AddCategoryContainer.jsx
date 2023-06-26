@@ -8,6 +8,7 @@ import {
   createCategory,
 } from "../../../service/categoryServices";
 import Swal from "sweetalert2";
+import { uploadFile } from "../../../service/awsUtils";
 
 const AddCategoryContainer = ({
   open,
@@ -16,6 +17,8 @@ const AddCategoryContainer = ({
   from,
 }) => {
   const saveCategory = async (data) => {
+    data.zoom = await uploadFile(data.zoom.image, data.name + "/zoom/");
+    data.logo = await uploadFile(data.zoom.logo, data.name + "/logo/");
     const create = await createCategory(data);
     if (from !== undefined && create.status === 200) {
       getCategories().then((res) => {
