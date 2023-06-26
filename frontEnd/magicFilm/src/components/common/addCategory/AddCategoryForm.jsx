@@ -1,6 +1,7 @@
 import { useState, forwardRef } from "react";
 import "./addCategory.css";
 import Swal from "sweetalert2";
+import iconClip from "../../../assets/icon/clip.svg";
 
 const AddCategoryForm = forwardRef(({ saveCategory }, ref) => {
   const initialState = {
@@ -92,7 +93,7 @@ const AddCategoryForm = forwardRef(({ saveCategory }, ref) => {
           }}
         >
           {state?.zoom ? (
-            <p style={{ fontSize: "0.9rem" }}></p>
+            <p style={{ fontSize: "0.9rem" }}>{state.zoom.filename}</p>
           ) : (
             <p style={{ fontSize: "0.9rem" }}>
               Cargar imagen*{" "}
@@ -124,7 +125,7 @@ const AddCategoryForm = forwardRef(({ saveCategory }, ref) => {
           }}
         >
           {state?.logo ? (
-            <p style={{ fontSize: "0.9rem" }}></p>
+            <p style={{ fontSize: "0.9rem" }}>{state.logo.filename}</p>
           ) : (
             <p style={{ fontSize: "0.9rem" }}>
               Cargar Logo*{" "}
