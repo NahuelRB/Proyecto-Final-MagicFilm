@@ -12,7 +12,7 @@ import QualificationMovieContainer from "../../common/qualificationMovie/Qualifi
 import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
 import { useEffect } from "react";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
-import BackButton from "../../common/backButton/BackButton";
+import BackButton from "../../common/backButton/backButton";
 const MovieDetail = (props) => {
   const { dataMovie, user } = props;
   console.log("🚀 ~ file: MovieDetail.jsx:18 ~ MovieDetail ~ user:", user);

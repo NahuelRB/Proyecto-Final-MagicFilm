@@ -15,11 +15,13 @@ export const getMovieById = (id) => {
 };
 
 export const getMovieByCategoryId = (category_id) => {
-  if (category_id === "0") { // En caso que sean todas
+  if (category_id === "0") {
+    // En caso que sean todas
     return axiosInstance.get(`/movie`);
   }
 
-  return axiosInstance.get(`/movie/category/${category_id}`).then((res) => { //Filtra el resto de categorias
+  return axiosInstance.get(`/movie/category/${category_id}`).then((res) => {
+    //Filtra el resto de categorias
     const filteredMovies = res.data.filter(
       (movie) => parseInt(movie.category.id) === parseInt(category_id)
     );
@@ -28,7 +30,9 @@ export const getMovieByCategoryId = (category_id) => {
 };
 
 export const getMovie = (title) => {
-  let movies = axiosInstance.get("/movie", { params: { title: title } });
+  let movies = axiosInstance.get("/movie/search", {
+    params: { search_input: title },
+  });
   return movies;
 };
 
@@ -41,15 +45,12 @@ export const updateMovie = (id, data) => {
 };
 
 export const createMovie = (data) => {
-
   return axiosProtected.post(`/movie`, data);
 };
 
 export const searchMovie = (search) => {
-
   return axiosInstance.get(`/movie/search?search_input=${search}`);
 };
-
 
 // export const getCategories = () => {
 //   // return axiosInstance.get(`/categories`);
@@ -66,8 +67,3 @@ export const searchMovie = (search) => {
 //       }, 100);
 //   });
 // }
-
-
-
-
-
