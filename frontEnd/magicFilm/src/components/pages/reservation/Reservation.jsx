@@ -1,6 +1,8 @@
 import React from 'react'
 
 import './Reservation.css'
+import ChooseHourContainer from '../../common/chooseHour/ChooseHourContainer'
+import ChooseSeatContainer from '../../common/chooseSeat/ChooseSeatContainer'
 
 const Reservation = (props) => {
     const{dataMovie}= props
@@ -42,8 +44,8 @@ const Reservation = (props) => {
         </div>
         <div id='followUpReservation'>followUpReservation</div>
         <div id='calendarReservation'>Calendar</div>
-        <div id='hoursCinema'>hoursCinema</div>
-        <div id='counterChairs'>counterChairs</div>
+        <div id='hoursCinema'><ChooseHourContainer/></div>
+        <div id='counterChairs'><ChooseSeatContainer/></div>
         <div id='dataReservation'>dataReservation</div>
     </div>
   )
