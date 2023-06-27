@@ -3,7 +3,9 @@ import React from "react";
 import "./Reservation.css";
 import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
-
+import ProgresLine from "../../common/addProgressLine/ProgressLine"
+import ProgressLine from "../../common/addProgressLine/ProgressLine";
+import CalendarReservation from "../../common/addCalendar/CalendarReservation";
 const Reservation = (props) => {
   const { dataMovie } = props;
 
@@ -60,8 +62,8 @@ const Reservation = (props) => {
           </h4>
         </div>
       </div>
-      <div id="followUpReservation">followUpReservation</div>
-      <div id="calendarReservation">Calendar</div>
+      <div id="followUpReservation"><ProgressLine/></div>
+      <div id="calendarReservation"><CalendarReservation/></div>
       <div id="hoursCinema">hoursCinema</div>
       <div id="counterChairs">counterChairs</div>
       <div id="dataReservation">
