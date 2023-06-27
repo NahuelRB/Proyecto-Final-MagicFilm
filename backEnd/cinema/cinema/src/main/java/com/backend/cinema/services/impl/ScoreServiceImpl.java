@@ -1,7 +1,10 @@
 package com.backend.cinema.services.impl;
 
+import com.backend.cinema.dto.ScoreFilterDTO;
 import com.backend.cinema.dto.ScoreResponseDTO;
+import com.backend.cinema.entity.Movie;
 import com.backend.cinema.entity.Score;
+import com.backend.cinema.entity.User;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.repository.IMovieRepository;
 import com.backend.cinema.repository.IScoreRepository;
@@ -62,18 +65,45 @@ public class ScoreServiceImpl implements IScoreService {
 
 
     public ScoreResponseDTO save(ScoreResponseDTO scoreDTO){
-        Score score = mapper.convertValue(scoreDTO, Score.class);
-        score.setUser(userRepository.getReferenceById(scoreDTO.getUser_id()));
-        score.setMovie(movieRepository.getById(scoreDTO.getMovie_id()));
+        System.out.println("ScoreDTO");
+        Optional<Score> score_old = scoreRepository.filter(scoreDTO.getUser_id(), scoreDTO.getMovie_id());
+        System.out.println("score_old");
+        Score score;
+        Movie movie=movieRepository.getById(scoreDTO.getMovie_id());
+        User user= userRepository.getById(scoreDTO.getUser_id());
+        if (score_old.isPresent()){
+            System.out.println("Score Existente");
+            score = score_old.get();
+            score.setScore(scoreDTO.getScore());
+        } else {
+            System.out.println("Score Nuevo");
+            score = mapper.convertValue(scoreDTO, Score.class);
+            score.setUser(user);
+            score.setMovie(movie);
+        }
         Score saveScore = scoreRepository.save(score);
-        saveScore.getMovie().updateAverageScore();
-        log.info("Movie saved successfully: {}",scoreDTO);
-        ScoreResponseDTO response= mapper.convertValue(saveScore, ScoreResponseDTO.class);
-        response.setMovie_id(saveScore.getMovie().getId());
-        response.setUser_id(saveScore.getUser().getId());
+        movie.updateAverageScore();
+        log.info("Movie saved successfully: {}", saveScore);
+        ScoreResponseDTO response = mapper.convertValue(saveScore, ScoreResponseDTO.class);
+        response.setMovie_id(movie.getId());
+        response.setUser_id(user.getId());
         return response;
     }
 
+    public Optional<ScoreResponseDTO> filter(ScoreFilterDTO scoreFilterDTO) {
+        Optional<Score> scoreFilter = scoreRepository.filter(scoreFilterDTO.getUser_id(), scoreFilterDTO.getMovie_id());
+        ScoreResponseDTO response = null;
+        if (scoreFilter.isPresent()) {
+            response = new ScoreResponseDTO();
+            Score score = scoreFilter.get();
+            response.setMovie_id(score.getMovie().getId());
+            response.setScore(score.getScore());
+            response.setUser_id(score.getUser().getId());
+            response.setId(score.getId());
+        }
+
+        return Optional.ofNullable(response);
+    }
 
 
 }

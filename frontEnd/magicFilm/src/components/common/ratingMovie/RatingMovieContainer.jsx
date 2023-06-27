@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import RatingMovie from "./RatingMovie";
-import { createScore, getScores } from "../../../service/rating";
-import Swal from "sweetalert2";
-
+import { createScore } from "../../../service/rating";
 const RatingMovieContainer = (props) => {
-  const { dataMovie } = props
-  console.log(dataMovie.id);
-  const [value, setValue] = useState(2);
-  const [valueCalification, setValueCalification] = useState(true);
-  
-  console.log(value);
+  const { dataMovie, user, value, setValue } = props;
+  const handleRating = (newValue) => {
+    const ratingData = {
+      score: newValue,
+      movie_id: dataMovie.id,
+      user_id: parseInt(user.id),
+    };
+    createScore(ratingData);
+    setValue(newValue);
+    
+  };
 
-  const ratingData =
-  {
-    score: value,
-    movie_id: dataMovie.id,
-    user_id: 2
-  }
-
-  return (
-    <RatingMovie 
-    value={value}
-    setValue={setValue} 
-    />
-
-  );
+  return <RatingMovie value={value} setValue={handleRating} />;
 };
 
 export default RatingMovieContainer;

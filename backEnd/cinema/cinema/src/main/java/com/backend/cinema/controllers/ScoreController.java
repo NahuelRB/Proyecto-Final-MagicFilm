@@ -1,5 +1,6 @@
 package com.backend.cinema.controllers;
 
+import com.backend.cinema.dto.ScoreFilterDTO;
 import com.backend.cinema.dto.ScoreResponseDTO;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.ScoreServiceImpl;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 import java.util.Set;
 
 @RestController
@@ -37,10 +39,22 @@ public class ScoreController{
 
     @PostMapping()
     public ResponseEntity<ScoreResponseDTO> save(@RequestBody ScoreResponseDTO scoreDTO) {
+        System.out.println("LLEGO AL EP");
         ScoreResponseDTO response = scoreService.save(scoreDTO);
         return ResponseEntity.ok().body(response);
     }
 
+
+    @PostMapping("/filter")
+    public ResponseEntity<?> filterScore(@RequestBody ScoreFilterDTO filterDTO) {
+        Optional<ScoreResponseDTO> score = scoreService.filter(filterDTO);
+        if (score.isPresent()) {
+            log.warn("No categories found");
+            return new ResponseEntity<>(score, HttpStatus.OK);
+        }
+        log.info("categories found: {}", score);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 
 
 }

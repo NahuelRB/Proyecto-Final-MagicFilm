@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "http://ec2-13-58-199-98.us-east-2.compute.amazonaws.com:8080";
-// const BASE_URL = "http://localhost:8080";
+// const BASE_URL = "http://ec2-13-58-199-98.us-east-2.compute.amazonaws.com:8080";
+const BASE_URL = "http://localhost:8080";
 export const axiosInstance = axios.create({
   baseURL: BASE_URL
 });
