@@ -15,23 +15,22 @@ const ProgressLine = () => {
         <div className={`step ${activeStep === 3 ? 'active' : ''}`} />
       </div>
       <div className="step-buttons">
+       <hr className='h'/>
         <button
           className={`step-button ${activeStep === 1 ? 'active' : ''}`}
-          onClick={() => handleStepChange(1)}
+          onClick={() => handleStepChange(3)}
         >
            1
         </button>
         <button
           className={`step-button ${activeStep === 1 ? 'active' : ''}`}
-          onClick={() => handleStepChange(1)}
+          onClick={() => handleStepChange(3)}
         >
          2
         </button>
-         
-        
         <button
           className={`step-button ${activeStep === 1? 'active' : ''}`}
-          onClick={() => handleStepChange(1)}
+          onClick={() => handleStepChange(3)}
         >
         3
         </button>

@@ -12,8 +12,14 @@
 }
 
 #followUpReservation {
+  position: relative;
   background-color: #c1c6c6;
   grid-area: followUpReservation;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+
 }
 
 #sidebarReservation {
