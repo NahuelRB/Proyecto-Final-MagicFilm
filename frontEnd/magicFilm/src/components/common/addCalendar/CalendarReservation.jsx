@@ -11,7 +11,7 @@ class CalendarReservation extends React.Component {
     };
   }
   componentDidMount() {
-    // Obtener las fechas disponibles para los próximos 5 días con horas y salas
+    // Obtener las fechas disponibles para los próximos 40 días con horas y salas
     const today = new Date();
     const availableReservations = [];
 
