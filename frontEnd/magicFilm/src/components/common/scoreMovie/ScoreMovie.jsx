@@ -4,9 +4,9 @@ const ScoreMovie = ({ value }) => {
   console.log("🚀 ~ file: ScoreMovie.jsx:4 ~ ScoreMovie ~ value:", value);
   return (
     <div
-      style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+      style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "10px" }}
     >
-      <h3>Valoracion Promedio:</h3>
+      <h3>Calificación:</h3>
 
       <StarIcon fontSize="string" sx={{ color: "#ffd700", fontSize: "30px" }} />
       <h2

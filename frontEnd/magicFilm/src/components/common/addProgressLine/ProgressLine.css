@@ -1,0 +1,41 @@
+.progress-line {
+    display: flex;
+    margin: 20px;
+  
+  }
+  
+  .step {
+    flex: 1;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    
+  }
+  
+  .step.active {
+    background-color: black;
+  }
+  
+  .step-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .step-button {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-radius: 50%; /* Hace que los botones sean circulares */
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .step-button.active {
+    background-color: black;
+    color: white;
+  }
+  

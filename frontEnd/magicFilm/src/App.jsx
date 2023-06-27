@@ -5,14 +5,18 @@ import AppRoutes from "./AppRoutes.jsx";
 import AuthContextProvider from "./context/AuthContext.jsx";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import ReservationContextReducerProvider from "./context/ReservationContextReducer ";
 
 function App() {
   return (
     <BrowserRouter>
+   
       <AuthContextProvider>
+      <ReservationContextReducerProvider>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <AppRoutes />
         </LocalizationProvider>
+        </ReservationContextReducerProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );
