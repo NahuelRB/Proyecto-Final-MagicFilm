@@ -33,7 +33,7 @@
     "server": "^1.0.38",
     "styled-components": "^5.2.1",
     "sweetalert2": "^11.7.6",
-    "yup": "^1.2.0"
+    "yup": "^1.2.0" 
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

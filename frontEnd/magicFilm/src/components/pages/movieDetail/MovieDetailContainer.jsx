@@ -32,7 +32,8 @@ const MovieDetailContainer = () => {
     {user?.id ? (
       nav(`/reservation/${id}`)
     ) : (
-      Swal.fire('Debes iniciar sesión')   
+     /*  Swal.fire('Debes iniciar sesión')    */
+     nav("/login")
     )}
   };
 

@@ -1,52 +1,120 @@
-import React from 'react'
+import React from "react";
 
-import './Reservation.css'
+import "./Reservation.css";
+import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
+import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
 
 const Reservation = (props) => {
-    const{dataMovie}= props
+  const { dataMovie } = props;
 
-    console.log(dataMovie)
+  const myDate = new Date();
+
+  console.log(dataMovie);
   return (
-    <div className='ContainerReservation'>
-
-       
-     
-        <div id='sidebarReservation'> 
+    <div className="ContainerReservation">
+      <div id="sidebarReservation">
         <h2>Reserva</h2>
 
-
-        <div className="container-detail-movie-properties-image">
+        <div className="reservation-image">
           <img src={dataMovie.image} alt="" />
         </div>
+        
+        <div className="reservation-sidebar-propertis-data">
 
-
-            <h3>
-              Título:{" "}
-              <span className="container-detail-movie-properties-span">
-                {dataMovie.title}
-              </span>
-            </h3>
-            <h3>
-              Fecha de estreno:{" "}
-              <span className="container-detail-movie-properties-span">
-                {dataMovie.release_date}
-              </span>{" "}
-            </h3>
-            
-        
-
-        
-        
-        
-        
+          <ScoreMovieContainer dataMovie={dataMovie} />
+          <h4>
+            Título:{" "}
+            <span className="container-detail-movie-properties-span">
+              {dataMovie.title}
+            </span>
+          </h4>
+          <h4>
+            Fecha de estreno:{" "}
+            <span className="container-detail-movie-properties-span">
+              {dataMovie.release_date}
+            </span>{" "}
+          </h4>
+          <h4>
+            Género:{" "}
+            <span className="container-detail-movie-properties-span">
+              {dataMovie.gender?.name
+                ? dataMovie.gender?.name
+                : dataMovie.gender}
+            </span>
+          </h4>
+          <h4>
+            Tráiler:{" "}
+            <span className="container-detail-movie-properties-span">
+              <a
+                href={dataMovie.trailer}
+                target="_blank"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  fontWeight: "700",
+                }}
+              >
+                Miralo aquí
+              </a>
+            </span>
+          </h4>
         </div>
-        <div id='followUpReservation'>followUpReservation</div>
-        <div id='calendarReservation'>Calendar</div>
-        <div id='hoursCinema'>hoursCinema</div>
-        <div id='counterChairs'>counterChairs</div>
-        <div id='dataReservation'>dataReservation</div>
-    </div>
-  )
-}
+      </div>
+      <div id="followUpReservation">followUpReservation</div>
+      <div id="calendarReservation">Calendar</div>
+      <div id="hoursCinema">hoursCinema</div>
+      <div id="counterChairs">counterChairs</div>
+      <div id="dataReservation">
+        <div className="container-data-reservation">
+          <h3>Resumen de tu reserva</h3>
+          <div className="container-data-reservation-properties">
+            <h5>
+              Titulo:<span> {dataMovie.title}</span>
+            </h5>
 
-export default Reservation
+            <h5>
+              Hora:{" "}
+              <span>
+                {myDate.getHours() +
+                  ":" +
+                  myDate.getMinutes() +
+                  ":" +
+                  myDate.getSeconds()}
+              </span>
+            </h5>
+            <h5>
+              Total: <span>30000</span>
+            </h5>
+            <h5>
+              Fecha de reserva: <span>{dataMovie.release_date}</span>
+            </h5>
+            <h5>
+              Cantidad de asientos: <span>3</span>
+            </h5>
+          </div>
+        </div>
+
+        <div className="container-data-reservation-button">
+          <button
+            className="outline"
+            type="button"
+            style={{ marginTop: "25px", marginLeft: "15px" }}
+            onClick={(e) => {}}
+          >
+            Cancelar
+          </button>
+
+          <button
+            className="solid"
+            type="submit"
+            style={{ marginTop: "25px", marginLeft: "15px" }}
+          >
+            Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Reservation;
