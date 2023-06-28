@@ -23,8 +23,11 @@ front-build:
   image: node:latest
   before_script:
       - echo "Building the app"
-      - cd frontEnd/magicFilm
-  script:    
+      
+  script:
+        - npm i -g vite   
+        - cd frontEnd/magicFilm
+        - export NODE_OPTIONS="--max-old-space-size=4096" 
         - npm i
         - npm run build     
   artifacts:
