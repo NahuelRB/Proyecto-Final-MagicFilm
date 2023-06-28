@@ -17,6 +17,26 @@ build-backend:
             - backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar
 
 
+build_frontend:
+  stage: build
+  image: node:latest
+  script:
+    - echo "Building the app"
+    - cd frontEnd/magicFilm
+    - ls
+    - npm --force install
+    - CI=false npm run build
+    - echo "Finished building the app."
+    - cd build
+    - ls
+    - cd ..
+    - pwd
+  artifacts:
+    name: react_build
+    paths:
+      - ./frontEnd/magicFilm/build/
+
+
 deploy-backend:
     stage: deploy
     image: ubuntu:latest
@@ -33,5 +53,20 @@ deploy-backend:
         - ssh ubuntu@$EC2_IP "sudo systemctl start myapp.service"
         - sleep 5s
         - echo "Deployment successful"
+
+
+front-deploy:
+    stage: deploy
+    image: python:latest
+    before_script:
+        - pip install awscli
+        - aws --version     
+    script: 
+        - echo "front-end deployment"
+        - aws s3 rm s3://magicfilm/ --recursive 
+        - aws s3 sync front-dev/dist/ s3://magicfilm/ --acl public-read
+    rules:
+      - changes:
+            - front-dev/*/
 
        
