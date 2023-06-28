@@ -7,6 +7,8 @@ import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer"
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
 import ProgressLine from "../../common/addProgressLine/ProgressLine";
 import CalendarReservation from "../../common/addCalendar/CalendarReservation";
+import { SeatCountProvider, useSeatCount } from "../../common/chooseSeat/ChooseSeat";
+import { HourCountProvider, useHourCount } from "../../common/chooseHour/ChooseHour";
 
 const Reservation = (props) => {
   const { dataMovie } = props;
@@ -68,10 +70,14 @@ const Reservation = (props) => {
         <CalendarReservation />
       </div>
       <div id="hoursCinema">
+      <HourCountProvider>
         <ChooseHourContainer />
+        </HourCountProvider>
       </div>
       <div id="counterChairs">
-        <ChooseSeatContainer />
+        <SeatCountProvider>
+          <ChooseSeatContainer />
+        </SeatCountProvider>
       </div>
       <div id="dataReservation">
         <div className="container-data-reservation">
