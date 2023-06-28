@@ -17,24 +17,19 @@ build-backend:
             - backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar
 
 
-build_frontend:
+
+front-build:
   stage: build
   image: node:latest
-  script:
-    - echo "Building the app"
-    - cd frontEnd/magicFilm
-    - ls
-    - npm --force install
-    - CI=false npm run build
-    - echo "Finished building the app."
-    - cd build
-    - ls
-    - cd ..
-    - pwd
+  before_script:
+      - echo "Building the app"
+      - cd frontEnd/magicFilm
+  script:    
+        - npm i
+        - npm run build     
   artifacts:
-    name: react_build
     paths:
-      - ./frontEnd/magicFilm/dist/
+      - /frontEnd/magicFilm/dist/
 
 
 deploy-backend:
