@@ -34,7 +34,7 @@ build_frontend:
   artifacts:
     name: react_build
     paths:
-      - ./frontEnd/magicFilm/build/
+      - ./frontEnd/magicFilm/dist/
 
 
 deploy-backend:
