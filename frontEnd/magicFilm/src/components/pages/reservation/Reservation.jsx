@@ -1,11 +1,13 @@
 import React from "react";
 
 import "./Reservation.css";
+import ChooseHourContainer from "../../common/chooseHour/ChooseHourContainer";
+import ChooseSeatContainer from "../../common/chooseSeat/ChooseSeatContainer";
 import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
-import ProgresLine from "../../common/addProgressLine/ProgressLine"
 import ProgressLine from "../../common/addProgressLine/ProgressLine";
 import CalendarReservation from "../../common/addCalendar/CalendarReservation";
+
 const Reservation = (props) => {
   const { dataMovie } = props;
 
@@ -20,9 +22,8 @@ const Reservation = (props) => {
         <div className="reservation-image">
           <img src={dataMovie.image} alt="" />
         </div>
-        
-        <div className="reservation-sidebar-propertis-data">
 
+        <div className="reservation-sidebar-propertis-data">
           <ScoreMovieContainer dataMovie={dataMovie} />
           <h4>
             Título:{" "}
@@ -39,9 +40,7 @@ const Reservation = (props) => {
           <h4>
             Género:{" "}
             <span className="container-detail-movie-properties-span">
-              {dataMovie.gender?.name
-                ? dataMovie.gender?.name
-                : dataMovie.gender}
+              {dataMovie.gender?.name || dataMovie.gender}
             </span>
           </h4>
           <h4>
@@ -62,10 +61,18 @@ const Reservation = (props) => {
           </h4>
         </div>
       </div>
-      <div id="followUpReservation"><ProgressLine/></div>
-      <div id="calendarReservation"><CalendarReservation/></div>
-      <div id="hoursCinema">hoursCinema</div>
-      <div id="counterChairs">counterChairs</div>
+      <div id="followUpReservation">
+        <ProgressLine />
+      </div>
+      <div id="calendarReservation">
+        <CalendarReservation />
+      </div>
+      <div id="hoursCinema">
+        <ChooseHourContainer />
+      </div>
+      <div id="counterChairs">
+        <ChooseSeatContainer />
+      </div>
       <div id="dataReservation">
         <div className="container-data-reservation">
           <h3>Resumen de tu reserva</h3>
@@ -73,7 +80,6 @@ const Reservation = (props) => {
             <h5>
               Titulo:<span> {dataMovie.title}</span>
             </h5>
-
             <h5>
               Hora:{" "}
               <span>
