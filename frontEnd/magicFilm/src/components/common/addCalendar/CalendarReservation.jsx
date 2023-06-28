@@ -10,6 +10,7 @@ class CalendarReservation extends React.Component {
       availableReservations: [],
     };
   }
+
   componentDidMount() {
     // Obtener las fechas disponibles para los próximos 40 días con horas y salas
     const today = new Date();
@@ -28,6 +29,7 @@ class CalendarReservation extends React.Component {
 
     this.setState({ availableReservations });
   }
+
 
   handleDateSelect = (date) => {
     // Verificar si la fecha seleccionada está disponible
@@ -63,7 +65,7 @@ class CalendarReservation extends React.Component {
             />
           </div>
           <div className="container-data-reservation-button">
-          <button
+    {/*       <button
             className="outline"
             type="button"
             style={{ marginTop: "25px", marginLeft: "15px", width:"90px" }}
@@ -78,7 +80,7 @@ class CalendarReservation extends React.Component {
             style={{ marginTop: "25px", marginLeft: "15px",width:"100px" }}
           >
             Seleccinar
-          </button>
+          </button> */}
         </div>
         </div>
        

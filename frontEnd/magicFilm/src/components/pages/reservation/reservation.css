@@ -13,7 +13,6 @@
 
 #followUpReservation {
   position: relative;
-  background-color: #c1c6c6;
   grid-area: followUpReservation;
   display: flex;
   flex-direction: column;
@@ -34,17 +33,19 @@
 }
 
 #calendarReservation {
-  background-color: #82f499;
+  
   grid-area: calendarReservation;
 }
 
 #hoursCinema {
-  background-color: #72d2ff;
+ 
   grid-area: hoursCinema;
 }
 
 #counterChairs {
-  background-color: #f6a5ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-area: counterChairs;
 }
 
