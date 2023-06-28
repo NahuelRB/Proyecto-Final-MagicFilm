@@ -25,10 +25,10 @@ front-build:
       - echo "Building the app"
       
   script:
-        - npm i -g vite   
+        - npm install -g vite   
         - cd frontEnd/magicFilm
         - export NODE_OPTIONS="--max-old-space-size=4096" 
-        - npm i
+        - npm install
         - npm run build     
   artifacts:
     paths:
