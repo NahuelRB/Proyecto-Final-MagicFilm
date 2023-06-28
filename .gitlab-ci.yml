@@ -62,7 +62,7 @@ front-deploy:
         - echo "Deploying frontEnd started..."
         - echo "front-end deployment"
         - aws s3 rm s3://magicfilm/ --recursive 
-        - aws s3 sync front-dev/dist/ s3://magicfilm/ --acl public-read
+        - aws s3 sync frontEnd/magicFilm/dist/ s3://magicfilm/ --acl public-read
 
 
        
