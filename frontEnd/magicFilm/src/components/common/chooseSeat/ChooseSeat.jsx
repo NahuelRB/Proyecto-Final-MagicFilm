@@ -1,19 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import './chooseSeat.css';
 
+const SeatCountContext = createContext();
+
+const SeatCountProvider = ({ children }) => {
+    const [seatCount, setSeatCount] = useState(1);
+
+    return (
+        <SeatCountContext.Provider value={{ seatCount, setSeatCount }}>
+            {children}
+        </SeatCountContext.Provider>
+    );
+};
+
+const useSeatCount = () => {
+    const context = useContext(SeatCountContext);
+
+    if (context === undefined) {
+        throw new Error('useSeatCount debe ser utilizado dentro de un SeatCountProvider');
+    }
+
+    return context;
+};
+
+export { SeatCountProvider, useSeatCount };
+
 const ChooseSeat = () => {
-    const [value, setValue] = useState(1);
+    const { seatCount, setSeatCount } = useSeatCount();
+    const [value, setValue] = useState(String(seatCount));
     const [error, setError] = useState('');
 
     const handleChange = (event) => {
-        const inputValue = parseInt(event.target.value);
+        const inputValue = event.target.value;
 
-        if (inputValue > 0 && inputValue <= 90) {
-            setValue(inputValue);
-            setError('');
+        if (/^\d*$/.test(inputValue)) {
+            if (inputValue > 0 && inputValue <= 30) {
+                setValue(inputValue);
+                setError('');
+                setSeatCount(parseInt(inputValue));
+            } else {
+                setValue(inputValue);
+                setError('Debes ingresar mínimo 1 asiento y máximo 30.');
+            }
         } else {
-            setValue(0);
-            setError('Debes ingresar por lo menos 1 asiento y máximo 90.');
+            setError('Debes ingresar un número válido.');
         }
     };
 
@@ -21,9 +51,10 @@ const ChooseSeat = () => {
         <div className="seat-container">
             <div className="input-container">
                 <input
-                    type="number"
+                    type="text"
                     value={value}
                     onChange={handleChange}
+                    inputMode="numeric"
                     className={error ? 'seat-input error' : 'seat-input'}
                 />
             </div>

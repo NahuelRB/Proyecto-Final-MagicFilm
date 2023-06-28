@@ -1,7 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import "./chooseHour.css";
 
+const HourCountContext = createContext();
+
+const HourCountProvider = ({ children }) => {
+    const [hourCount, setHourCount] = useState(1);
+
+    return (
+        <HourCountContext.Provider value={{ hourCount, setHourCount }}>
+            {children}
+        </HourCountContext.Provider>
+    );
+};
+
+const useHourCount = () => {
+    const context = useContext(HourCountContext);
+
+    if (context === undefined) {
+        throw new Error(
+            "useHourCount debe ser utilizado dentro de un HourCountProvider"
+        );
+    }
+
+    return context;
+};
+
+
+export { HourCountProvider, useHourCount };
+
 const ChooseHour = () => {
+    const { hourCount, setHourCount } = useHourCount();
     const [selectedHour, setSelectedHour] = useState(null);
 
     const handleHourClick = (hour) => {
