@@ -12,9 +12,7 @@ build-backend:
     artifacts:
         paths:
             - backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar
-    rules:
-        - changes:
-            - backEnd/**/*
+
 
 deploy-backend:
     stage: deploy
