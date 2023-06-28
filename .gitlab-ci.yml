@@ -31,7 +31,7 @@ front-build:
         - npm run build     
   artifacts:
     paths:
-      - /frontEnd/magicFilm/dist/
+      - frontEnd/magicFilm/dist/
 
 
 deploy-backend:
