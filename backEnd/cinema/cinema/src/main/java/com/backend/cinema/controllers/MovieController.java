@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @RestController
@@ -48,6 +49,19 @@ public class MovieController{
         log.info("Movies found: {}", movies);
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
+
+    @GetMapping("/recommended")
+    public ResponseEntity<Set<MovieDTO>> getRecommendedMovies() throws ResourceNotFoundException {
+        Date now = new Date();
+
+        long seed = (long)((now.getSeconds() / 30)) + 1;
+        System.out.println("seed antes = " + seed);
+        seed =  (long)now.getMinutes()*seed;
+        Set<MovieDTO> movies = movieService.getAllShuffle(seed);
+        log.info("Movies found: {}", movies);
+        return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
+
 
     @PostMapping()
     public ResponseEntity<MovieDTO> save(@RequestBody MovieDTO movieDTO) {

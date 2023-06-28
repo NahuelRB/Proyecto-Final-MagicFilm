@@ -1,6 +1,9 @@
 package com.backend.cinema.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +19,9 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Movie {
 
     @Id
@@ -35,6 +41,7 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<TrailerImages> trailer_images = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
     private List<Score> scores = new ArrayList<>();
 
@@ -59,12 +66,21 @@ public class Movie {
             trailerImage.setMovie(this);
         }
     }
-
+    public void updateAverageScore() {
+        double avg = 0.0;
+        if (this.scores != null && !this.scores.isEmpty()) {
+            long sum = this.scores.stream()
+                    .mapToLong(Score::getScore)
+                    .sum();
+            avg = (double) sum / this.scores.size();
+        }
+        this.avg_score = avg;
+    }
     public double getAvg_score() {
         double avg = 0.0;
         if (this.scores != null && !this.scores.isEmpty()) {
-            int sum = this.scores.stream()
-                    .mapToInt(Score::getScore)
+            long sum = this.scores.stream()
+                    .mapToLong(Score::getScore)
                     .sum();
             avg = (double) sum / this.scores.size();
         }

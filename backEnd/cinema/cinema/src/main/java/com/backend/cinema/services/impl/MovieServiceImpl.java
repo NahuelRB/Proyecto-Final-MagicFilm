@@ -65,10 +65,31 @@ public class MovieServiceImpl implements IMovieService{
         for(Movie movie : movies){
             movieDto.add(mapper.convertValue(movie, MovieDTO.class));
         }
+
         return movieDto.stream()
                .sorted(Comparator.comparing(MovieDTO::getId))
                .collect(Collectors.toCollection(LinkedHashSet::new));
-    }   
+    }
+
+    @Override
+    public Set<MovieDTO> getAllShuffle(Long seed) throws ResourceNotFoundException{
+        if(movieRepository.findAll().isEmpty()) {
+            log.warn("No Movies Founded");
+            throw new ResourceNotFoundException("No se encontraron peliculas");
+        }
+        List<Movie> movies = movieRepository.findAll();
+        List<MovieDTO> movieDto = new ArrayList<>();
+        for(Movie movie : movies){
+            movieDto.add(mapper.convertValue(movie, MovieDTO.class));
+        }
+
+        Collections.shuffle(movieDto, new Random(seed));
+
+        return new LinkedHashSet<>(movieDto);
+    }
+
+
+
 
     public MovieDTO save(MovieDTO movieDTO){
         Movie movie = mapper.convertValue(movieDTO, Movie.class);

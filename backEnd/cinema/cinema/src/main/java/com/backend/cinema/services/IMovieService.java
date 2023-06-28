@@ -8,6 +8,7 @@ import java.util.Set;
 public interface IMovieService{   
    MovieDTO getId(Long id) throws ResourceNotFoundException;
    Set<MovieDTO> getAll() throws ResourceNotFoundException;
+   Set<MovieDTO> getAllShuffle(Long seed) throws ResourceNotFoundException;
    MovieDTO save(MovieDTO movieDTO);
    void delete(Long id);
    void update(MovieDTO movieDTO);

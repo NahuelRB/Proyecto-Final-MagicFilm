@@ -25,13 +25,10 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             String token = bearerToken.replace("Bearer ", "");
             try {
                 UsernamePasswordAuthenticationToken usernamePAT = TokenUtils.getAuthentication(token);
-                System.out.println("usernamePAT = " + usernamePAT);
                 SecurityContextHolder.getContext().setAuthentication(usernamePAT);
-                System.out.println("usernamePAT = " + usernamePAT);
             }
             catch (Exception e){
                 System.out.println("e.getMessage() = " + e.getMessage());
-
                 response.getWriter().write(e.getMessage());
                 response.setStatus(HttpStatus.FORBIDDEN.value());
                 response.getWriter().flush();

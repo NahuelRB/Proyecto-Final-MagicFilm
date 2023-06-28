@@ -11,7 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ScoreDTO {
+public class ScoreUserDTO {
+
     private Long id;
     private Long score;
+    public MovieInfoDTO movie;
 }
