@@ -24,9 +24,8 @@ deploy-backend:
         - chmod 600 ~/.ssh/id_rsa
         - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
     script: 
-        - echo "Deploying started..."
-        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "sudo systemctl stop myapp.service"
         - scp -o StrictHostKeyChecking=no backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
-        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "sudo systemctl start myapp.service"
+        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "fuser -k -n tcp 8080 > log.log 2>&1 &"
+        - ssh -o StrictHostKeyChecking=no ubuntu@$EC2_IP "nohup java -jar /home/ubuntu/integrador/cinema-0.0.8-SNAPSHOT.jar > log.log 2>&1 &"
         - sleep 5s
         - echo "Deployment successful"
