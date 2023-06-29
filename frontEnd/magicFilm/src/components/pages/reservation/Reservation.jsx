@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Reservation.css";
+import "./reservation.css";
 import ChooseHourContainer from "../../common/chooseHour/ChooseHourContainer";
 import ChooseSeatContainer from "../../common/chooseSeat/ChooseSeatContainer";
 import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
@@ -8,7 +8,10 @@ import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
 import ProgressLine from "../../common/addProgressLine/ProgressLine";
 import CalendarReservation from "../../common/addCalendar/CalendarReservation";
 
-import { HourCountProvider, useHourCount } from "../../common/chooseHour/ChooseHour";
+import {
+  HourCountProvider,
+  useHourCount,
+} from "../../common/chooseHour/ChooseHour";
 
 const Reservation = (props) => {
   const { dataMovie, chairsGlobals } = props;
@@ -70,14 +73,12 @@ const Reservation = (props) => {
         <CalendarReservation />
       </div>
       <div id="hoursCinema">
-      <HourCountProvider>
-        <ChooseHourContainer />
+        <HourCountProvider>
+          <ChooseHourContainer />
         </HourCountProvider>
       </div>
       <div id="counterChairs">
-     
-          <ChooseSeatContainer/>
- 
+        <ChooseSeatContainer />
       </div>
       <div id="dataReservation">
         <div className="container-data-reservation">
