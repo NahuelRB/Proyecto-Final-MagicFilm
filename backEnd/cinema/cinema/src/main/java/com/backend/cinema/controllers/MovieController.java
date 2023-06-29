@@ -53,7 +53,6 @@ public class MovieController{
     @GetMapping("/recommended")
     public ResponseEntity<Set<MovieDTO>> getRecommendedMovies() throws ResourceNotFoundException {
         Date now = new Date();
-
         long seed = (long)((now.getSeconds() / 30)) + 1;
         System.out.println("seed antes = " + seed);
         seed =  (long)now.getMinutes()*seed;
