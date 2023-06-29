@@ -22,7 +22,7 @@ const ChooseSeat = (props) => {
         onClick={() => {
           if (count < 10) {
             setCount(count + 1);
-            dispatch({ type: "ADD_CHAIRS", chairsGlobals: count})
+            dispatch({ type: "ADD_CHAIRS"})
             console.log("valor global"+chairsGlobals)
           } else {
             setCount(0);
@@ -30,7 +30,7 @@ const ChooseSeat = (props) => {
         }}
         className="input-container"
       >
-        <h1>{count}</h1>
+        <h1>{chairsGlobals}</h1>
       </button>
 
       {error && <p className="error-message">{error}</p>}

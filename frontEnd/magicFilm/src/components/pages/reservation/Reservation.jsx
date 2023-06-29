@@ -11,7 +11,7 @@ import CalendarReservation from "../../common/addCalendar/CalendarReservation";
 import { HourCountProvider, useHourCount } from "../../common/chooseHour/ChooseHour";
 
 const Reservation = (props) => {
-  const { dataMovie } = props;
+  const { dataMovie, chairsGlobals } = props;
 
   const myDate = new Date();
 
@@ -103,7 +103,7 @@ const Reservation = (props) => {
               Fecha de reserva: <span>{dataMovie.release_date}</span>
             </h5>
             <h5>
-              Cantidad de asientos: <span>3</span>
+              Cantidad de asientos: <span>{chairsGlobals}</span>
             </h5>
           </div>
         </div>

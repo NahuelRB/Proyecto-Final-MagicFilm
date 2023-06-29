@@ -22,7 +22,13 @@ function reducer(state, action) {
       case 'ADD_HOUR':
         return {...state, hour: "PRUEBA ADD HORA"};
       case 'ADD_CHAIRS':
-        return {...state, chairs: 0};
+        if(state.chairs<10){
+          return {chairs: state.chairs + 1};
+        }
+        else{
+          return {chairs: state.chairs = 0};
+        }
+        
       case 'ADD_PRICE':
         return {...state, price: 20000};
       default:
