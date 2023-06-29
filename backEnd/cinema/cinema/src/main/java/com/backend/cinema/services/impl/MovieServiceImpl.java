@@ -1,9 +1,12 @@
 package com.backend.cinema.services.impl;
 
 import com.backend.cinema.dto.MovieDTO;
+import com.backend.cinema.dto.ScheduleHourDTO;
 import com.backend.cinema.entity.Movie;
+import com.backend.cinema.entity.Schedule;
 import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.repository.IMovieRepository;
+import com.backend.cinema.repository.IScheduleRepository;
 import com.backend.cinema.services.IMovieService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
@@ -20,22 +23,35 @@ public class MovieServiceImpl implements IMovieService{
     public static final Logger log = LogManager.getLogger(MovieServiceImpl.class);
     
     private IMovieRepository movieRepository;
+    private IScheduleRepository scheduleRepository;
+
 
     @Autowired
-    public MovieServiceImpl(IMovieRepository movieRepository){
+    public MovieServiceImpl(IMovieRepository movieRepository, IScheduleRepository scheduleRepository){
         this.movieRepository = movieRepository;
+        this.scheduleRepository= scheduleRepository;
     }
 
     @Autowired
     ObjectMapper mapper;
 
     public MovieDTO getId(Long id){
-//        Optional<Movie> movieOptional = movieRepository.findById(id);
-//        Movie movie = movieOptional.orElse(null);
-//        return mapper.convertValue(movie, MovieDTO.class);
         Optional<Movie> movieOptional = movieRepository.findById(id);
         Movie movie = movieOptional.orElse(null);
-        return mapper.convertValue(movie, MovieDTO.class);
+        MovieDTO movieDTO = mapper.convertValue(movie, MovieDTO.class);
+        if (movie!=null) {
+            List<Schedule> schedules = scheduleRepository.getByMovieId(movie.getId()).orElse(null);
+            HashMap<String,List<ScheduleHourDTO>> schedules_dict = new HashMap<>();
+            if (schedules != null) {
+                for (Schedule schedule : schedules) {
+                    List<ScheduleHourDTO> values= schedules_dict.getOrDefault(schedule.getEmissionDate().toString(), new ArrayList<>());
+                    values.add(mapper.convertValue(schedule, ScheduleHourDTO.class));
+                    schedules_dict.put(schedule.getEmissionDate().toString(), values);
+                }
+            }
+            movieDTO.setSchedules(schedules_dict);
+        }
+        return movieDTO;
     }
 
     @Override

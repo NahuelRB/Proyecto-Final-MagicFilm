@@ -6,22 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ScheduleDTOReq {
-    public Long id;
+public class BookingDTOResp {
+    private Long id_user;
 
-    private MovieInfoDTO movie;
+    private Long id_movie;
 
-    private LocalTime hour;
+    private Long id_schedule;
 
-    private LocalDate emissionDate;
-
-    private String hall;
+    private Long price;
 }

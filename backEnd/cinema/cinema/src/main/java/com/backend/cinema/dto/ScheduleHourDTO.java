@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Setter
@@ -14,14 +13,9 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ScheduleDTOReq {
+public class ScheduleHourDTO {
     public Long id;
-
-    private MovieInfoDTO movie;
-
     private LocalTime hour;
-
-    private LocalDate emissionDate;
-
     private String hall;
+    public Long chairsAvailable;
 }

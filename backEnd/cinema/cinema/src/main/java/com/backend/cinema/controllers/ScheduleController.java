@@ -2,6 +2,7 @@ package com.backend.cinema.controllers;
 
 import com.backend.cinema.dto.ScheduleDTOReq;
 import com.backend.cinema.entity.Schedule;
+import com.backend.cinema.exception.ResourceNotFoundException;
 import com.backend.cinema.services.impl.ScheduleServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/schedule")
-@CrossOrigin(origins = "http://127.0.0.1:5173")
+@CrossOrigin(origins = "*")
 public class ScheduleController {
 
     public static final Logger log = LogManager.getLogger(ScheduleServiceImpl.class);
@@ -22,16 +23,16 @@ public class ScheduleController {
         this.scheduleService = scheduleService;
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException {
-//        MovieDTO movie = scheduleService.getId(id);
-//        if (movie == null) {
-//            log.error("Movie not found with ID: {}", id);
-//            throw new ResourceNotFoundException("Error retrieving movie.");
-//        }
-//        log.info("Movie successfully retrieved with ID: {}", id);
-//        return ResponseEntity.ok().body(movie);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getId(@PathVariable Long id) throws ResourceNotFoundException {
+        ScheduleDTOReq scheduleDTOReq = scheduleService.getId(id);
+        if (scheduleDTOReq == null) {
+            log.error("schedule not found with ID: {}", id);
+            throw new ResourceNotFoundException("Error retrieving schedule.");
+        }
+        log.info("schedule successfully retrieved with ID: {}", id);
+        return ResponseEntity.ok().body(scheduleDTOReq);
+    }
 
     @PostMapping()
     public ResponseEntity<Schedule> save(@RequestBody ScheduleDTOReq scheduleDTOReq) {
