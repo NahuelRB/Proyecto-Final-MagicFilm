@@ -22,9 +22,9 @@ function reducer(state, action) {
       case 'ADD_HOUR':
         return {...state, hour: "PRUEBA ADD HORA"};
       case 'ADD_CHAIRS':
-        return {...state, chairs: "PRUEBA ADD SILLAS"};
+        return {...state, chairs: 0};
       case 'ADD_PRICE':
-        return {...state, price: "PRUEBA ADD PRECIO"};
+        return {...state, price: 20000};
       default:
         return state;
     }
