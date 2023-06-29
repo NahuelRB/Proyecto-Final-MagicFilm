@@ -5,11 +5,8 @@ import MovieDetail from "./MovieDetail";
 import { getMovieById } from "../../../service/productServices";
 import { AuthContext } from "../../../context/AuthContext";
 import { Troubleshoot } from "@mui/icons-material";
-<<<<<<< HEAD
 import Swal from "sweetalert2";
-=======
 import { scoreFilter } from "../../../service/rating";
->>>>>>> 2282fcd9a25512bb3eb88243625a375ef8faac4a
 
 const obtenerIdVideoYoutube = (url) => {
   const regex =
@@ -31,18 +28,16 @@ const MovieDetailContainer = () => {
   const [dataMovie, setDataMovie] = useState({});
   const [value, setValue] = useState(0);
 
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const loginReservation = (id) => {
-    {user?.id ? (
-      nav(`/reservation/${id}`)
-    ) : (
-     /*  Swal.fire('Debes iniciar sesión')    */
-     nav("/login")
-    )}
+    {
+      user?.id
+        ? nav(`/reservation/${id}`)
+        : /*  Swal.fire('Debes iniciar sesión')    */
+          nav("/login");
+    }
   };
-
-
 
   useEffect(() => {
     getMovieById(id)
@@ -59,7 +54,7 @@ const MovieDetailContainer = () => {
         });
       })
       .catch((error) => console.log(error));
-  }, [id,value]);
+  }, [id, value]);
 
   return (
     <MovieDetail
