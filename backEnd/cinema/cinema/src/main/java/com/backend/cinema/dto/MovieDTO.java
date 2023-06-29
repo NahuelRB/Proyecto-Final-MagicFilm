@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 @Setter
@@ -15,20 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieDTO {
-    
-    private Long id;
+public class MovieDTO extends MovieInfoDTO {
 
-    private String title;
     private LocalDate release_date;
     private String summary;
     private LocalDate finish_date;
-    private Boolean state;
-
     private CategoryResponseDTO category;
     private String gender;
     private String image;
     private String trailer;
     private List<TrailerImages> trailer_images;
-    private double avg_score;
+    private HashMap<String,List<ScheduleHourDTO>> schedules;
 }

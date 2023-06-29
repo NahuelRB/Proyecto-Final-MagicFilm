@@ -6,25 +6,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Entity
-@Table(name = "score", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "movie_id"}))
+@Table(name = "schedule")
 @Setter
 @Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Score {
-
+public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long score;
-
-    @ManyToOne()
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "movie_id")
     private Movie movie;
+
+    private LocalTime hour;
+
+    private LocalDate emissionDate;
+
+    private String hall;
+
+    @Column(columnDefinition = "bigint default 100")
+    private Long chairsAvailable;
+
 }

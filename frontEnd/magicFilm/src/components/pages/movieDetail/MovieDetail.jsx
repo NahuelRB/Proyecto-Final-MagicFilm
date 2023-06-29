@@ -12,17 +12,15 @@ import QualificationMovieContainer from "../../common/qualificationMovie/Qualifi
 import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
 import { useEffect } from "react";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
-import BackButton from "../../common/backButton/BackButton";
+import BackButton from "../../common/backButton/backButton";
 
 const MovieDetail = (props) => {
-  const { dataMovie, user, loginReservation } = props;
-  console.log("🚀 ~ file: MovieDetail.jsx:18 ~ MovieDetail ~ user:", user);
-
+  const { dataMovie, user, value, setValue, loginReservation } = props;
   return (
     <div className="container">
       <BackButton />
 
-      <h1 className="titleRecommendedMovies">Detalle Película</h1>
+      <h1 className="titleRecommendedMovies">{dataMovie.title}</h1>
 
       <div className="container-detail-movie">
         <div className="container-detail-movie-properties-image">
@@ -31,12 +29,7 @@ const MovieDetail = (props) => {
         <div className="container-detail-movie-properties">
           <div className="container-detail-movie-properties-text">
             <h1>Detalle película</h1>
-            <h3>
-              Título:{" "}
-              <span className="container-detail-movie-properties-span">
-                {dataMovie.title}
-              </span>
-            </h3>
+
             <h3>
               Fecha de estreno:{" "}
               <span className="container-detail-movie-properties-span">
@@ -67,33 +60,29 @@ const MovieDetail = (props) => {
                 </a>
               </span>
             </h3>
-            {user?.id ? (
-              <RatingMovieContainer dataMovie={dataMovie} />
-            ) : (
-              <ScoreMovieContainer dataMovie={dataMovie} />
+            <ScoreMovieContainer dataMovie={dataMovie} />
+            {user?.id && (
+              <RatingMovieContainer
+                dataMovie={dataMovie}
+                user={user}
+                value={value}
+                setValue={setValue}
+              />
             )}
-
 
             <button
               className=" solid"
               type="submit"
-              onClick={() => {loginReservation(dataMovie.id)}}
-            
+              onClick={() => {
+                loginReservation(dataMovie.id);
+              }}
             >
               Reserva
             </button>
           </div>
         </div>
         {dataMovie?.trailer_images?.length > 0 && (
-          <div
-            style={{
-              flexDirection: "column",
-              display: "flex",
-              justifyContent: "center",
-              width: "45%",
-              flex: 1,
-            }}
-          >
+          <>
             <div className="container-detail-movie-galery">
               {dataMovie.trailer_images.map((image, index) => {
                 while (index < 4) {
@@ -101,7 +90,7 @@ const MovieDetail = (props) => {
                 }
               })}
             </div>
-          </div>
+          </>
         )}
       </div>
 
@@ -111,40 +100,30 @@ const MovieDetail = (props) => {
           {dataMovie.summary}
         </p>
       </div>
-      <section
-        className="container-box"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gridTemplateRows: "repeat(2, 1fr)",
-          gap: "10px",
-          border: "3px solid #00c9c8",
-          borderRadius: "81px",
-          width: "100%",
-          margin: "0",
-        }}
-      >
-        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
+      <section className="container-box">
+        <div>
           <img src={visual} alt="" className="visual" />
-          <p style={{ marginLeft: "10px" }}>Sala 3D</p>
+          <p>Sala 3D</p>
         </div>
 
-        <div style={{ margin: "30px", display: "flex", alignItems: "center" }}>
-          <img src={parking} alt="" className="parking" />{" "}
+        <div>
+          <img src={parking} alt="" className="parking" />
           <p>Parqueadero gratuito</p>
         </div>
-        <div style={{ margin: "30px", display: "flex", alignItems: "center" }}>
-          <img src={snak} alt="" className="snak" />{" "}
+        <div>
+          <img src={snak} alt="" className="snak" />
           <p>Llevanos a tu asiento</p>
         </div>
-        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
-          <img src={chair} alt="" className="chair" /> <p>Sillas reclinables</p>
+        <div>
+          <img src={chair} alt="" className="chair" />
+          <p>Sillas reclinables</p>
         </div>
-        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
-          <img src={sound} alt="" className="sound" /> <p>Sonido envolvente</p>
+        <div>
+          <img src={sound} alt="" className="sound" />
+          <p>Sonido envolvente</p>
         </div>
-        <div style={{ margin: "50px", display: "flex", alignItems: "center" }}>
-          <img src={iceCream} alt="" className="iceCream" />{" "}
+        <div>
+          <img src={iceCream} alt="" className="iceCream" />
           <p>Heladería y zona de comidas</p>
         </div>
       </section>

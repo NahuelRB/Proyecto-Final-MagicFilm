@@ -5,7 +5,11 @@ import MovieDetail from "./MovieDetail";
 import { getMovieById } from "../../../service/productServices";
 import { AuthContext } from "../../../context/AuthContext";
 import { Troubleshoot } from "@mui/icons-material";
+<<<<<<< HEAD
 import Swal from "sweetalert2";
+=======
+import { scoreFilter } from "../../../service/rating";
+>>>>>>> 2282fcd9a25512bb3eb88243625a375ef8faac4a
 
 const obtenerIdVideoYoutube = (url) => {
   const regex =
@@ -25,6 +29,7 @@ const MovieDetailContainer = () => {
   const { id } = useParams();
 
   const [dataMovie, setDataMovie] = useState({});
+  const [value, setValue] = useState(0);
 
   const nav = useNavigate()
 
@@ -39,17 +44,31 @@ const MovieDetailContainer = () => {
 
 
   useEffect(() => {
-    const movieById = getMovieById(id);
-    movieById
-      .then((res) => {
+    getMovieById(id)
+      .then(async (res) => {
         const data = res.data;
         data.trailer = obtenerIdVideoYoutube(data.trailer);
-        setDataMovie(data);
+        scoreFilter({
+          movie_id: data.id,
+          user_id: parseInt(user.id),
+        }).then((res) => {
+          data["score"] = res.data;
+          setValue(data["score"]?.score);
+          setDataMovie(data);
+        });
       })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [id,value]);
 
-  return <MovieDetail dataMovie={dataMovie} user={user} loginReservation={loginReservation}/>;
+  return (
+    <MovieDetail
+      dataMovie={dataMovie}
+      user={user}
+      value={value}
+      setValue={setValue}
+      loginReservation={loginReservation}
+    />
+  );
 };
 
 export default MovieDetailContainer;

@@ -6,16 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class UserResponseDTO {
-    private Long id;
+public class UserResponseDTO extends UserInfoDTO {
     private Boolean is_verified;
-    private String name;
-    private String surname;
-    private String email;
     private RoleDTO role;
+    private List<ScoreUserDTO> scores;
 }

@@ -8,7 +8,7 @@ import {
   createCategory,
 } from "../../../service/categoryServices";
 import Swal from "sweetalert2";
-
+import { uploadFile } from "../../../service/awsUtils";
 const AddCategoryContainer = ({
   open,
   selectCategory,
@@ -16,13 +16,26 @@ const AddCategoryContainer = ({
   from,
 }) => {
   const saveCategory = async (data) => {
+    console.log(
+      "🚀 ~ file: AddCategoryContainer.jsx:19 ~ saveCategory ~ data:",
+      data
+    );
+
+    if (typeof data?.zoom !== "string") {
+      data.zoom = await uploadFile(data.zoom.image, data.title + "/zoom/");
+    }
+    if (typeof data?.logo !== "string") {
+      data.logo = await uploadFile(data.logo.image, data.title + "/logo/");
+    }
     const create = await createCategory(data);
-    if (from !== undefined && create.status === 200) {
-      getCategories().then((res) => {
-        setCategories(res.data);
-        selectCategory(create.data.id);
-        Swal.fire("Se creó correctamente la Categoria");
-      });
+    if (create.status === 200) {
+      if (from !== undefined) {
+        getCategories().then((res) => {
+          setCategories(res.data);
+          selectCategory(create.data.id);
+        });
+      }
+      Swal.fire("Se creó correctamente la Categoria");
     }
   };
 

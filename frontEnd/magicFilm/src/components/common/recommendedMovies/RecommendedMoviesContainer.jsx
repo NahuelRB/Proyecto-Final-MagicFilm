@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 import RecommendedMovies from "./RecommendedMovies";
 import "./RecommendedMovies.css";
-import { getMovies } from "../../../service/productServices";
+import { getRecommendedMovies } from "../../../service/productServices";
 import { Pagination } from "@mui/material";
 
 const RecommendedMoviesContainer = () => {
@@ -14,7 +14,7 @@ const RecommendedMoviesContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await getMovies();
+        const res = await getRecommendedMovies();
         setDataMovies(res.data);
       } catch (error) {
         console.log(error);

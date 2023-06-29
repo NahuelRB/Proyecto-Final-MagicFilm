@@ -6,12 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
+import java.time.LocalTime;
+
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ScoreDTO {
-    private Long id;
-    private Long score;
+public class ScheduleHourDTO {
+    public Long id;
+    private LocalTime hour;
+    private String hall;
+    public Long chairsAvailable;
 }

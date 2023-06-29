@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import HeaderLayoutContainer from "./components/layout/header/HeaderLayoutContainer";
 import FooterLayoutContainer from "./components/layout/footer/FooterLayoutContainer";
 import MovieDetailContainer from "./components/pages/movieDetail/MovieDetailContainer";
@@ -17,35 +18,48 @@ import SearchMoviesContainer from "./components/common/searchMovies/SearchMovies
 import ReservationContainer from "./components/pages/reservation/ReservationContainer";
 
 const AppRoutes = () => {
-  return (
-    <Routes>
-      <Route element={<HeaderLayoutContainer />}>
-        <Route element={<FooterLayoutContainer />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<LoginContainer />} />
-          <Route path="/details" element={<MovieDetailContainer />} />
-          <Route path="/details/:id" element={<MovieDetailContainer />} />
-          <Route path="/register" element={<AddUserContainer />} />
-          <Route path="/verify" element={<EmailVerifyContainer />} />
-          <Route path="/search" element={<SearchMoviesContainer />} />
-          <Route path="/reservation/:id" element={<ReservationContainer />} />
+  function ScrollToTop() {
+    const { pathname } = useLocation();
 
-          <Route
-            path="/category/:category_id"
-            element={<CategoriesSectionContainer />}
-          />
-          <Route element={<PrivateRoute />}>
-            <Route element={<SidebarContainer />}>
-              <Route path="/admin" element={<AdminPanelContainer />} />
-              <Route path="/adduser" element={<AddUserContainer />} />
-              <Route path="/movie" element={<AddMovieContainer />} />
-              <Route path="/newcategory" element={<AddCategoryContainer />} />
-              <Route path="/delete" element={<DeleteMovieContainer/>} />
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+
+    return null;
+  }
+
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<HeaderLayoutContainer />}>
+          <Route element={<FooterLayoutContainer />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginContainer />} />
+            <Route path="/details" element={<MovieDetailContainer />} />
+            <Route path="/details/:id" element={<MovieDetailContainer />} />
+            <Route path="/register" element={<AddUserContainer />} />
+            <Route path="/verify" element={<EmailVerifyContainer />} />
+            <Route path="/search" element={<SearchMoviesContainer />} />
+            <Route path="/reservation/:id" element={<ReservationContainer />} />
+
+            <Route
+              path="/category/:category_id"
+              element={<CategoriesSectionContainer />}
+            />
+            <Route element={<PrivateRoute />}>
+              <Route element={<SidebarContainer />}>
+                <Route path="/admin" element={<AdminPanelContainer />} />
+                <Route path="/adduser" element={<AddUserContainer />} />
+                <Route path="/movie" element={<AddMovieContainer />} />
+                <Route path="/newcategory" element={<AddCategoryContainer />} />
+                <Route path="/delete" element={<DeleteMovieContainer />} />
+              </Route>
             </Route>
           </Route>
         </Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 };
 
