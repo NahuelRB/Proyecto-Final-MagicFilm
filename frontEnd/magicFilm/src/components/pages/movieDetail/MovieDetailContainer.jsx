@@ -44,14 +44,18 @@ const MovieDetailContainer = () => {
       .then(async (res) => {
         const data = res.data;
         data.trailer = obtenerIdVideoYoutube(data.trailer);
-        scoreFilter({
-          movie_id: data.id,
-          user_id: parseInt(user.id),
-        }).then((res) => {
-          data["score"] = res.data;
-          setValue(data["score"]?.score);
+        if (user?.id) {
+          scoreFilter({
+            movie_id: data.id,
+            user_id: parseInt(user.id),
+          }).then((res) => {
+            data["score"] = res.data;
+            setValue(data["score"]?.score);
+            setDataMovie(data);
+          });
+        } else {
           setDataMovie(data);
-        });
+        }
       })
       .catch((error) => console.log(error));
   }, [id, value]);

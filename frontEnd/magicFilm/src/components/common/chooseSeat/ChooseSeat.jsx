@@ -1,19 +1,11 @@
 import React, { useState, createContext, useContext } from "react";
 import "./chooseSeat.css";
 
-
-
-
-
-
-
 const ChooseSeat = (props) => {
-    const {chairsGlobals, dispatch} = props
+  const { chairsGlobals, dispatch } = props;
 
-  
   const [count, setCount] = useState(0);
   const [error, setError] = useState("");
-
 
   return (
     <div className="seat-container">
@@ -22,8 +14,8 @@ const ChooseSeat = (props) => {
         onClick={() => {
           if (count < 10) {
             setCount(count + 1);
-            dispatch({ type: "ADD_CHAIRS"})
-            console.log("valor global"+chairsGlobals)
+            dispatch({ type: "ADD_CHAIRS" });
+            console.log("valor global" + chairsGlobals);
           } else {
             setCount(0);
           }
@@ -34,7 +26,6 @@ const ChooseSeat = (props) => {
       </button>
 
       {error && <p className="error-message">{error}</p>}
-      <p className="text-center">Cantidad</p>
     </div>
   );
 };

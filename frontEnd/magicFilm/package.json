@@ -10,6 +10,12 @@
     "preview": "vite preview",
     "server": "json-server --watch src/api/db.json --port 3000"
   },
+
+  "vite": {
+    "nodeOptions": {
+      "max_old_space_size": 4096
+    }
+  },
   "dependencies": {
     "@date-io/date-fns": "^2.16.0",
     "@emotion/react": "^11.11.1",

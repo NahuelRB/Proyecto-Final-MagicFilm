@@ -1,92 +1,64 @@
-import React from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import "./CalendarReservation.css"
-class CalendarReservation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedDate: null,
-      availableReservations: [],
-    };
-  }
+import React, { useState, useEffect } from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./CalendarReservation.css";
 
-  componentDidMount() {
-    // Obtener las fechas disponibles para los próximos 40 días con horas y salas
-    const today = new Date();
-    const availableReservations = [];
+const CalendarReservation = ({
+  availableDates,
+  selectedDate,
+  setSelectedDate,
+}) => {
+  // useEffect(() => {
+  //   // Obtener las fechas disponibles para los próximos 40 días con horas y salas
+  //   const fetchAvailableReservations = () => {
+  //     // ... Realiza la lógica para obtener las fechas disponibles
+  //     const availableReservations = [];
 
-    for (let i = 0; i < 40; i++) {
-      const date = new Date();
-      date.setDate(today.getDate() + i);
+  //     for (let i = 0; i < 3; i++) {
+  //       const date = new Date();
+  //       date.setDate(date.getDate() + i);
 
-      const reservations = {
-        date: date,
-      };
+  //       const reservations = {
+  //         date: date,
+  //       };
 
-      availableReservations.push(reservations);
-    }
+  //       availableReservations.push(reservations);
+  //     }
 
-    this.setState({ availableReservations });
-  }
+  //     setAvailableReservations(availableReservations);
+  //   };
 
+  //   fetchAvailableReservations();
+  // }, []);
 
-  handleDateSelect = (date) => {
-    // Verificar si la fecha seleccionada está disponible
-    const selectedReservation = this.state.availableReservations.find(
-      (reservations) => reservations.date.toLocaleDateString() === date.toLocaleDateString()
-    );
-
-    if (selectedReservation) {
-      this.setState({ selectedDate: date });
-    } else {
-      // La fecha no está disponible
-      alert('La fecha seleccionada no está disponible');
-    }
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
   };
-
-  render() {
-    const { selectedDate, availableReservations } = this.state;
-
-    return (
-      <div>
-        <h2>Elige una fecha</h2>
-        <div className="calendar-container">
-          
-          <div className="calendar">
-            <Calendar
-              onChange={this.handleDateSelect}
-              value={selectedDate}
-              tileDisabled={({ date }) =>
-                !availableReservations.find(
-                  (reservations) => reservations.date.toLocaleDateString() === date.toLocaleDateString()
-                )
-              }
-            />
+  return (
+    <>
+      {availableDates.length > 0 && (
+        <div>
+          <h2>Elige una fecha</h2>
+          <div className="calendar-container">
+            <div className="calendar">
+              <Calendar
+                maxDate={availableDates[availableDates.length - 1]}
+                minDate={new Date()}
+                onChange={handleDateSelect}
+                value={selectedDate}
+                // tileDisabled={({ date }) =>
+                //   !availableDates.find((reservations) => reservations === date)
+                // }
+              />
+            </div>
+            <div className="container-data-reservation-button">
+              {/* Botones adicionales */}
+            </div>
           </div>
-          <div className="container-data-reservation-button">
-    {/*       <button
-            className="outline"
-            type="button"
-            style={{ marginTop: "25px", marginLeft: "15px", width:"90px" }}
-            onClick={(e) => {}}
-          >
-            Quitar
-          </button>
-
-          <button
-            className="solid"
-            type="submit"
-            style={{ marginTop: "25px", marginLeft: "15px",width:"100px" }}
-          >
-            Seleccinar
-          </button> */}
         </div>
-        </div>
-       
-      </div>
-    );
-  }
-}
+      )}
+    </>
+  );
+};
 
 export default CalendarReservation;

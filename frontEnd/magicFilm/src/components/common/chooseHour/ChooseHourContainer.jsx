@@ -1,11 +1,14 @@
-import ChooseHour from "./ChooseHour"
+import ChooseHour from "./ChooseHour";
 
-const ChooseHourContainer = () => {
-    return (
-        <div>
-            <ChooseHour/>
-        </div>
-    )
-}
+const ChooseHourContainer = (props) => {
+  return (
+    <div>
+      <ChooseHour
+        selectedHour={props.selectedHour}
+        setSelectedHour={props.handleHourSelect}
+      />
+    </div>
+  );
+};
 
 export default ChooseHourContainer;

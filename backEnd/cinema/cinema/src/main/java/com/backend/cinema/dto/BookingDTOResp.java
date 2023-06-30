@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookingDTOResp {
+    private Long id;
     private Long id_user;
 
     private Long id_movie;
@@ -19,4 +20,5 @@ public class BookingDTOResp {
     private Long id_schedule;
 
     private Long price;
+    private Long Seats;
 }
