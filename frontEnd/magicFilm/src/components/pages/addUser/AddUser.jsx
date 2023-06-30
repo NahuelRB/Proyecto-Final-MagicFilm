@@ -35,6 +35,13 @@ const AddUser = ({ state, setState }) => {
       }),
     email: string()
       .email("El email no es válido")
+      .test("Formato de email no valido", (value) => {
+        if (value) {
+          const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+          return regex.test(value);
+        }
+        return true;
+      })
       .required("El email es requerido"),
     password: string().required("La contraseña es requerida"),
     repassword: string()

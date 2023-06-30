@@ -59,22 +59,40 @@ const Reservation = (props) => {
       price: parseInt(chairsGlobals) * 5000,
       id_schedule: schedule.id,
     };
-    createBooking(data)
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          Swal.fire(
-            "Reserva Creada con Exito",
-            `<p>Id de la reserva : ${res.data.id}</p>`,
-            "success"
-          );
-        } else {
-          Swal.fire("Error al crear la reserva", "", "error");
-        }
-      })
-      .catch((error) => console.log(error));
-  };
 
+    Swal.fire({
+      title: "Confirmación de reserva",
+      html: `
+      <p>Por favor, confirma los siguientes detalles de la reserva:</p>
+      <p>Nombre de la película: ${dataMovie.title}</p> 
+      <p>No. de Asientos: ${data.seats}</p>
+      <p>Precio: $${data.price}</p>
+      <p>Fecha: ${parseDate(selectedDate)} </p>
+      <p>Hora: ${selectedHour}</p> 
+    `,
+      showCancelButton: true,
+      confirmButtonText: "Confirmar",
+      cancelButtonText: "Cancelar",
+      icon: "question",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        createBooking(data)
+          .then((res) => {
+            console.log(res);
+            if (res.status === 200) {
+              Swal.fire(
+                "Reserva Creada con Éxito",
+                `<p>ID de la reserva: ${res.data.id}</p>`,
+                "success"
+              );
+            } else {
+              Swal.fire("Error al crear la reserva", "", "error");
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  };
   const dates = dataMovie?.schedules
     ? Object.keys(dataMovie?.schedules)
         .sort()
