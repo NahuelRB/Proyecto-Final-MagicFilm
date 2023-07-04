@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 @Setter
@@ -25,4 +26,5 @@ public class MovieDTO extends MovieInfoDTO {
     private String image;
     private String trailer;
     private List<TrailerImages> trailer_images;
+    private HashMap<String,List<ScheduleHourDTO>> schedules;
 }

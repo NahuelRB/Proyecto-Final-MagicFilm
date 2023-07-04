@@ -4,6 +4,7 @@ import StarIcon from "@mui/icons-material/Star";
 import "./infoMovie.css";
 
 const InfoMovie = ({ movie }) => {
+  
   return (
     <div key={movie.id} className="card-container-search-movies">
       <img src={movie.image} alt="" className="img-search-movies" />
