@@ -1,9 +1,9 @@
 import "./searchMovie.css";
 
 const SearchMovie = ({ handleSearch, dataSearch, setDataSearch }) => {
-  const handleReset = (e) => {
-    setDataSearch("");
-  };
+  // const handleReset = (e) => {
+  //   setDataSearch("");
+  // };
 
   return (
     <div className="container-search">

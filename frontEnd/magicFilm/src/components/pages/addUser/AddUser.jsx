@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./AddUser.css";
 import { createUser } from "../../../service/userServices";
 import { object, string, ref } from "yup";
@@ -37,7 +37,7 @@ const AddUser = ({ state, setState }) => {
       .email("El email no es válido")
       .test("Formato de email no valido", (value) => {
         if (value) {
-          const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+          const regex = /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/;
           return regex.test(value);
         }
         return true;
@@ -55,7 +55,7 @@ const AddUser = ({ state, setState }) => {
     try {
       await validationSchema.validate(state, { abortEarly: false });
       const { repassword, ...new_user } = state;
-
+      console.log(repassword);
       const create = createUser(new_user);
 
       create

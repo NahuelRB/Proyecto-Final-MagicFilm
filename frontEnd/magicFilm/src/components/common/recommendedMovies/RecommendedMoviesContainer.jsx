@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense } from "react";
 import RecommendedMovies from "./RecommendedMovies";
 import "./RecommendedMovies.css";
 import { getRecommendedMovies } from "../../../service/productServices";

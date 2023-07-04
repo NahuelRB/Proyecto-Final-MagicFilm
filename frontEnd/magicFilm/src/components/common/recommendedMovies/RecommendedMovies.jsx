@@ -1,4 +1,3 @@
-import React from "react";
 import InfoMovie from "../infoMovie/InfoMovie";
 
 const recommendedMovies = ({ dataMovies }) => {

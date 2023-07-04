@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./movieDetail.css";
 import MovieDetail from "./MovieDetail";
 import { getMovieById } from "../../../service/productServices";
 import { AuthContext } from "../../../context/AuthContext";
-import { Troubleshoot } from "@mui/icons-material";
-import Swal from "sweetalert2";
 import { scoreFilter } from "../../../service/rating";
 
 const obtenerIdVideoYoutube = (url) => {
@@ -58,7 +56,7 @@ const MovieDetailContainer = () => {
         }
       })
       .catch((error) => console.log(error));
-  }, [id, value]);
+  }, [id, value, user?.id]);
 
   return (
     <MovieDetail

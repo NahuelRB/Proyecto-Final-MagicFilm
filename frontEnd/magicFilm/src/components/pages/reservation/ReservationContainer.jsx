@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Reservation from "./Reservation";
 import { useParams } from "react-router-dom";
 import { getMovieById } from "../../../service/productServices";
-import { number } from "yup";
 import { ReservationContextReducer } from "../../../context/ReservationContextReducer ";
 import { AuthContext } from "../../../context/AuthContext";
 const ReservationContainer = () => {
-  const { state, dispatch } = useContext(ReservationContextReducer);
+  const { state } = useContext(ReservationContextReducer);
 
   const chairsGlobals = state.chairs;
 

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./SearchMovies.css";
 import "../../pages/movieDetail/movieDetail.css";
 import InfoMovie from "../infoMovie/InfoMovie";

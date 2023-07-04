@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import EmailVerifyPage from "./EmailVerify";
 
 import noVigente from "../../../assets/images/image_11.svg";

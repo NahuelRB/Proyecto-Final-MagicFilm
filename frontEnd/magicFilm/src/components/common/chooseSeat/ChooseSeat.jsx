@@ -1,11 +1,11 @@
-import React, { useState, createContext, useContext } from "react";
+import { useState } from "react";
 import "./chooseSeat.css";
 
 const ChooseSeat = (props) => {
   const { chairsGlobals, dispatch } = props;
 
   const [count, setCount] = useState(0);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   return (
     <div className="seat-container">
@@ -25,7 +25,7 @@ const ChooseSeat = (props) => {
         <h1>{chairsGlobals}</h1>
       </button>
 
-      {error && <p className="error-message">{error}</p>}
+      {/* {error && <p className="error-message">{error}</p>} */}
     </div>
   );
 };

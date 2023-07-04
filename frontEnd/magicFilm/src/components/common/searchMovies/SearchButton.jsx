@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const SearchButton = ({ home, search }) => {
   const [searchInput, setSearchInput] = useState(search || "");
   const navigate = useNavigate();
   let [searchParams, setSearchParams] = useSearchParams();
-
+  console.log(searchParams);
   const handleSubmit = (e) => {
     e.preventDefault();
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AddMovieForm from "./AddMovieForm";
 import AddMoviePreview from "./AddMoviePreview";
 import "./addMovie.css";
@@ -70,6 +70,7 @@ const AddMovieContainer = () => {
         stateImages={stateImages}
         setStateImages={setStateImages}
         handleSubmit={handleSubmit}
+        initialState={initialState}
       >
         {state.title && state.image && state.category_id && (
           <AddMoviePreview

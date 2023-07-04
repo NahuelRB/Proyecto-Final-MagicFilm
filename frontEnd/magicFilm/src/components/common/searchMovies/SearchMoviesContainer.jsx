@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchMovies from "./SearchMovies";
 import { useLocation } from "react-router-dom";
 import { searchMovie } from "../../../service/productServices";
 import SearchButton from "./SearchButton";
+import Swal from "sweetalert2";
 
 const SearchMoviesContainer = () => {
   const [movies, setMovies] = useState([]);

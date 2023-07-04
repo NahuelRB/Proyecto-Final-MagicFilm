@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import "./reservation.css";
 import ChooseHour from "../../common/chooseHour/ChooseHour";
 import ChooseSeatContainer from "../../common/chooseSeat/ChooseSeatContainer";
-import RatingMovieContainer from "../../common/ratingMovie/RatingMovieContainer";
 import ScoreMovieContainer from "../../common/scoreMovie/ScoreMovieContainer";
 import ProgressLine from "../../common/addProgressLine/ProgressLine";
 import CalendarReservation from "../../common/addCalendar/CalendarReservation";
 import { createBooking } from "../../../service/booking";
-import {
-  HourCountProvider,
-  useHourCount,
-} from "../../common/chooseHour/ChooseHour";
+import { HourCountProvider } from "../../common/chooseHour/ChooseHour";
 import Swal from "sweetalert2";
 
 const Reservation = (props) => {
@@ -21,9 +17,6 @@ const Reservation = (props) => {
 
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
-  const [selectedChairs, setSelectedChairs] = useState([]);
-
-  const myDate = new Date();
 
   const handleDateSelect = (date) => {
     console.log(date);
@@ -140,6 +133,7 @@ const Reservation = (props) => {
                       color: "black",
                       fontWeight: "700",
                     }}
+                    rel="noreferrer"
                   >
                     Miralo aquí
                   </a>
@@ -197,7 +191,9 @@ const Reservation = (props) => {
                 className="outline"
                 type="button"
                 style={{ marginTop: "25px", marginLeft: "15px" }}
-                onClick={(e) => {}}
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
               >
                 Cancelar
               </button>

@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import { useState, createContext, useContext } from "react";
 import "./chooseHour.css";
 
 const HourCountContext = createContext();
@@ -28,7 +28,7 @@ const useHourCount = () => {
 export { HourCountProvider, useHourCount };
 
 const ChooseHour = ({ selectedHour, setSelectedHour }) => {
-  const { hourCount, setHourCount } = useHourCount();
+//   const { hourCount, setHourCount } = useHourCount();
   //   const [hours, setSelectedHour] = useState(null);
 
   const handleHourClick = (hour) => {
