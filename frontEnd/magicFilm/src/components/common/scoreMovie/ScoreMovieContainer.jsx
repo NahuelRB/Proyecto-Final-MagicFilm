@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+// import  { useContext, useEffect, useState } from "react";
+// import { AuthContext } from "../../../context/AuthContext";
 import ScoreMovie from "./ScoreMovie";
-import { getScores } from "../../../service/rating";
-import { number } from "yup";
+// import { getScores } from "../../../service/rating";
+// import { number } from "yup";
 
 const ScoreMovieContainer = (props) => {
   const { dataMovie } = props;

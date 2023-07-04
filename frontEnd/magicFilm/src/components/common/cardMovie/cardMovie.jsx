@@ -1,4 +1,3 @@
-import React from "react";
 import "./cardMovie.css";
 import ScoreMovie from "../scoreMovie/ScoreMovie";
 const CardMovie = ({ state, categories, stateImages }) => {
@@ -61,14 +60,14 @@ const CardMovie = ({ state, categories, stateImages }) => {
           </p>
         )}
 
+        {avg_score && <ScoreMovie value={avg_score || 0} />}
+
         {trailer && (
           <>
             <b className="card-movie-title">Trailer: </b>
             <a href={trailer}>Ver Trailer</a>
           </>
         )}
-
-
 
         {stateImages?.length > 0 && (
           <div className="card-trailer-img">

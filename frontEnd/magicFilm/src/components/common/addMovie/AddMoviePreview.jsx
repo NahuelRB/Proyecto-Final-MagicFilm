@@ -1,4 +1,3 @@
-import React from "react";
 import "./addMovie.css";
 import CardMovie from "../cardMovie/cardMovie";
 const AddMoviePreview = ({ state, categories, stateImages }) => {

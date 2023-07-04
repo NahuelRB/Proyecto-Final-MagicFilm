@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import "./infoMovie.css";

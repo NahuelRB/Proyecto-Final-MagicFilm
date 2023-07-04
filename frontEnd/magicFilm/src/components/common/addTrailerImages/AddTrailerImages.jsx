@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Modal, Box } from "@mui/material";
 
 import { MdDelete, MdAdd, MdClear } from "react-icons/md";

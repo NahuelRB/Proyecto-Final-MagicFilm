@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import "./addMovie.css";
 import iconClip from "../../../assets/icon/clip.svg";
 
@@ -16,6 +16,7 @@ const AddMovie = ({
   setStateImages,
   handleSubmit,
   children,
+  initialState,
 }) => {
   const [open, setOpen] = useState(false);
   const release_ref = useRef(null);

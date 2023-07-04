@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import RatingMovie from "./RatingMovie";
 import { createScore } from "../../../service/rating";
 const RatingMovieContainer = (props) => {

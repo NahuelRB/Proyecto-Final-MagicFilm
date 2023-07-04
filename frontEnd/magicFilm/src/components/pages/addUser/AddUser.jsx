@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./AddUser.css";
 import { createUser } from "../../../service/userServices";
 import { object, string, ref } from "yup";
@@ -35,6 +35,13 @@ const AddUser = ({ state, setState }) => {
       }),
     email: string()
       .email("El email no es válido")
+      .test("Formato de email no valido", (value) => {
+        if (value) {
+          const regex = /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/;
+          return regex.test(value);
+        }
+        return true;
+      })
       .required("El email es requerido"),
     password: string().required("La contraseña es requerida"),
     repassword: string()
@@ -48,7 +55,7 @@ const AddUser = ({ state, setState }) => {
     try {
       await validationSchema.validate(state, { abortEarly: false });
       const { repassword, ...new_user } = state;
-
+      console.log(repassword);
       const create = createUser(new_user);
 
       create
@@ -152,7 +159,7 @@ const AddUser = ({ state, setState }) => {
         )}
       </div>
 
-      <button className=" solid" type="submit">
+      <button className="solid" type="submit">
         Crear
       </button>
 

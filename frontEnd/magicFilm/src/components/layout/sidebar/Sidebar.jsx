@@ -1,43 +1,27 @@
-import { Button } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./sidebar.scss";
-import "boxicons/css/boxicons.min.css";
+import "./sidebar.css";
+import PersonIcon from "@mui/icons-material/Person";
+import MovieIcon from "@mui/icons-material/Movie";
+import HomeIcon from "@mui/icons-material/Home";
+import CategoryIcon from "@mui/icons-material/Category";
 
-/* const Sidebar = () => {
-  return (
-    <div className='container-sidebar'>
-        <h1>Panel <br/> administración</h1>
-        <h3>Usuarios</h3>
-        <Button size="medium">Usuarios</Button>
-        <h3>Peliculas</h3>
-        <Button size="medium">Agregar</Button>
-        <Button size="medium">Actualizar</Button>
-        <Button size="medium">Eliminar</Button>
-        <h3>Categorías</h3>
-        <Button size="medium">Agregar</Button>
-        <Button size="medium">Actualizar</Button>
-        <Button size="medium">Eliminar</Button>
-    </div>
-  )
-}
- */
-export const sidebarNavItems = [
+const sidebarNavItems = [
   {
     display: "Home",
-    icon: <i className="bx bx-home"></i>,
+    icon: <HomeIcon></HomeIcon>,
     to: "/",
     section: "",
   },
   {
     display: "Usuarios",
-    icon: <i className="bx bx-user"></i>,
+    icon: <PersonIcon></PersonIcon>,
     to: "/addUser",
     section: "addUser",
   },
   {
     display: "Agregar Película",
-    icon: <i className="bx bx-film"></i>,
+    icon: <MovieIcon></MovieIcon>,
     to: "/movie",
     section: "movie",
 
@@ -58,13 +42,13 @@ export const sidebarNavItems = [
   },
   {
     display: "Eliminar Película",
-    icon: <i className="bx bx-film"></i>,
+    icon: <MovieIcon></MovieIcon>,
     to: "/delete",
     section: "delete",
   },
   {
     display: "Categorías",
-    icon: <i className="bx bx-category"></i>,
+    icon: <CategoryIcon></CategoryIcon>,
     to: "/newcategory",
     section: "newcategory",
   },
@@ -72,9 +56,7 @@ export const sidebarNavItems = [
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [stepHeight, setStepHeight] = useState(0);
   const sidebarRef = useRef();
-  const indicatorRef = useRef();
   const location = useLocation();
 
   // useEffect(() => {

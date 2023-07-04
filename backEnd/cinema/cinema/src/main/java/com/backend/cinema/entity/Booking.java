@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "reserva", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "movie_id","horario_id"}))
+@Table(name = "booking", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "movie_id","schedule_id"}))
 @Setter
 @Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Reserva {
+public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,12 +26,11 @@ public class Reserva {
     private Movie movie;
 
     @ManyToOne
-    @JoinColumn(name = "horario_id")
-    private Horarios horario;
+    @JoinColumn(name = "schedule_id")
+    private Schedule schedule;
 
-    private Long precio;
+    private Long price;
 
-    private Long asientos;
-
+    private Long seats;
 
 }

@@ -1,12 +1,11 @@
-import React from 'react'
-import QualificationMovie from './QualificationMovie'
+import QualificationMovie from "./QualificationMovie";
 
 const QualificationMovieContainer = () => {
   return (
     <div>
-        <QualificationMovie/>
+      <QualificationMovie />
     </div>
-  )
-}
+  );
+};
 
-export default QualificationMovieContainer
+export default QualificationMovieContainer;

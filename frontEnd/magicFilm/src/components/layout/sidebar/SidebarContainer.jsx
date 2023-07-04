@@ -1,9 +1,7 @@
-import React from "react";
 
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import "./sidebar.scss";
-import "boxicons/css/boxicons.min.css";
+import "./sidebar.css";
 
 const SidebarContainer = () => {
   return (
