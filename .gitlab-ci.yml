@@ -4,66 +4,59 @@ stages:
   - deploy
 
 build-backend:
-    stage: build
-    image: maven:3.8.3-openjdk-17
-    script:
-        - cd backEnd/cinema/cinema
-        - echo "Building app..."
-        - mvn clean
-        - mvn clean install
-        - echo "Finished building the app."
-    artifacts:
-        paths:
-            - backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar
-
-
+  stage: build
+  image: maven:3.8.3-openjdk-17
+  script:
+    - cd backEnd/cinema/cinema
+    - echo "Building app..."
+    - mvn clean
+    - mvn clean install
+    - echo "Finished building the app."
+  artifacts:
+    paths:
+      - backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar
 
 front-build:
   stage: build
   image: node:latest
   before_script:
-      - echo "Building the app"
-      
-  script: 
-        - cd frontEnd/magicFilm
-        - export NODE_OPTIONS="--max-old-space-size=4096" 
-        - npm install
-        - npm run build     
-        - echo "Finished building the app."
+    - echo "Building the app"
+
+  script:
+    - cd frontEnd/magicFilm
+    - export NODE_OPTIONS="--max-old-space-size=8192"
+    - npm install
+    - npm run build
+    - echo "Finished building the app."
   artifacts:
     paths:
       - frontEnd/magicFilm/dist/
 
-
 deploy-backend:
-    stage: deploy
-    image: ubuntu:latest
-    before_script:
-        - apt-get update && apt-get install -y openssh-client
-        - mkdir -p ~/.ssh
-        - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        - chmod 600 ~/.ssh/id_rsa
-        - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    script: 
-        - echo "Deploying BackEnd started..."
-        - ssh ubuntu@$EC2_IP "sudo systemctl stop myapp.service"
-        - scp backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
-        - ssh ubuntu@$EC2_IP "sudo systemctl start myapp.service"
-        - sleep 5s
-        - echo "Deployment successful"
-
+  stage: deploy
+  image: ubuntu:latest
+  before_script:
+    - apt-get update && apt-get install -y openssh-client
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+  script:
+    - echo "Deploying BackEnd started..."
+    - ssh ubuntu@$EC2_IP "sudo systemctl stop myapp.service"
+    - scp backEnd/cinema/cinema/target/cinema-0.0.8-SNAPSHOT.jar ubuntu@$EC2_IP:/home/ubuntu/integrador/
+    - ssh ubuntu@$EC2_IP "sudo systemctl start myapp.service"
+    - sleep 5s
+    - echo "Deployment successful"
 
 front-deploy:
-    stage: deploy
-    image: python:latest
-    before_script:
-        - pip install awscli
-        - aws --version     
-    script: 
-        - echo "Deploying frontEnd started..."
-        - echo "front-end deployment"
-        - aws s3 rm s3://magicfilm/ --recursive 
-        - aws s3 sync frontEnd/magicFilm/dist/ s3://magicfilm/ --acl public-read
-
-
-       
+  stage: deploy
+  image: python:latest
+  before_script:
+    - pip install awscli
+    - aws --version
+  script:
+    - echo "Deploying frontEnd started..."
+    - echo "front-end deployment"
+    - aws s3 rm s3://magicfilm/ --recursive
+    - aws s3 sync frontEnd/magicFilm/dist/ s3://magicfilm/ --acl public-read
