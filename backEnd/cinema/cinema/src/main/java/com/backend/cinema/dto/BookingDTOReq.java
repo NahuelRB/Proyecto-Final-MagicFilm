@@ -12,15 +12,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookingDTOReq {
-
     private Long id_user;
-
     private Long id_movie;
-
     private Long id_schedule;
-
     private Long price;
-
     private Long seats;
-
 }

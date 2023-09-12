@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "booking", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "movie_id","schedule_id"}))
 @Setter
 @Getter
 @NoArgsConstructor
+@Table(name = "booking", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "movie_id","schedule_id"}))
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Booking {
     @Id
@@ -32,5 +32,4 @@ public class Booking {
     private Long price;
 
     private Long seats;
-
 }

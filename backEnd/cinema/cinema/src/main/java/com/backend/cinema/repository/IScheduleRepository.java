@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@ComponentScan
 public interface IScheduleRepository  extends JpaRepository<Schedule,Long> {
     Optional<List<Schedule>> getByMovieId(Long movie_id);
 }

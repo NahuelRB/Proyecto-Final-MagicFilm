@@ -10,10 +10,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "schedule")
 @Setter
 @Getter
 @NoArgsConstructor
+@Table(name = "schedule")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Schedule {
     @Id
@@ -32,5 +32,4 @@ public class Schedule {
 
     @Column(columnDefinition = "bigint default 100")
     private Long chairsAvailable;
-
 }

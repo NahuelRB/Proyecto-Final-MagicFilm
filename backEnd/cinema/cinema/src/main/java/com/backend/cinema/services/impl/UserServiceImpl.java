@@ -44,7 +44,6 @@ public class UserServiceImpl implements IUserService {
 		this.passwordEncoder = passwordEncoder;
 		this.roleRepository= roleRepository;
 		this.emailService = emailService;
-
 	}
 
 	@Autowired
@@ -85,7 +84,6 @@ public class UserServiceImpl implements IUserService {
 					|| userDTO.getPassword() == null || userDTO.getPassword().isEmpty()) {
 				throw new IllegalArgumentException("Email and password are required");
 			}
-
 			User user = mapper.convertValue(userDTO, User.class);
 			Role userRole = roleRepository.getReferenceById(2L);
 			user.setRole(userRole);
@@ -116,7 +114,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		User user = userRepository.findById(id)
+		userRepository.findById(id)
 				.orElseThrow(() -> new EntityNotFoundException("User not found with ID: " + id));
 		userRepository.deleteById(id);
 		log.info("User deleted successfully with ID: {}", id);
@@ -131,17 +129,11 @@ public class UserServiceImpl implements IUserService {
 				String url = "http://localhost:5173/verify?email="+user.getEmail() + "&token=" + token;
 				emailService.sendRegisterEmail(user.getName(), url, user.getEmail(), "Verificacíon del Correo");
 			}catch (Exception e){
-				throw new Exception("Hubo un problema al enviarl el correo :" + e.getMessage());
+				throw new Exception("Hubo un problema al enviar el correo :" + e.getMessage());
 			}
 
 		}
 	}
-
-//	@Override
-//	public void update(UserDTO userDTO) {
-//		save(userDTO);
-//		log.info("User updated correctly: {}", userDTO.getEmail());
-//	}
 
 	public boolean existsById(Long id) {
 		return userRepository.existsById(id);

@@ -40,7 +40,8 @@ public class BookingServiceImpl implements IBookingService {
         bookingDTOResp.setId_user(bookingDTOReq.getId_user());
         bookingDTOResp.setId_movie(bookingDTOReq.getId_movie());
         bookingDTOResp.setId_schedule(bookingDTOReq.getId_schedule());
-        Schedule schedule = scheduleRepository.getById(bookingDTOReq.getId_schedule());
+        //Schedule schedule = scheduleRepository.getById(bookingDTOReq.getId_schedule());
+        Schedule schedule = scheduleRepository.getReferenceById(bookingDTOReq.getId_schedule());
         schedule.setChairsAvailable(schedule.getChairsAvailable()-bookingDTOReq.getSeats());
         scheduleRepository.save(schedule);
         return bookingDTOResp;

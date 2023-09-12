@@ -28,19 +28,14 @@ public class UserController {
     public static final Logger log = LogManager.getLogger(UserServiceImpl.class);
 
     private UserServiceImpl userService;
-    // private final EmailService emailService;
-
     @Value("${aws.secret.key}")
     private String awsSecretKey;
-
     @Value("${aws.access.key}")
     private String awsAccessKey;
-
     @Value("${aws.bucket.name}")
     private String awsBucketName;
+
     private final JavaMailSender mailSender;
-
-
 
     @Autowired
     public UserController(UserServiceImpl userService,JavaMailSender mailSender) {
@@ -51,10 +46,9 @@ public class UserController {
     @PostMapping("/send")
     public String sendEmail() {
         try{
-
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
-        String to = "yayaho4989@bodeem.com";
+        String to = "sistemastt8@gmail.com";
         String subject = "Envio de mail Equipo 5";
         helper.setTo(to);
         helper.setSubject(subject);
@@ -77,10 +71,8 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<?> getId(@PathVariable Long id) {
-        System.out.println("LLEGOOO id = " + id);
         UserResponseDTO userDTO = userService.getId(id);
         return ResponseEntity.ok().body(userDTO);
     }
