@@ -14,11 +14,8 @@ import lombok.Setter;
 public class BookingDTOResp {
     private Long id;
     private Long id_user;
-
     private Long id_movie;
-
     private Long id_schedule;
-
     private Long price;
     private Long Seats;
 }

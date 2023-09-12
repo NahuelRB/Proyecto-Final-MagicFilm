@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://127.0.0.1:5173")
 public class BookingController {
 
-
     public static final Logger log = LogManager.getLogger(BookingServiceImpl.class);
     private BookingServiceImpl bookingService;
 
